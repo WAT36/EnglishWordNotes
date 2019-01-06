@@ -20,6 +20,26 @@ class ViewController: UIViewController {
         setLabel()
         
         label.text = "Hello World!"
+        
+        //StoryBoardを使わずにLabelを実装する場合
+        let label13 = UILabel()
+        label13.frame = CGRect(x:150, y:200, width:160, height:30)
+        label13.text = "1-3 Label."
+        
+        //テキストの色を設定
+        label13.textColor = UIColor(red: 0.1, green: 0.7, blue: 1.0, alpha: 0.5)
+        //システムフォントをサイズ36に設定
+        label13.font = UIFont.systemFont(ofSize: 36)
+        //テキストを中央寄せ
+        label13.textAlignment = NSTextAlignment.center
+        //テキストの影、色とオフセット
+        label13.shadowColor = UIColor.cyan
+        label13.shadowOffset = CGSize(width: 2, height: 2)
+        //ラベルの背景色、ライトグレー
+        label13.backgroundColor = UIColor.lightGray
+        
+        
+        self.view.addSubview(label13)
     }
 
     //回転を検知
