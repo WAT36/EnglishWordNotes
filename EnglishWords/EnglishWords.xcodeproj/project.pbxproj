@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		244BD9C7217C2CA100969EA9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244BD9C6217C2CA100969EA9 /* FirstViewController.swift */; };
 		24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E6214E7C29009AA57C /* AppDelegate.swift */; };
 		24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E8214E7C29009AA57C /* ViewController.swift */; };
 		24F2B4EC214E7C29009AA57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F2B4EA214E7C29009AA57C /* Main.storyboard */; };
@@ -35,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		244BD9C6217C2CA100969EA9 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		24F2B4E3214E7C29009AA57C /* EnglishWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F2B4E6214E7C29009AA57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24F2B4E8214E7C29009AA57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			children = (
 				24F2B4E6214E7C29009AA57C /* AppDelegate.swift */,
 				24F2B4E8214E7C29009AA57C /* ViewController.swift */,
-				244BD9C6217C2CA100969EA9 /* FirstViewController.swift */,
 				24F2B4EA214E7C29009AA57C /* Main.storyboard */,
 				24F2B4ED214E7C2B009AA57C /* Assets.xcassets */,
 				24F2B4EF214E7C2B009AA57C /* LaunchScreen.storyboard */,
@@ -259,7 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				244BD9C7217C2CA100969EA9 /* FirstViewController.swift in Sources */,
 				24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */,
 				24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */,
 			);
