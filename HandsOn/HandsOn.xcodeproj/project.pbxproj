@@ -14,6 +14,7 @@
 		249FE83321DE61B800567F4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249FE83121DE61B800567F4F /* LaunchScreen.storyboard */; };
 		249FE83E21DE61B800567F4F /* HandsOnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE83D21DE61B800567F4F /* HandsOnTests.swift */; };
 		249FE84921DE61B800567F4F /* HandsOnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE84821DE61B800567F4F /* HandsOnUITests.swift */; };
+		249FE85721E384F300567F4F /* ButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE85621E384F300567F4F /* ButtonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		249FE84421DE61B800567F4F /* HandsOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HandsOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		249FE84821DE61B800567F4F /* HandsOnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandsOnUITests.swift; sourceTree = "<group>"; };
 		249FE84A21DE61B800567F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		249FE85621E384F300567F4F /* ButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				249FE82821DE61B600567F4F /* AppDelegate.swift */,
 				249FE82A21DE61B600567F4F /* ViewController.swift */,
 				249FE82C21DE61B600567F4F /* Main.storyboard */,
+				249FE85621E384F300567F4F /* ButtonViewController.swift */,
 				249FE82F21DE61B800567F4F /* Assets.xcassets */,
 				249FE83121DE61B800567F4F /* LaunchScreen.storyboard */,
 				249FE83421DE61B800567F4F /* Info.plist */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249FE82B21DE61B600567F4F /* ViewController.swift in Sources */,
+				249FE85721E384F300567F4F /* ButtonViewController.swift in Sources */,
 				249FE82921DE61B600567F4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
