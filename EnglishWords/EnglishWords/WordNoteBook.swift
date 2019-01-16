@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class WordNoteBook: Object {
-    dynamic var wordNoteBookId: Int = 0
-    dynamic var wordNoteBookName: String = " "
-    dynamic var createdDate: Date = "1990-01-01"
+    @objc dynamic var wordNoteBookId: Int = 0
+    @objc dynamic var wordNoteBookName: String = " "
+    @objc dynamic var createdDate: Date = Date()
 }
