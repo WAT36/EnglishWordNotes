@@ -2,8 +2,8 @@
 //  WordNote.swift
 //  EnglishWords
 //
-//  Created by Wataru Tsukagoshi on 2019/01/17.
-//  Copyright © 2019年 Wataru Tsukagoshi. All rights reserved.
+//  Created by T.Wakasugi on 2019/01/17.
+//  Copyright © 2019年 T.Wakasugi. All rights reserved.
 //
 
 import Foundation

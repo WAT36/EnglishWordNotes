@@ -10,6 +10,11 @@ import Foundation
 import RealmSwift
 
 class Word: Object {
-    @objc dynamic var wordName: String = " "
-    @objc dynamic var createdDate: Date = Date()
+    @objc dynamic var wordName = " "
+    @objc dynamic var createdDate = Date()
+    
+    override static func primaryKey() -> String? {
+        return "wordName"
+    }
+    
 }
