@@ -44,5 +44,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        // [indexPath.row] から画像名を探し、UImage を設定
+        let selectedText = TODO[indexPath.row]
+        if selectedText == "単語帳を追加" {
+            // SubViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toSubViewController",sender: nil)
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if (segue.identifier == "toSubViewController") {
+            let _: AddWordNoteBookViewController = (segue.destination as? AddWordNoteBookViewController)!
+        }
+    }
 }
 
