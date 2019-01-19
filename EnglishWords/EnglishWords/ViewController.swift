@@ -12,8 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet var table:UITableView!
     
-    //
-    let TODO = ["aiueo","kakikukeko","sasisuseso"]
+    var TODO = ["aiueo","kakikukeko","sasisuseso"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return TODO.count
+        return TODO.count + 1
     }
     
     //各セルの要素を設定する
@@ -39,6 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                              for: indexPath)
         
         // Tag番号  で UILabel インスタンスの生成
+        TODO.append("単語帳を追加")
         let label1 = cell.viewWithTag(1) as! UILabel
         label1.text = TODO[indexPath.row]
         
