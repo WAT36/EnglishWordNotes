@@ -87,6 +87,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ZIG-lM-RDq"/>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="dZL-z1-37Z" id="L1W-Q9-s6s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ki0-8i-Er2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
