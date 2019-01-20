@@ -10,8 +10,8 @@ import Foundation
 import RealmSwift
 
 class WordNote: Object {
-    @objc dynamic var wordnotebook: WordNoteBook = WordNoteBook()
-    @objc dynamic var worddata: WordData = WordData()
+    @objc dynamic var wordnotebook: WordNoteBook?
+    @objc dynamic var worddata: WordData?
     @objc dynamic var wordidx: Int = 0
     @objc dynamic var registereddate: Date = Date()
 }

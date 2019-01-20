@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 
 class WordData: Object{
-    @objc dynamic var word = Word()
-    @objc dynamic var partofspeech = PartofSpeech()
+    @objc dynamic var word: Word?
+    @objc dynamic var partofspeech: PartofSpeech?
     @objc dynamic var mean = " "
     @objc dynamic var source = " "
     @objc dynamic var example = " "
     
-    override static func primaryKey() -> String? {
-        return "word"
-    }
+//    override static func primaryKey() -> String? {
+//        return "word"
+//    }
 }

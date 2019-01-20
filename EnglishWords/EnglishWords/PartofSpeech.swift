@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class PartofSpeech: Object {
-    @objc dynamic var partId = 0
+    @objc dynamic var partId: Int = 0
     @objc dynamic var partName = " "
     @objc dynamic var createdDate = Date()
     
