@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var table:UITableView!
     
-    var TODO = ["aiueo","kakikukeko","sasisuseso"]
+    var booknamelist: [WordNoteBook] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //データベース内に保存してあるWordNoteBookを全て取得
+        let realm: Realm = try! Realm()
+        let results = realm.objects(WordNoteBook.self)
+        booknamelist = Array(results)
+        booknamelist.append(WordNoteBook(value: ["wordNoteBookId": 999,
+                                                 "wordNoteBookName": "単語帳を追加"]))
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return TODO.count + 1
+        return booknamelist.count
     }
     
     //各セルの要素を設定する
@@ -38,17 +45,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                              for: indexPath)
         
         // Tag番号  で UILabel インスタンスの生成
-        TODO.append("単語帳を追加")
+        let booknames = booknamelist[indexPath.row]
         let label1 = cell.viewWithTag(1) as! UILabel
-        label1.text = TODO[indexPath.row]
-        
+        label1.text = booknames.wordNoteBookName
+
         return cell
     }
     
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
-        // [indexPath.row] から画像名を探し、UImage を設定
-        let selectedText = TODO[indexPath.row]
+        let selectedText = booknamelist[indexPath.row].wordNoteBookName
         if selectedText == "単語帳を追加" {
             // SubViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: "toSubViewController",sender: nil)
