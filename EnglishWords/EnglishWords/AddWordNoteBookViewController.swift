@@ -9,14 +9,24 @@
 import Foundation
 import UIKit
 
-class AddWordNoteBookViewController: UIViewController {
+class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var label: UILabel!
+    @IBOutlet var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        label.text = "単語帳追加画面"
+        label.text = "新しく追加する単語帳名を記入して下さい"
+        
+        // textField の情報を受け取るための delegate を設定
+        textField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        // キーボードを閉じる
+        textField.resignFirstResponder()
+        return true
     }
     
     override func didReceiveMemoryWarning() {
