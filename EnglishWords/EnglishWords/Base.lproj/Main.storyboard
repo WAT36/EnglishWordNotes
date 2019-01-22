@@ -68,12 +68,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-ZL-5PV">
-                                <rect key="frame" x="88" y="448" width="219" height="96"/>
+                                <rect key="frame" x="88" y="571" width="219" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <segue destination="7cm-EY-hsh" kind="presentation" id="CQZ-zJ-6zW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-5i-mbw">
+                                <rect key="frame" x="88" y="463" width="219" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddBookandToViewController" id="M7v-xB-PG4"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1b2-R0-HBQ">
@@ -104,4 +113,7 @@
             <point key="canvasLocation" x="1376.8" y="-222.63868065967017"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="M7v-xB-PG4"/>
+    </inferredMetricsTieBreakers>
 </document>

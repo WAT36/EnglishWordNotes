@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
@@ -27,6 +28,27 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
         // キーボードを閉じる
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func buttonTapped(sender : AnyObject) {
+        performSegue(withIdentifier: "AddBookandToViewController",sender: nil)
+        
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "AddBookandToViewController") {
+            //ここでRealm使って書き込み行わせてから戻る
+            let realm = try! Realm()
+            try! realm.write {
+                let wordnotebook = WordNoteBook(value:
+                    ["wordNoteBookId": 1,
+                     "wordNoteBookName": textField.text,
+                     "createdDate": Date()])
+                realm.add(wordnotebook)
+            }
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
