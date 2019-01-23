@@ -38,14 +38,15 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "AddBookandToViewController") {
-            //ここでRealm使って書き込み行わせてから戻る
+            //Realm
             let realm = try! Realm()
+            let results = realm.objects(WordNoteBook.self)
+            var maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
+
             try! realm.write {
-                let wordnotebook = WordNoteBook(value:
-                    ["wordNoteBookId": 1,
-                     "wordNoteBookName": textField.text,
-                     "createdDate": Date()])
-                realm.add(wordnotebook)
+                realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
+                                                "wordNoteBookName": textField.text!,
+                                                "createdDate": Date()])])
             }
             
         }

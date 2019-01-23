@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 class WordNoteBook: Object {
-    @objc dynamic var wordNoteBookId = 0
-    @objc dynamic var wordNoteBookName = " "
-    @objc dynamic var createdDate = Date()
+    @objc dynamic var wordNoteBookId: Int = 0
+    @objc dynamic var wordNoteBookName: String = " "
+    @objc dynamic var createdDate: Date = Date()
     
     override static func primaryKey() -> String? {
         return "wordNoteBookId"
