@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var table:UITableView!
     
     var booknamelist: [WordNoteBook] = []
+    var wordnotebook: WordNoteBook?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +57,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         let selectedText = booknamelist[indexPath.row].wordNoteBookName
         if selectedText == "単語帳を追加" {
-            // SubViewController へ遷移するために Segue を呼び出す
+            // AddWordNoteBookViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: "toSubViewController",sender: nil)
+        }else{
+            //選択したセルの単語帳を記録
+            wordnotebook = booknamelist[indexPath.row]
+            // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toConfigureWordNoteBookViewController", sender: nil)
         }
     }
     
@@ -65,6 +71,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "toSubViewController") {
             let _: AddWordNoteBookViewController = (segue.destination as? AddWordNoteBookViewController)!
+        }else if (segue.identifier == "toConfigureWordNoteBookViewController"){
+            let subVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
+            //遷移先の画面に選択した単語帳を表示
+            subVC.wordnotebook = wordnotebook!
         }
     }
 }
