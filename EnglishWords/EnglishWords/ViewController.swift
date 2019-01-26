@@ -77,5 +77,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             subVC.wordnotebook = wordnotebook!
         }
     }
+    
+    //選択したセルでスワイプすると削除される
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //選択したセルの単語帳を記録
+            wordnotebook = booknamelist[indexPath.row]
+            
+            booknamelist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //Realmデータベースからも削除
+            let realm = try! Realm()
+            
+            try! realm.write {
+                realm.delete(wordnotebook!)
+            }
+        }
+    }
 }
 
