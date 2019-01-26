@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  EnglishWords
 //
-//  Created by Wataru Tsukagoshi on 2018/09/16.
-//  Copyright © 2018年 Wataru Tsukagoshi. All rights reserved.
+//  Created by T.Wakasugi on 2018/09/16.
+//  Copyright © 2018年 T.Wakasugi. All rights reserved.
 //
 
 import UIKit
