@@ -43,10 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                    numberOfRowsInSection section: Int) -> Int {
         
         if table.tag == 1 {
-            print(sidebarlist.count)
             return sidebarlist.count
         }else{
-            print(booknamelist.count)
             return booknamelist.count
         }
     }
@@ -54,7 +52,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //各セルの要素を設定する
     func tableView(_ table: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(table.tag)
         if table.tag == 1 {
             // tableCell の ID で UITableViewCell のインスタンスを生成
             let cell = table.dequeueReusableCell(withIdentifier: "sidetablecell",
@@ -103,6 +100,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let subVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             //遷移先の画面に選択した単語帳を表示
             subVC.wordnotebook = wordnotebook!
+        }
+    }
+    
+    //指定したテーブル、セル毎にスワイプを有効、無効にする
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tableView.tag == 0 {
+            if indexPath.row == indexPath.count {
+                return false
+            }else{
+                return true
+            }
+        }else{
+            return false
         }
     }
     
