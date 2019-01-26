@@ -23,24 +23,6 @@ class ConfigureWordNoteBookViewController: UIViewController {
         label.text = wordnotebook.wordNoteBookName
     }
     
-    @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "DeleteBookandToViewController",sender: nil)
-        
-    }
-    
-    // Segue 準備
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "DeleteBookandToViewController") {
-            //Realm
-            let realm = try! Realm()
-            
-            try! realm.write {
-                realm.delete(wordnotebook)
-            }
-            
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
