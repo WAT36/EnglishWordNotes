@@ -26,8 +26,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let realm: Realm = try! Realm()
         let results = realm.objects(WordNoteBook.self)
         booknamelist = Array(results)
-        booknamelist.append(WordNoteBook(value: ["wordNoteBookId": 999,
-                                                 "wordNoteBookName": "単語帳を追加"]))
         
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
@@ -79,15 +77,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if table.tag == 0 {
-            let selectedText = booknamelist[indexPath.row].wordNoteBookName
-            if selectedText == "単語帳を追加" {
+            //選択したセルの単語帳を記録
+            wordnotebook = booknamelist[indexPath.row]
+            // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toConfigureWordNoteBookViewController", sender: nil)
+        }else{
+            if sidebarlist[indexPath.row] == "単語帳追加" {
                 // AddWordNoteBookViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "toSubViewController",sender: nil)
-            }else{
-                //選択したセルの単語帳を記録
-                wordnotebook = booknamelist[indexPath.row]
-                // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: "toConfigureWordNoteBookViewController", sender: nil)
             }
         }
     }
@@ -106,11 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //指定したテーブル、セル毎にスワイプを有効、無効にする
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if tableView.tag == 0 {
-            if indexPath.row == indexPath.count {
-                return false
-            }else{
-                return true
-            }
+            return true
         }else{
             return false
         }
