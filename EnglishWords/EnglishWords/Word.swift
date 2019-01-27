@@ -17,4 +17,8 @@ class Word: Object {
         return "wordName"
     }
     
+    static func ==(a: Word, b: Word) -> Bool{
+        return a.wordName == b.wordName
+    }
+    
 }

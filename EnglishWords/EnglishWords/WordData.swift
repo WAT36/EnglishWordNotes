@@ -19,4 +19,8 @@ class WordData: Object{
 //    override static func primaryKey() -> String? {
 //        return "word"
 //    }
+    
+    static func ==(a: WordData, b: WordData) -> Bool{
+        return a.word == b.word
+    }
 }

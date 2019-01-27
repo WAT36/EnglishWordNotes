@@ -17,4 +17,8 @@ class WordNoteBook: Object {
     override static func primaryKey() -> String? {
         return "wordNoteBookId"
     }
+    
+    static func ==(a: WordNoteBook, b: WordNoteBook) -> Bool{
+        return a.wordNoteBookId == b.wordNoteBookId && a.wordNoteBookName == a.wordNoteBookName
+    }
 }
