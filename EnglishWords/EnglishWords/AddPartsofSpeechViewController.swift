@@ -1,8 +1,8 @@
 //
-//  AddWordNoteBookViewController.swift
+//  AddPartsofSpeechViewController.swift
 //  EnglishWords
 //
-//  Created by T.Wakasugi on 2019/01/19.
+//  Created by T.Wakasugi on 2019/01/27.
 //  Copyright © 2019年 T.Wakasugi. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
+class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField!
@@ -18,7 +18,7 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        label.text = "新しく追加する単語帳名を記入して下さい"
+        label.text = "新しく追加する品詞名を記入して下さい"
         
         // textField の情報を受け取るための delegate を設定
         textField.delegate = self
@@ -31,21 +31,21 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "AddBookandToViewController",sender: nil)
+        performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
         
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AddBookandToViewController") {
+        if (segue.identifier == "AddPartsofSpeechandToViewController") {
             //Realm
             let realm = try! Realm()
-            let results = realm.objects(WordNoteBook.self)
-            var maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
-
+            let results = realm.objects(PartofSpeech.self)
+            var maxId = results.value(forKeyPath: "@max.partsOfSpeechId")! as! Int
+            
             try! realm.write {
-                realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
-                                                "wordNoteBookName": textField.text!,
+                realm.add([PartofSpeech(value: ["partsOfSpeechId": (maxId + 1),
+                                                "partsOfSpeechName": textField.text!,
                                                 "createdDate": Date()])])
             }
             
@@ -57,3 +57,4 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+

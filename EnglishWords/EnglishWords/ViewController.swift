@@ -85,6 +85,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if sidebarlist[indexPath.row] == "単語帳追加" {
                 // AddWordNoteBookViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "toSubViewController",sender: nil)
+            }else if sidebarlist[indexPath.row] == "品詞追加" {
+                // AddPronounceViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "toAddPartsofSpeechViewController",sender: nil)
             }
         }
     }
@@ -97,6 +100,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let subVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             //遷移先の画面に選択した単語帳を表示
             subVC.wordnotebook = wordnotebook!
+        }else if (segue.identifier == "toAddPartsofSpeechViewController"){
+            let _: AddPartsofSpeechViewController = (segue.destination as? AddPartsofSpeechViewController)!
         }
     }
     

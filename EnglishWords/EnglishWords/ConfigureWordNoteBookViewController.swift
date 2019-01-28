@@ -23,18 +23,14 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("configure.viedidload 1")
         //データベース内に保存してあるWordNoteを全て取得
         let realm: Realm = try! Realm()
         let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
         wordlist = Array(results)
-        print("configure.viedidload 2")
 
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
         sidetable.rowHeight=UITableViewAutomaticDimension
-        print("configure.viedidload 3")
-        print(wordlist)
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,8 +40,6 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        
-        print("configure.cellnum 1")
         if table.tag == 1 {
             return sidebarlist.count
         }else{

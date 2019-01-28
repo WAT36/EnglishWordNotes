@@ -183,11 +183,65 @@
                         <outlet property="table" destination="vuH-EV-YNI" id="ld8-Ww-Onp"/>
                         <segue destination="iX5-rN-go1" kind="presentation" identifier="toSubViewController" id="enh-DX-ynW"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="toConfigureWordNoteBookViewController" id="Ob6-q9-ixW"/>
+                        <segue destination="1aS-hT-oMF" kind="presentation" identifier="toAddPartsofSpeechViewController" id="jqu-ej-W2j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msf-kd-HGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="296.80000000000001" y="-221.73913043478262"/>
+        </scene>
+        <!--Add Partsof Speech View Controller-->
+        <scene sceneID="YEI-NU-Zkh">
+            <objects>
+                <viewController id="1aS-hT-oMF" customClass="AddPartsofSpeechViewController" customModule="EnglishWords" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tzr-TX-sz4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="品詞名を記入して下さい" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjo-Gp-bF3">
+                                <rect key="frame" x="16" y="113" width="343" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1g5-Pf-Tzd">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkE-9T-kzc">
+                                <rect key="frame" x="78" y="461" width="219" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddPartofSpeechandToViewController" id="Oip-sD-T2K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJS-Xj-iSR">
+                                <rect key="frame" x="78" y="569" width="219" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" id="wlc-XI-6N7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kNE-mc-gub"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="wjo-Gp-bF3" id="tVG-Mp-pKJ"/>
+                        <outlet property="textField" destination="1g5-Pf-Tzd" id="xQa-T0-VZB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kPl-kT-Lbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="-1097"/>
         </scene>
         <!--Add Word Note Book View Controller-->
         <scene sceneID="ASp-bc-sJZ">
@@ -244,6 +298,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="Oip-sD-T2K"/>
     </inferredMetricsTieBreakers>
 </document>
