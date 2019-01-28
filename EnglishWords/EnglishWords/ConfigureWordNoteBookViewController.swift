@@ -75,6 +75,24 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }
     }
     
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        if table.tag == 1 {
+            if sidebarlist[indexPath.row] == "単語追加" {
+                // AddWordViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "toAddWordViewController",sender: nil)
+            }
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if (segue.identifier == "toAddWordViewController") {
+            let addWordVC: AddWordViewController = (segue.destination as? AddWordViewController)!
+            addWordVC.wordnotebook = wordnotebook
+        }
+    }
+    
     //指定したテーブル、セル毎にスワイプを有効、無効にする
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if tableView.tag == 0 {
