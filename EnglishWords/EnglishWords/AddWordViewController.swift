@@ -14,8 +14,13 @@ class AddWordViewController: UIViewController {
     
     var wordnotebook: WordNoteBook?
     
+    @IBOutlet var AddWordFromMasterbutton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //ボタンを黒い枠線で囲む
+        AddWordFromMasterbutton.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func buttonAction(_ sender: Any) {
