@@ -41,10 +41,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                    numberOfRowsInSection section: Int) -> Int {
         
         if table.tag == 0 {
-            print(wordlist.count)
             return wordlist.count
         }else{
-            print(alphabet.count)
             return alphabet.count
         }
     }
