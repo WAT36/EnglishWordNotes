@@ -232,6 +232,7 @@
                         <segue destination="iX5-rN-go1" kind="presentation" identifier="toSubViewController" id="enh-DX-ynW"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="toConfigureWordNoteBookViewController" id="Ob6-q9-ixW"/>
                         <segue destination="1aS-hT-oMF" kind="presentation" identifier="toAddPartsofSpeechViewController" id="jqu-ej-W2j"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="hrg-rN-jGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msf-kd-HGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPl-kT-Lbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1377" y="-1097"/>
+            <point key="canvasLocation" x="297" y="-1098"/>
         </scene>
         <!--Add Word Note Book View Controller-->
         <scene sceneID="ASp-bc-sJZ">
@@ -342,11 +343,104 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ki0-8i-Er2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376.8" y="-222.63868065967017"/>
+            <point key="canvasLocation" x="1434" y="-1099"/>
+        </scene>
+        <!--Dictionary View Controller-->
+        <scene sceneID="J2H-I3-Urz">
+            <objects>
+                <viewController id="DcU-qC-SDl" customClass="DictionaryViewController" customModule="EnglishWords" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Oh-SX-me2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQi-Xq-PLz">
+                                <rect key="frame" x="0.0" y="20" width="97" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" id="Ixl-7z-if7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="辞書" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G39-xr-htX">
+                                <rect key="frame" x="101" y="20" width="172" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Ta-lD-3nR">
+                                <rect key="frame" x="0.0" y="73" width="268" height="594"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tablecell" id="6uF-SE-hXf">
+                                        <rect key="frame" x="0.0" y="28" width="268" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6uF-SE-hXf" id="Fiu-eo-xdF">
+                                            <rect key="frame" x="0.0" y="0.0" width="268" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-hq-Pga">
+                                                    <rect key="frame" x="15" y="0.0" width="253" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DcU-qC-SDl" id="ejW-De-OKk"/>
+                                    <outlet property="delegate" destination="DcU-qC-SDl" id="pr0-Pc-2E1"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VIU-ai-02k">
+                                <rect key="frame" x="281" y="73" width="99" height="594"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sidetablecell" rowHeight="132" id="FFh-D5-qgl">
+                                        <rect key="frame" x="0.0" y="28" width="99" height="132"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FFh-D5-qgl" id="DiY-rQ-cA0">
+                                            <rect key="frame" x="0.0" y="0.0" width="99" height="131.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bs-ay-pmM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="92" height="121"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DcU-qC-SDl" id="pdr-0h-zv8"/>
+                                    <outlet property="delegate" destination="DcU-qC-SDl" id="75j-Cd-RRH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cit-og-rHP"/>
+                    </view>
+                    <connections>
+                        <outlet property="sidetable" destination="VIU-ai-02k" id="hm4-j3-zxS"/>
+                        <outlet property="table" destination="7Ta-lD-3nR" id="exs-i7-YrA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JjE-SL-ap6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432.8" y="-222.63868065967017"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Zpx-A2-zi1"/>
-        <segue reference="HwR-Cb-UNe"/>
+        <segue reference="Ixl-7z-if7"/>
+        <segue reference="Ob6-q9-ixW"/>
     </inferredMetricsTieBreakers>
 </document>

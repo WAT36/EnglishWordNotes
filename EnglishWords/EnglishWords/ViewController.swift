@@ -88,6 +88,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }else if sidebarlist[indexPath.row] == "品詞追加" {
                 // AddPronounceViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "toAddPartsofSpeechViewController",sender: nil)
+            }else if sidebarlist[indexPath.row] == "マスター英単語帳" {
+                // DictionaryViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "toDictionaryViewController",sender: nil)
             }
         }
     }
@@ -102,6 +105,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             subVC.wordnotebook = wordnotebook!
         }else if (segue.identifier == "toAddPartsofSpeechViewController"){
             let _: AddPartsofSpeechViewController = (segue.destination as? AddPartsofSpeechViewController)!
+        }else if (segue.identifier == "toDictionaryViewController"){
+            let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }
     }
     
