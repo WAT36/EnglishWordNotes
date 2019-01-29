@@ -145,6 +145,7 @@
                         <outlet property="sidetable" destination="0AP-EW-olz" id="d81-B0-rSR"/>
                         <outlet property="table" destination="dhF-nz-wcd" id="rXM-Pm-Pv6"/>
                         <segue destination="stC-xV-xaY" kind="presentation" identifier="toAddWordViewController" id="6Zt-hW-hrY"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="rjS-2a-6nI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0A-mO-z6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -440,7 +441,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ixl-7z-if7"/>
-        <segue reference="Ob6-q9-ixW"/>
+        <segue reference="rjS-2a-6nI"/>
+        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="HwR-Cb-UNe"/>
     </inferredMetricsTieBreakers>
 </document>
