@@ -40,11 +40,15 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
         if (segue.identifier == "AddPartsofSpeechandToViewController") {
             //Realm
             let realm = try! Realm()
-            let results = realm.objects(PartofSpeech.self)
-            var maxId = results.value(forKeyPath: "@max.partsOfSpeechId")! as! Int
-            
+            let results = realm.objects(PartsofSpeech.self)
+            var maxId: Int
+            if results.count == 0 {
+                maxId = results.count
+            }else{
+                maxId = results.value(forKeyPath: "@max.partsOfSpeechId")! as! Int
+            }
             try! realm.write {
-                realm.add([PartofSpeech(value: ["partsOfSpeechId": (maxId + 1),
+                realm.add([PartsofSpeech(value: ["partsOfSpeechId": (maxId + 1),
                                                 "partsOfSpeechName": textField.text!,
                                                 "createdDate": Date()])])
             }
