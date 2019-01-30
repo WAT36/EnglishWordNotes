@@ -34,23 +34,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpN-Ka-c4y">
-                                <rect key="frame" x="16" y="89" width="343" height="134"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2n5-Y6-o82">
+                                <rect key="frame" x="16" y="81" width="343" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="既存の英単語から追加する"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-WP-E90">
+                                <rect key="frame" x="16" y="294" width="343" height="333"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-5h-xxr">
+                                <rect key="frame" x="16" y="210" width="343" height="76"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mDp-cz-Tez"/>
                     </view>
                     <connections>
-                        <outlet property="AddWordFromMasterbutton" destination="fpN-Ka-c4y" id="XFd-JL-ZdY"/>
+                        <outlet property="meantextField" destination="lqF-WP-E90" id="YdO-SX-e5h"/>
+                        <outlet property="pickerView" destination="Tgf-5h-xxr" id="3m8-kn-OL0"/>
+                        <outlet property="wordtextField" destination="2n5-Y6-o82" id="Xe6-HK-hLx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuL-ik-NTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -268,7 +277,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddPartofSpeechandToViewController" id="Oip-sD-T2K"/>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddPartsofSpeechandToViewController" id="Oip-sD-T2K"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJS-Xj-iSR">
@@ -442,7 +451,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rjS-2a-6nI"/>
-        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="Oip-sD-T2K"/>
         <segue reference="HwR-Cb-UNe"/>
     </inferredMetricsTieBreakers>
 </document>

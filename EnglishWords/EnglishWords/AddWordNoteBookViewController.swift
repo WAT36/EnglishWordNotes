@@ -41,7 +41,7 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
             //Realm
             let realm = try! Realm()
             let results = realm.objects(WordNoteBook.self)
-            var maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
+            let maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
 
             try! realm.write {
                 realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),

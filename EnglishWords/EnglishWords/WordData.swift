@@ -11,7 +11,7 @@ import RealmSwift
 
 class WordData: Object{
     @objc dynamic var word: Word?
-    @objc dynamic var partofspeech: PartofSpeech?
+    @objc dynamic var partofspeech: PartsofSpeech?
     @objc dynamic var mean = " "
     @objc dynamic var source = " "
     @objc dynamic var example = " "
