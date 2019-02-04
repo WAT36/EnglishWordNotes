@@ -82,6 +82,12 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
                 // AddWordViewController へ遷移するために Segue を呼び出す
                 dispAlert(sender: table)
             }
+        }else{
+            //選択したセルの単語を記録
+            card = wordlist[indexPath.row]
+            // ConfigureWordViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toConfigureWordViewController", sender: nil)
+            
         }
     }
     
@@ -92,6 +98,10 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             addWordVC.wordnotebook = wordnotebook
         }else if (segue.identifier == "toDictionaryViewController"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+        }else if (segue.identifier == "toConfigureWordViewController"){
+            let configWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
+            configWordVC.wordnote = card
+            configWordVC.wordnotebook = wordnotebook
         }
     }
     
