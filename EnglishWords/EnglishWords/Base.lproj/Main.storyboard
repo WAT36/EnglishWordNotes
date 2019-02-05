@@ -185,7 +185,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnConfigureWordViewController" id="oY0-Rd-p71"/>
+                                    <action selector="ButtonTouchDown:" destination="2zv-yB-cMJ" eventType="touchDown" id="6kE-Px-xpW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="単語設定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcw-B3-0aJ">
@@ -250,6 +250,8 @@
                     <connections>
                         <outlet property="table" destination="3l8-BX-He3" id="Rz4-Yu-QP8"/>
                         <outlet property="wordnamelabel" destination="oYL-g3-aHa" id="DSF-1R-CL6"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNote" id="ajh-jD-Zox"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="returnToDictionary" id="man-Lu-bxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6V5-d8-OsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -537,6 +539,7 @@
                     <connections>
                         <outlet property="sidetable" destination="VIU-ai-02k" id="hm4-j3-zxS"/>
                         <outlet property="table" destination="7Ta-lD-3nR" id="exs-i7-YrA"/>
+                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromDictionarytoConfigureWord" id="LRx-52-lzK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjE-SL-ap6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -545,8 +548,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="man-Lu-bxS"/>
         <segue reference="Zpx-A2-zi1"/>
-        <segue reference="oY0-Rd-p71"/>
+        <segue reference="1XP-Pt-sgj"/>
+        <segue reference="ajh-jD-Zox"/>
     </inferredMetricsTieBreakers>
 </document>

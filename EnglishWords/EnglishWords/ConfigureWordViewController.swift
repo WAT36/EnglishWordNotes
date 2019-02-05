@@ -18,18 +18,25 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     var wordnotebook: WordNoteBook?
     var worddatalist: [WordData] = []
     var wordnote: WordNote?
+    var selectedword: Word?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let wordname = wordnote?.worddata?.word?.wordName
-        wordnamelabel.text = wordname
+        if(wordnote != nil){
+            let wordname = wordnote?.worddata?.word?.wordName
+            wordnamelabel.text = wordname
         
-        //選択したWordDataからデータベース内に保存してあるWordDataを全て取得
-        let realm: Realm = try! Realm()
-        let results = realm.objects(WordData.self).filter("word.wordName == %@",wordname!)
-        worddatalist = Array(results)
-        
+            //選択したWordDataからデータベース内に保存してあるWordDataを全て取得
+            let realm: Realm = try! Realm()
+            let results = realm.objects(WordData.self).filter("word.wordName == %@",wordname!)
+            worddatalist = Array(results)
+        }else if(selectedword != nil){
+            //選択したWordからデータベース内に保存してあるWordDataを全て取得
+            let realm: Realm = try! Realm()
+            let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName)
+            worddatalist = Array(results)
+        }
         //tableのラベルを折り返す設定
         table.estimatedRowHeight=120
         table.rowHeight=UITableViewAutomaticDimension
@@ -64,15 +71,20 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "returnConfigureWordViewController",sender: nil)
+    @IBAction func ButtonTouchDown(_ sender: Any) {
+        if(wordnote != nil){
+            performSegue(withIdentifier: "returnToConfigureWordNote",sender: nil)
+        }else if(selectedword != nil){
+            performSegue(withIdentifier: "returnToDictionary",sender: nil)
+        }
     }
-    
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "returnConfigureWordViewController") {
+        if (segue.identifier == "returnToConfigureWordNote") {
             let configureWordNoteVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             configureWordNoteVC.wordnotebook = wordnotebook
+        }else if (segue.identifier == "returnToDictionary"){
+            let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }
     }
     

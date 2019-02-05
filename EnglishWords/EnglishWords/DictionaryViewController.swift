@@ -16,6 +16,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var sidetable:UITableView!
     
     var wordlist: [Word] = []
+    var selectedWord: Word?
     
     let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
@@ -71,6 +72,24 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             label.text = alphabet[indexPath.row]
             
             return cell
+        }
+    }
+    
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        if table.tag == 0 {
+            //選択したセルの単語帳を記録
+            selectedWord = wordlist[indexPath.row]
+            // ConfigureWordViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if (segue.identifier == "fromDictionarytoConfigureWord") {
+            let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
+            cwVC.selectedword = selectedWord
         }
     }
     
