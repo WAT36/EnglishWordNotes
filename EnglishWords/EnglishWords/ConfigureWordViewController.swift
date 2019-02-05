@@ -19,6 +19,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     var worddatalist: [WordData] = []
     var wordnote: WordNote?
     var selectedword: Word?
+    var selectedmean: WordData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,15 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             performSegue(withIdentifier: "returnToDictionary",sender: nil)
         }
     }
+    
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        //選択したセルの単語を記録
+        selectedmean = worddatalist[indexPath.row]
+        // ConfigureWordViewController へ遷移するために Segue を呼び出す
+        performSegue(withIdentifier: "toConfigureMeanViewController", sender: nil)
+    }
+    
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordNote") {
@@ -85,6 +95,8 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             configureWordNoteVC.wordnotebook = wordnotebook
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+        }else if (segue.identifier == "toConfigureMeanViewController"){
+            let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
         }
     }
     
