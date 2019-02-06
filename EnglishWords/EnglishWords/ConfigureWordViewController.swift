@@ -97,6 +97,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if (segue.identifier == "toConfigureMeanViewController"){
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
+            configureMeanVC.mean = selectedmean
         }
     }
     
