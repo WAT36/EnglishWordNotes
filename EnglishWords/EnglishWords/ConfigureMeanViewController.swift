@@ -44,6 +44,21 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
     }
     
+    
+    @IBAction func buttonTouchDown(_ sender: Any) {
+        
+        //編集した意味でWordDataを更新
+        let realm: Realm = try! Realm()
+        try! realm.write{
+            //上書き更新
+            let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word!).filter("partofspeech == %@",mean?.partofspeech!)[0]
+            toupdatemean.partofspeech = selectedpartofspeech
+            toupdatemean.mean = textField.text!
+        }
+        
+        performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+    }
+    
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordViewController") {

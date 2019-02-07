@@ -273,7 +273,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <action selector="ButtonTouchDown:" destination="2zv-yB-cMJ" eventType="touchDown" id="ilJ-xc-N9C"/>
                                     <segue destination="2zv-yB-cMJ" kind="presentation" identifier="returnToConfigureWordViewController" id="A0O-Qc-l2F"/>
                                 </connections>
                             </button>
@@ -298,6 +297,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-02-8pA">
+                                <rect key="frame" x="278" y="20" width="97" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="buttonTouchDown:" destination="xrM-36-gSR" eventType="touchDown" id="GYc-vR-bpj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lo8-TR-ZgO"/>
