@@ -40,18 +40,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         
-        if table.tag == 1 {
-            return sidebarlist.count
-        }else{
+        if table.tag == 0 {
             return booknamelist.count
+        }else{
+            return sidebarlist.count
         }
     }
     
     //各セルの要素を設定する
     func tableView(_ table: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if table.tag == 1 {
+        if table.tag == 0 {
             // tableCell の ID で UITableViewCell のインスタンスを生成
+            let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
+                                                 for: indexPath)
+            // Tag番号  で UILabel インスタンスの生成
+            let booknames = booknamelist[indexPath.row]
+            let label1 = cell.viewWithTag(1) as! UILabel
+            label1.numberOfLines = 0
+            label1.text = booknames.wordNoteBookName
+            
+            return cell
+        }else{
+            // sidetableCell の ID で UITableViewCell のインスタンスを生成
             let cell = table.dequeueReusableCell(withIdentifier: "sidetablecell",
                                                  for: indexPath)
             // Tag番号  で UILabel インスタンスの生成
@@ -59,17 +70,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             label1.numberOfLines = 0
             label1.text = sidebarlist[indexPath.row]
             
-            return cell
-        }else{
-            // tableCell の ID で UITableViewCell のインスタンスを生成
-            let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
-                                             for: indexPath)
-            // Tag番号  で UILabel インスタンスの生成
-            let booknames = booknamelist[indexPath.row]
-            let label1 = cell.viewWithTag(1) as! UILabel
-            label1.numberOfLines = 0
-            label1.text = booknames.wordNoteBookName
-
             return cell
         }
     }

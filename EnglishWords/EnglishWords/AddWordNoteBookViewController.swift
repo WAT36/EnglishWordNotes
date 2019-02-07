@@ -39,11 +39,13 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "AddBookandToViewController") {
             //Realm
+            //現在ある最大の単語帳IDを取得
             let realm = try! Realm()
             let results = realm.objects(WordNoteBook.self)
             let maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
 
             try! realm.write {
+                //単語帳追加(単語帳IDは現最大ID + 1)
                 realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
                                                 "wordNoteBookName": textField.text!,
                                                 "createdDate": Date()])])
