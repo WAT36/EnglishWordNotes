@@ -30,9 +30,16 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
-        
+    @IBAction func buttonTapped(sender : UIButton) {        
+        if (sender.tag == 0){
+            if textField.text!.isEmpty {
+                self.showAlert()
+            }else{
+                performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
+            }
+        }else if(sender.tag == 1){
+            performSegue(withIdentifier: "ReturnToViewController",sender: nil)
+        }
     }
     
     // Segue 準備
@@ -54,6 +61,21 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
+    }
+    
+    func showAlert() {
+        
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: "品詞名が入力されていません",
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

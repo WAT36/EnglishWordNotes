@@ -435,16 +435,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
+                                    <action selector="buttonTappedWithSender:" destination="1aS-hT-oMF" eventType="touchDown" id="bSX-ct-wlq"/>
                                     <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddPartsofSpeechandToViewController" id="Oip-sD-T2K"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJS-Xj-iSR">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJS-Xj-iSR">
                                 <rect key="frame" x="78" y="569" width="219" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" id="wlc-XI-6N7"/>
+                                    <action selector="buttonTappedWithSender:" destination="1aS-hT-oMF" eventType="touchDown" id="J6C-Ak-OcR"/>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="ReturnToViewController" id="wlc-XI-6N7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -612,7 +614,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rjS-2a-6nI"/>
-        <segue reference="CQZ-zJ-6zW"/>
+        <segue reference="wlc-XI-6N7"/>
         <segue reference="A0O-Qc-l2F"/>
         <segue reference="HwR-Cb-UNe"/>
     </inferredMetricsTieBreakers>
