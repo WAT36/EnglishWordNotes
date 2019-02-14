@@ -65,14 +65,22 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         selectedPartsOfSpeech = partsofspeechlist[row]
     }
     
-    @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
-        
+    @IBAction func buttonTapped(sender : UIButton) {
+        if(sender.tag == 0){
+            performSegue(withIdentifier: "ReturnConfigureWordNoteBookViewContoller",sender: nil)
+        }else if(sender.tag == 1){
+            performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+        }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
+        if (segue.identifier == "ReturnConfigureWordNoteBookViewContoller"){
+            let cwnbVC2: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
+            // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定
+            cwnbVC2.wordnotebook = wordnotebook
+            
+        }else if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
             let cwnbVC2: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             
             //Realm、既に同じ単語が登録されてないか確認
