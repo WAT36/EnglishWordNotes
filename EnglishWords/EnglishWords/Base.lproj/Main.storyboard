@@ -468,13 +468,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-ZL-5PV">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-ZL-5PV">
                                 <rect key="frame" x="88" y="571" width="219" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" id="CQZ-zJ-6zW"/>
+                                    <action selector="buttonTappedWithSender:" destination="iX5-rN-go1" eventType="touchDown" id="pbE-ia-fHl"/>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="ReturnToViewController" id="CQZ-zJ-6zW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-5i-mbw">
@@ -483,6 +484,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
+                                    <action selector="buttonTappedWithSender:" destination="iX5-rN-go1" eventType="touchDown" id="QvX-w6-fxx"/>
                                     <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddBookandToViewController" id="M7v-xB-PG4"/>
                                 </connections>
                             </button>
@@ -610,7 +612,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rjS-2a-6nI"/>
-        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="CQZ-zJ-6zW"/>
         <segue reference="A0O-Qc-l2F"/>
         <segue reference="HwR-Cb-UNe"/>
     </inferredMetricsTieBreakers>
