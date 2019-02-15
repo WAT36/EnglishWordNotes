@@ -24,6 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
+                                    <action selector="buttonTappedWithSender:" destination="stC-xV-xaY" eventType="touchDown" id="FLV-mo-Y3A"/>
                                     <segue destination="IGz-Sb-hXN" kind="presentation" identifier="ReturnConfigureWordNoteBookViewContoller" id="HwR-Cb-UNe"/>
                                 </connections>
                             </button>
@@ -33,6 +34,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
+                                    <action selector="buttonTappedWithSender:" destination="stC-xV-xaY" eventType="touchDown" id="Gcj-SS-NZu"/>
                                     <segue destination="IGz-Sb-hXN" kind="presentation" identifier="ToConfigureWordNoteBookViewContoller" id="DEy-PW-Kfb"/>
                                 </connections>
                             </button>

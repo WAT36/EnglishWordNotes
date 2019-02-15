@@ -20,6 +20,8 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     var selectedPartsOfSpeech: PartsofSpeech?
     var wordnotebook: WordNoteBook?
     
+    let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +36,10 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         let realm: Realm = try! Realm()
         let results = realm.objects(PartsofSpeech.self)
         partsofspeechlist = Array(results)
+        //品詞PickerViewに初期値用データを挿入
+        partsofspeechlist.insert(PartsofSpeech(value: ["partsOfSpeechId": -1,
+                                                        "partsOfSpeechName": notSelectedPartOfSpeech,
+                                                        "createdDate": Date()]), at: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,7 +75,15 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         if(sender.tag == 0){
             performSegue(withIdentifier: "ReturnConfigureWordNoteBookViewContoller",sender: nil)
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+            if wordtextField.text!.isEmpty {
+                showAlert(errormessage: "単語名が入力されていません")
+            }else if meantextField.text!.isEmpty {
+                showAlert(errormessage: "訳文が入力されていません")
+            }else if (selectedPartsOfSpeech?.partsOfSpeechName.isEmpty)! || selectedPartsOfSpeech?.partsOfSpeechName == notSelectedPartOfSpeech {
+                showAlert(errormessage: "品詞が選択されていません")
+            }else{
+                performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+            }
         }
     }
     
@@ -98,7 +112,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                 //エラー出させる
                 print("エラー：既に同じ名前の英単語が辞書にある")
             }else{
-                print(maxId)
                 let newword = Word(value: ["wordName": wordtextField.text!,
                                            "createdDate": Date()])
                 let newworddata = WordData(value: ["word": newword,
@@ -120,5 +133,19 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定
             cwnbVC2.wordnotebook = wordnotebook
         }
+    }
+    
+    func showAlert(errormessage: String) {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: errormessage,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }
