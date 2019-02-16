@@ -134,6 +134,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let realm = try! Realm()
             
             try! realm.write {
+                
+                //単語帳データから削除
+                realm.delete(realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId))
+                //単語帳マスタから削除
                 realm.delete(wordnotebook!)
             }
         }
