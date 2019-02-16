@@ -20,6 +20,8 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     var selectedPartsOfSpeech: PartsofSpeech?
     var wordnotebook: WordNoteBook?
     
+    var maxId:Int = -1
+    
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
     
     override func viewDidLoad() {
@@ -82,7 +84,28 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             }else if (selectedPartsOfSpeech?.partsOfSpeechName.isEmpty)! || selectedPartsOfSpeech?.partsOfSpeechName == notSelectedPartOfSpeech {
                 showAlert(errormessage: "品詞が選択されていません")
             }else{
-                performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+                
+                //Realm、既に同じ単語が登録されてないか確認
+                let realm = try! Realm()
+                let results = realm.objects(Word.self).filter("wordName = %@",wordtextField.text!)
+                let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
+                if cardresults.count == 0 {
+                    maxId = 0
+                }else{
+                    maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
+                }
+                
+                print("単語名("+wordtextField.text!+"),")
+                print("訳文("+meantextField.text!+"),")
+                print("品詞("+(selectedPartsOfSpeech?.partsOfSpeechName)!+")")
+                print(results.count)
+                
+                if results.count > 0 {
+                    //既に同じ英単語が辞書に登録されているためエラー出させる
+                    showAlert(errormessage: "既に同じ英単語が辞書にあります")
+                }else{
+                    performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+                }
             }
         }
     }
@@ -97,29 +120,17 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         }else if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
             let cwnbVC2: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             
-            //Realm、既に同じ単語が登録されてないか確認
+            //Realm、単語を登録
             let realm = try! Realm()
-            let results = realm.objects(Word.self).filter("wordName = '%@'",wordtextField.text!)
-            let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
-            var maxId:Int
-            if cardresults.count == 0 {
-                maxId = 0
-            }else{
-                maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
-            }
-            
-            if results.count > 0 {
-                //エラー出させる
-                print("エラー：既に同じ名前の英単語が辞書にある")
-            }else{
-                let newword = Word(value: ["wordName": wordtextField.text!,
-                                           "createdDate": Date()])
-                let newworddata = WordData(value: ["word": newword,
-                                                   "partofspeech": selectedPartsOfSpeech!,
-                                                   "mean": meantextField.text!,
-                                                   "source": "出典（未実装）",
-                                                   "example": "例文(未実装)"])
-                try! realm.write {
+
+            let newword = Word(value: ["wordName": wordtextField.text!,
+                                        "createdDate": Date()])
+            let newworddata = WordData(value: ["word": newword,
+                                                "partofspeech": selectedPartsOfSpeech!,
+                                                "mean": meantextField.text!,
+                                                "source": "出典（未実装）",
+                                                "example": "例文(未実装)"])
+            try! realm.write {
                     realm.add([newword])
                     realm.add([newworddata])
                     realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
@@ -127,7 +138,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                                                 "wordidx": maxId,
                                                 "registereddate": Date()])])
                     
-                }
             }
             
             // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定

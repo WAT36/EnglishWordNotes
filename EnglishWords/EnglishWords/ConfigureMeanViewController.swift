@@ -20,6 +20,8 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textField: UITextField!
     
+    let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,39 +34,17 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         let results = realm.objects(PartsofSpeech.self)
         partsofspeechlist = Array(results)
         
+        //品詞PickerViewに初期値用データを挿入
+        partsofspeechlist.insert(PartsofSpeech(value: ["partsOfSpeechId": -1,
+                                                       "partsOfSpeechName": notSelectedPartOfSpeech,
+                                                       "createdDate": Date()]), at: 0)
+        
         //テキストフィールドの初期値に登録されてある意味
         textField.text = mean?.mean
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func buttonTapped(sender : AnyObject) {
-        performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
-    }
-    
-    
-    @IBAction func buttonTouchDown(_ sender: Any) {
-        
-        //編集した意味でWordDataを更新
-        let realm: Realm = try! Realm()
-        try! realm.write{
-            //上書き更新
-            let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word!).filter("partofspeech == %@",mean?.partofspeech!)[0]
-            toupdatemean.partofspeech = selectedpartofspeech
-            toupdatemean.mean = textField.text!
-        }
-        
-        performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
-    }
-    
-    // Segue 準備
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "returnToConfigureWordViewController") {
-            let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            configureWordVC.selectedword = mean?.word
-        }
     }
     
     // UIPickerViewの列の数
@@ -90,5 +70,49 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     didSelectRow row: Int,
                     inComponent component: Int) {
         selectedpartofspeech = partsofspeechlist[row]
+    }
+    
+    @IBAction func buttonTapped(sender : AnyObject) {
+        if(sender.tag == 0){
+            performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+        }else if(sender.tag == 1){
+            
+            if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
+                showAlert(errormessage: "品詞が選択されていません")
+            }else{
+                //編集した意味でWordDataを更新
+                let realm: Realm = try! Realm()
+                try! realm.write{
+                    //上書き更新
+                    let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any).filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
+                    toupdatemean.partofspeech = selectedpartofspeech
+                    toupdatemean.mean = textField.text!
+                }
+            
+                performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+            }
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "returnToConfigureWordViewController") {
+            let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
+            configureWordVC.selectedword = mean?.word
+        }
+    }
+    
+    func showAlert(errormessage: String) {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: errormessage,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }
