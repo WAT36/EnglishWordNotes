@@ -20,6 +20,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
+    let smallalphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    var alphabetlocked: [Bool] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +30,14 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         let realm: Realm = try! Realm()
         let results = realm.objects(Word.self).sorted(byKeyPath: "wordName", ascending: true)
         wordlist = Array(results)
+        
+        for i in 0..<smallalphabet.count {
+            if results.filter("wordName BEGINSWITH %@", smallalphabet[i]).count > 0 {
+                alphabetlocked.append(true)
+            }else{
+                alphabetlocked.append(false)
+            }
+        }
         
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
@@ -71,6 +82,18 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             label.numberOfLines = 0
             label.text = alphabet[indexPath.row]
             
+            if(alphabetlocked[indexPath.row]){
+                //セルを選択可
+                cell.selectionStyle = .default
+                //ラベルの文字は黒
+                label.textColor = UIColor.black
+            }else{
+                //セルを選択不可
+                cell.selectionStyle = .none
+                //ラベルの文字はグレーにする
+                label.textColor = UIColor.lightGray
+            }
+            
             return cell
         }
     }
@@ -94,8 +117,35 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //指定したテーブル、セル毎にスワイプを有効、無効にする
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false
+    func tableView(_ table: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if table.tag == 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    //選択したセルでスワイプすると削除される
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //選択したセルの単語帳を記録
+            let selectedWord = wordlist[indexPath.row]
+            
+            wordlist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //Realmデータベースからも削除
+            let realm = try! Realm()
+            
+            try! realm.write {
+                //単語帳データから削除
+                realm.delete(realm.objects(WordNote.self).filter("worddata.word.wordName == %@",selectedWord.wordName))
+                //単語データから削除
+                realm.delete(realm.objects(WordData.self).filter("word.wordName == %@",selectedWord.wordName))
+                //単語マスタから削除
+                realm.delete(selectedWord)
+            }
+        }
     }
     
     // sideTableのCell の高さを１２０にする
