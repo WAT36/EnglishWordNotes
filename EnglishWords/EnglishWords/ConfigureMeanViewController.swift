@@ -14,7 +14,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     var mean: WordData?
     var partsofspeechlist: [PartsofSpeech] = []
-    
     var selectedpartofspeech: PartsofSpeech?
     
     @IBOutlet var partofspeeches: UIPickerView!
@@ -38,6 +37,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         partsofspeechlist.insert(PartsofSpeech(value: ["partsOfSpeechId": -1,
                                                        "partsOfSpeechName": notSelectedPartOfSpeech,
                                                        "createdDate": Date()]), at: 0)
+        selectedpartofspeech = partsofspeechlist[0]
         
         //テキストフィールドの初期値に登録されてある意味
         textField.text = mean?.mean
@@ -76,15 +76,19 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
         }else if(sender.tag == 1){
-            
-            if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
+            if(mean?.word == nil){
+                showAlert(errormessage: "エラー：単語データがありません")
+            }else if(mean?.partofspeech == nil){
+                showAlert(errormessage: "エラー：品詞が設定されてません")
+            }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
                 showAlert(errormessage: "品詞が選択されていません")
             }else{
                 //編集した意味でWordDataを更新
                 let realm: Realm = try! Realm()
                 try! realm.write{
                     //上書き更新
-                    let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any).filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
+                    let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
+                        .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
                     toupdatemean.partofspeech = selectedpartofspeech
                     toupdatemean.mean = textField.text!
                 }

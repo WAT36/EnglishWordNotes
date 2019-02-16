@@ -42,6 +42,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         partsofspeechlist.insert(PartsofSpeech(value: ["partsOfSpeechId": -1,
                                                         "partsOfSpeechName": notSelectedPartOfSpeech,
                                                         "createdDate": Date()]), at: 0)
+        selectedPartsOfSpeech = partsofspeechlist[0]
     }
     
     override func didReceiveMemoryWarning() {
