@@ -25,7 +25,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //データベース内に保存してあるWordNoteBookを全て取得
         let realm: Realm = try! Realm()
-        let results = realm.objects(Word.self)
+        let results = realm.objects(Word.self).sorted(byKeyPath: "wordName", ascending: true)
         wordlist = Array(results)
         
         //sidetableのラベルを折り返す設定
