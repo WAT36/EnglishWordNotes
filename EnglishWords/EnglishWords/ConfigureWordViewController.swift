@@ -71,6 +71,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         let mean = cell.viewWithTag(2) as! UILabel
         mean.numberOfLines = 0
         mean.text = oneworddata.mean
+        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
         
         return cell
     }

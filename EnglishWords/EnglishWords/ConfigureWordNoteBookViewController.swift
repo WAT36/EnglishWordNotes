@@ -59,6 +59,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let label1 = cell.viewWithTag(1) as! UILabel
             label1.numberOfLines = 0
             label1.text = sidebarlist[indexPath.row]
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)
             
             return cell
         }else{
@@ -70,6 +71,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let label1 = cell.viewWithTag(1) as! UILabel
             label1.numberOfLines = 0
             label1.text = oneword.worddata?.word?.wordName
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
             
             return cell
         }

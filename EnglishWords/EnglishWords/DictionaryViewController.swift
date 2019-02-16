@@ -71,6 +71,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             let label = cell.viewWithTag(1) as! UILabel
             label.numberOfLines = 0
             label.text = word.wordName
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)
             
             return cell
         }else{
@@ -87,11 +88,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.selectionStyle = .default
                 //ラベルの文字は黒
                 label.textColor = UIColor.black
+                cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
             }else{
                 //セルを選択不可
                 cell.selectionStyle = .none
-                //ラベルの文字はグレーにする
-                label.textColor = UIColor.lightGray
+                //ラベルの文字は黒、セルの背景はグレーにする
+                label.textColor = UIColor.black
+                cell.backgroundColor = UIColor.lightGray
             }
             
             return cell
