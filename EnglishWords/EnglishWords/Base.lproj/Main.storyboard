@@ -210,7 +210,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEO-MG-mXf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="31"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -617,8 +617,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rjS-2a-6nI"/>
-        <segue reference="wlc-XI-6N7"/>
-        <segue reference="A0O-Qc-l2F"/>
-        <segue reference="HwR-Cb-UNe"/>
+        <segue reference="Ixl-7z-if7"/>
+        <segue reference="LRx-52-lzK"/>
+        <segue reference="ajh-jD-Zox"/>
     </inferredMetricsTieBreakers>
 </document>
