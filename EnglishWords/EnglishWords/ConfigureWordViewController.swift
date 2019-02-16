@@ -33,6 +33,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             let results = realm.objects(WordData.self).filter("word.wordName == %@",wordname!)
             worddatalist = Array(results)
         }else if(selectedword != nil){
+            let wordname = selectedword?.wordName
+            wordnamelabel.text = wordname
+            
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
             let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName)
