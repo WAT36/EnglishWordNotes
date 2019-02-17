@@ -53,7 +53,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return worddatalist.count
+        return worddatalist.count + 1
     }
     
     //各セルの要素を設定する
@@ -63,15 +63,26 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         // tableCell の ID で UITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
                                                  for: indexPath)
-        // Tag番号  で UILabel インスタンスの生成
-        let oneworddata = worddatalist[indexPath.row]
-        let partofspeech = cell.viewWithTag(1) as! UILabel
-        partofspeech.numberOfLines = 0
-        partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
-        let mean = cell.viewWithTag(2) as! UILabel
-        mean.numberOfLines = 0
-        mean.text = oneworddata.mean
-        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+        if indexPath.row < worddatalist.count {
+            // Tag番号  で UILabel インスタンスの生成
+            let oneworddata = worddatalist[indexPath.row]
+            let partofspeech = cell.viewWithTag(1) as! UILabel
+            partofspeech.numberOfLines = 0
+            partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
+            let mean = cell.viewWithTag(2) as! UILabel
+            mean.numberOfLines = 0
+            mean.text = oneworddata.mean
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+        } else {
+            let blank = cell.viewWithTag(1) as! UILabel
+            blank.numberOfLines = 0
+            blank.text = ""
+            
+            let mean = cell.viewWithTag(2) as! UILabel
+            mean.numberOfLines = 0
+            mean.text = "➕訳文を追加する"
+            cell.backgroundColor = UIColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 0.5)
+        }
         
         return cell
     }
