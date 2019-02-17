@@ -95,12 +95,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                 }else{
                     maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
                 }
-                
-                print("単語名("+wordtextField.text!+"),")
-                print("訳文("+meantextField.text!+"),")
-                print("品詞("+(selectedPartsOfSpeech?.partsOfSpeechName)!+")")
-                print(results.count)
-                
+
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
                     showAlert(errormessage: "既に同じ英単語が辞書にあります")

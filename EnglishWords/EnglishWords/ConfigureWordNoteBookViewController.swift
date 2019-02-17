@@ -99,7 +99,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let addWordVC: AddWordViewController = (segue.destination as? AddWordViewController)!
             addWordVC.wordnotebook = wordnotebook
         }else if (segue.identifier == "toDictionaryViewController"){
-            let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+            let addDVC: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+            addDVC.addWordFlag = true
+            addDVC.wnb = wordnotebook
         }else if (segue.identifier == "toConfigureWordViewController"){
             let configWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             configWordVC.wordnote = card

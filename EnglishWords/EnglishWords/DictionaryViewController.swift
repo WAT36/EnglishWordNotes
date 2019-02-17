@@ -15,6 +15,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var table:UITableView!
     @IBOutlet var sidetable:UITableView!
     
+    //単語帳設定画面から来たことを示すフラグ
+    var addWordFlag: Bool = false
+    //単語帳設定画面からきた場合どの単語帳かも記録
+    var wnb: WordNoteBook?
+    var maxId: Int = -1
+    
     var wordlist: [Word] = []
     var selectedWord: Word?
     
@@ -46,6 +52,14 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        if(addWordFlag){
+            performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
+        }else{
+            performSegue(withIdentifier: "returnToViewController",sender: nil)
+        }
     }
     
     //Table Viewのセルの数を指定
@@ -104,18 +118,57 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if table.tag == 0 {
-            //選択したセルの単語帳を記録
-            selectedWord = wordlist[indexPath.row]
-            // ConfigureWordViewController へ遷移するために Segue を呼び出す
-            performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
+            if(addWordFlag){
+                //単語帳設定画面から遷移して単語を選択した時の動作
+                //選択したセルの単語を記録
+                selectedWord = wordlist[indexPath.row]
+                //Realm、既に同じ単語が登録されてないか確認
+                let realm = try! Realm()
+                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && worddata.word.wordName == %@",wnb!,selectedWord?.wordName)
+                if results.count > 0 {
+                    //既に同じ英単語が辞書に登録されているためエラー出させる
+                    showAlert(errormessage: "既に同じ英単語が辞書にあります")
+                }else{
+                    let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wnb!)
+                    if cardresults.count == 0 {
+                        maxId = 0
+                    }else{
+                        maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
+                    }
+                    let selectedWordData = realm.objects(WordData.self).filter("word.wordName == %@",selectedWord?.wordName)
+                    print(selectedWordData)
+                    try! realm.write {
+                        for wordDataValue in selectedWordData {
+                            realm.add([WordNote(value: ["wordnotebook": wnb!,
+                                                        "worddata": wordDataValue,
+                                                        "wordidx": maxId,
+                                                        "registereddate": Date()])])
+                        }
+                    }
+                    performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
+                }
+            }else{
+                //選択したセルの単語を記録
+                selectedWord = wordlist[indexPath.row]
+                // ConfigureWordViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
+            }
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "fromDictionarytoConfigureWord") {
+            addWordFlag = false
             let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             cwVC.selectedword = selectedWord
+        }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
+            addWordFlag = false
+            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
+            cwnbVC.wordnotebook = wnb
+        }else if (segue.identifier == "returnToViewController") {
+            addWordFlag = false
+            let _: ViewController = (segue.destination as? ViewController)!
         }
     }
     
@@ -159,5 +212,19 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         }else{
             return 60.0
         }
+    }
+    
+    func showAlert(errormessage: String) {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: errormessage,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }

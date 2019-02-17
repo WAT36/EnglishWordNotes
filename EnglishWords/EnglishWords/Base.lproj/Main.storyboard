@@ -534,7 +534,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" id="Ixl-7z-if7"/>
+                                    <action selector="buttonTapped:" destination="DcU-qC-SDl" eventType="touchDown" id="Rcs-7w-wyG"/>
+                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="returnToViewController" id="Ixl-7z-if7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="辞書" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G39-xr-htX">
@@ -608,6 +609,7 @@
                         <outlet property="sidetable" destination="VIU-ai-02k" id="hm4-j3-zxS"/>
                         <outlet property="table" destination="7Ta-lD-3nR" id="exs-i7-YrA"/>
                         <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromDictionarytoConfigureWord" id="LRx-52-lzK"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="FhJ-ul-TLu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjE-SL-ap6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -617,8 +619,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hrg-rN-jGs"/>
-        <segue reference="Zpx-A2-zi1"/>
-        <segue reference="1XP-Pt-sgj"/>
-        <segue reference="Ob6-q9-ixW"/>
+        <segue reference="Ixl-7z-if7"/>
+        <segue reference="LRx-52-lzK"/>
+        <segue reference="FhJ-ul-TLu"/>
     </inferredMetricsTieBreakers>
 </document>
