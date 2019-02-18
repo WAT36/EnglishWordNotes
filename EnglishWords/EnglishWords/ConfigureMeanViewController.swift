@@ -15,6 +15,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     var mean: WordData?
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedpartofspeech: PartsofSpeech?
+    var newMeanFlag: Bool?
     
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textField: UITextField!
@@ -40,7 +41,9 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         selectedpartofspeech = partsofspeechlist[0]
         
         //テキストフィールドの初期値に登録されてある意味
-        textField.text = mean?.mean
+        if !newMeanFlag! {
+            textField.text = mean?.mean
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,22 +81,41 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         }else if(sender.tag == 1){
             if(mean?.word == nil){
                 showAlert(errormessage: "エラー：単語データがありません")
-            }else if(mean?.partofspeech == nil){
-                showAlert(errormessage: "エラー：品詞が設定されてません")
             }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
                 showAlert(errormessage: "品詞が選択されていません")
+            }else if (textField.text?.isEmpty)! {
+                showAlert(errormessage: "訳文が入力されていません")
             }else{
-                //編集した意味でWordDataを更新
                 let realm: Realm = try! Realm()
-                try! realm.write{
-                    //上書き更新
-                    let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
-                        .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
-                    toupdatemean.partofspeech = selectedpartofspeech
-                    toupdatemean.mean = textField.text!
+                var result = realm.objects(WordData.self).filter("word == %@ && partofspeech == %@",mean?.word,selectedpartofspeech)
+                if newMeanFlag! {
+                    //
+                    if result.count > 0 {
+                        showAlert(errormessage: "エラー：同じ品詞での訳文が既にあります")
+                    }else{
+                        try! realm.write {
+                            let newWordData = WordData(value: ["word" : mean?.word!,
+                                                               "partofspeech" : selectedpartofspeech!,
+                                                               "mean" : textField.text!])
+                            realm.add(newWordData)
+                            performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+                        }
+                    }
+                }else{
+                    if (mean?.partofspeech != selectedpartofspeech) && result.count > 0 {
+                        showAlert(errormessage: "エラー：同じ品詞での訳文が既にあります")
+                    }else{
+                        //編集した意味でWordDataを更新
+                        try! realm.write{
+                            //上書き更新
+                            let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
+                                    .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
+                            toupdatemean.partofspeech = selectedpartofspeech
+                            toupdatemean.mean = textField.text!
+                        }
+                        performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+                    }
                 }
-            
-                performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
             }
         }
     }

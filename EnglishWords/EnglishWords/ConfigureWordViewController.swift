@@ -20,27 +20,24 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     var wordnote: WordNote?
     var selectedword: Word?
     var selectedmean: WordData?
+    var fromdictflag: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(wordnote != nil){
-            let wordname = wordnote?.worddata?.word?.wordName
-            wordnamelabel.text = wordname
-        
-            //選択したWordDataからデータベース内に保存してあるWordDataを全て取得
-            let realm: Realm = try! Realm()
-            let results = realm.objects(WordData.self).filter("word.wordName == %@",wordname!)
-            worddatalist = Array(results)
+            fromdictflag = false
+            selectedword = wordnote?.worddata?.word
         }else if(selectedword != nil){
-            let wordname = selectedword?.wordName
-            wordnamelabel.text = wordname
-            
-            //選択したWordからデータベース内に保存してあるWordDataを全て取得
-            let realm: Realm = try! Realm()
-            let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName)
-            worddatalist = Array(results)
+            fromdictflag = true
         }
+        wordnamelabel.text = selectedword?.wordName
+            
+        //選択したWordからデータベース内に保存してあるWordDataを全て取得
+        let realm: Realm = try! Realm()
+        let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName)
+        worddatalist = Array(results)
+        
         //tableのラベルを折り返す設定
         table.estimatedRowHeight=120
         table.rowHeight=UITableViewAutomaticDimension
@@ -97,10 +94,16 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
-        //選択したセルの単語を記録
-        selectedmean = worddatalist[indexPath.row]
+        if indexPath.row < worddatalist.count {
+            //選択したセルの単語を記録
+            selectedmean = worddatalist[indexPath.row]
+        }else{
+            //単語名だけを入れたもの
+            selectedmean = WordData(value: ["word": selectedword])
+        }
         // ConfigureWordViewController へ遷移するために Segue を呼び出す
         performSegue(withIdentifier: "toConfigureMeanViewController", sender: nil)
+
     }
     
     // Segue 準備
@@ -113,6 +116,11 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         }else if (segue.identifier == "toConfigureMeanViewController"){
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
             configureMeanVC.mean = selectedmean
+            if selectedmean?.partofspeech != nil {
+                configureMeanVC.newMeanFlag = false
+            }else{
+                configureMeanVC.newMeanFlag = true
+            }
         }
     }
     
