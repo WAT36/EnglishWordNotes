@@ -45,13 +45,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-WP-E90">
-                                <rect key="frame" x="16" y="294" width="343" height="333"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-5h-xxr">
                                 <rect key="frame" x="16" y="210" width="343" height="76"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -63,12 +56,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="(訳文を入力してください)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cot-za-UBC">
+                                <rect key="frame" x="16" y="294" width="343" height="364"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mDp-cz-Tez"/>
                     </view>
                     <connections>
-                        <outlet property="meantextField" destination="lqF-WP-E90" id="YdO-SX-e5h"/>
+                        <outlet property="meantextView" destination="Cot-za-UBC" id="Jpk-bE-Wht"/>
                         <outlet property="pickerView" destination="Tgf-5h-xxr" id="3m8-kn-OL0"/>
                         <outlet property="wordtextField" destination="2n5-Y6-o82" id="Xe6-HK-hLx"/>
                     </connections>
@@ -621,6 +621,6 @@
         <segue reference="hrg-rN-jGs"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="LRx-52-lzK"/>
-        <segue reference="FhJ-ul-TLu"/>
+        <segue reference="DEy-PW-Kfb"/>
     </inferredMetricsTieBreakers>
 </document>

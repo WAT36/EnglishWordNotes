@@ -13,7 +13,7 @@ import RealmSwift
 class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource{
     
     @IBOutlet var wordtextField: UITextField!
-    @IBOutlet var meantextField: UITextField!
+    @IBOutlet weak var meantextView: UITextView!
     @IBOutlet var pickerView: UIPickerView!
     
     var partsofspeechlist: [PartsofSpeech] = []
@@ -32,7 +32,9 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         pickerView.dataSource = self
         
         wordtextField.placeholder = "単語を入力してください"
-        meantextField.placeholder = "訳文を入力してください"
+        
+        // 枠のカラー
+        meantextView.layer.borderColor = UIColor.black.cgColor
         
         //データベース内に保存してあるPartsofSpeechを全て取得
         let realm: Realm = try! Realm()
@@ -80,7 +82,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         }else if(sender.tag == 1){
             if wordtextField.text!.isEmpty {
                 showAlert(errormessage: "単語名が入力されていません")
-            }else if meantextField.text!.isEmpty {
+            }else if meantextView.text!.isEmpty || meantextView.text == "(訳文を入力してください)" {
                 showAlert(errormessage: "訳文が入力されていません")
             }else if (selectedPartsOfSpeech?.partsOfSpeechName.isEmpty)! || selectedPartsOfSpeech?.partsOfSpeechName == notSelectedPartOfSpeech {
                 showAlert(errormessage: "品詞が選択されていません")
@@ -123,7 +125,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                                         "createdDate": Date()])
             let newworddata = WordData(value: ["word": newword,
                                                 "partofspeech": selectedPartsOfSpeech!,
-                                                "mean": meantextField.text!,
+                                                "mean": meantextView.text!,
                                                 "source": "出典（未実装）",
                                                 "example": "例文(未実装)"])
             try! realm.write {
