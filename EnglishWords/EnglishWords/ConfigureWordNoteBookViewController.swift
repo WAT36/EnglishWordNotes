@@ -106,6 +106,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let configWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             configWordVC.wordnote = card
             configWordVC.wordnotebook = wordnotebook
+        }else if (segue.identifier == "toAddWordFromWebViewController"){
+            let awfwVC: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
+            awfwVC.wordnotebook = wordnotebook
         }
     }
     
@@ -160,10 +163,17 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         })
         
         //アラート②：新規の英単語を追加する
-        let addNewWordAction: UIAlertAction = UIAlertAction(title: "新規に英単語を追加する", style: UIAlertActionStyle.default, handler:{
+        let addNewWordAction: UIAlertAction = UIAlertAction(title: "新規に英単語を追加する(手動)", style: UIAlertActionStyle.default, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             self.performSegue(withIdentifier: "toAddWordViewController", sender: nil)
+        })
+        
+        //アラート③：新規の英単語を(Webから)追加する
+        let addNewWordFromWebAction: UIAlertAction = UIAlertAction(title: "新規に英単語を追加する(Web)", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: "toAddWordFromWebViewController", sender: nil)
         })
         
         //アラート③：キャンセル
@@ -176,6 +186,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         alert.addAction(cancelAction)
         alert.addAction(addWordFromDictionaryAction)
         alert.addAction(addNewWordAction)
+        alert.addAction(addNewWordFromWebAction)
 
         //アラートを表示
         present(alert, animated: true, completion: nil)

@@ -22,7 +22,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     var maxId:Int = -1
     
-    let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
+    let notSelectedPartOfSpeech: String = "-品詞を選択してください-"
     
     override func viewDidLoad() {
         super.viewDidLoad()

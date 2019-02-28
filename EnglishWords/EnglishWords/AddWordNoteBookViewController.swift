@@ -49,8 +49,13 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
             //現在ある最大の単語帳IDを取得
             let realm = try! Realm()
             let results = realm.objects(WordNoteBook.self)
-            let maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
-
+            var maxId: Int
+            if results.count > 0 {
+                maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
+            }else{
+                maxId = -1
+            }
+            
             try! realm.write {
                 //単語帳追加(単語帳IDは現最大ID + 1)
                 realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
