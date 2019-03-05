@@ -20,6 +20,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     @IBOutlet var level: UILabel!
     @IBOutlet var pronounce: UILabel!
     
+    var inputword: String = ""
     var poslist: [String] = []
     var meanlist: [String] = []
     
@@ -71,11 +72,21 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnConfigureWordNoteBookViewContoller",sender: nil)
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "toConfigureWordNoteBookViewContoller",sender: nil)
+            if poslist.isEmpty || meanlist.isEmpty {
+                self.showAlert(mes: "登録する訳文がありません")
+            }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
+                self.showAlert(mes: "単語が入力されていません")
+            }else if (self.checkRegisteredWord(wordname: inputword)){
+                self.showAlert(mes: "既に同じ英単語が登録されています")
+            }else{
+                self.addScrapedWord()
+                performSegue(withIdentifier: "toConfigureWordNoteBookViewContoller",sender: nil)
+            }
         }else if(sender.tag == 2){
             if wordtextField.text!.isEmpty {
-                self.showAlert()
+                self.showAlert(mes: "単語が入力されていません")
             }else{
+                inputword = wordtextField.text!
                 self.scrapeWebsite(wordName: wordtextField.text!)
             }
         }
@@ -92,8 +103,85 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         }
     }
     
-    func scrapeWebsite(wordName: String) {
+    //スクレイピングした単語を登録する
+    func addScrapedWord(){
         
+        //Realm
+        let realm = try! Realm()
+        
+        //単語を新規登録する。option1には発音記号、option2にはレベルを書く
+        let newword = Word(value: ["wordName": inputword,
+                                   "createdDate": Date(),
+                                   "option1": pronounce.text!,
+                                    "option2": level.text!])
+        
+        //現単語帳に登録するためのば登録番号を取得
+        var maxId: Int
+        let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
+        if cardresults.count == 0 {
+            maxId = 0
+        }else{
+            maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
+        }
+        
+        try! realm.write {
+            realm.add([newword])
+        }
+        var pos = self.getPartOfSpeechData(posname: poslist[0])
+        for i in 0..<meanlist.count{
+            //品詞データを取得
+            if i>0 && poslist[i-1] != poslist[i] {
+                pos = self.getPartOfSpeechData(posname: poslist[i])
+            }
+            try! realm.write {
+                //新規単語データを登録
+                let newworddata = WordData(value: ["word": newword,
+                                                   "partofspeech": pos,
+                                                   "meanidx": i+1,
+                                                   "mean": meanlist[i],
+                                                   "source": "出典（未実装）",
+                                                    "example": "例文(未実装)"])
+                realm.add([newworddata])
+                realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
+                                            "worddata": newworddata,
+                                            "wordidx": maxId,
+                                            "registereddate": Date()])])
+            }
+        }
+    }
+    
+    //既に同じ英単語が辞書に登録されているかチェック
+    func checkRegisteredWord(wordname: String) -> Bool{
+        //Realm
+        let realm = try! Realm()
+        let results = realm.objects(Word.self).filter("wordName = %@",wordname)
+        if results.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    //品詞名から品詞データを取得。無い場合は新しく追加する
+    func getPartOfSpeechData(posname: String)-> PartsofSpeech{
+        //Realm
+        let realm = try! Realm()
+        let results = realm.objects(PartsofSpeech.self).filter("partsOfSpeechName = %@",posname)
+        if results.count > 0 {
+            return results.first!
+        }else{
+            let maxId = realm.objects(PartsofSpeech.self).value(forKeyPath: "@max.partsOfSpeechId")! as! Int
+            let newpos = PartsofSpeech(value: ["partsOfSpeechId": maxId + 1,
+                                          "partsOfSpeechName": posname,
+                                          "createdDate": Date()])
+            try! realm.write {
+                realm.add(newpos)
+            }
+            return newpos
+        }
+    }
+    
+    func scrapeWebsite(wordName: String) {
         //GETリクエスト 指定URLのコードを取得
         let fqdn = "https://ejje.weblio.jp/content/" + wordName
         Alamofire.request(fqdn).responseString { response in
@@ -160,12 +248,12 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         }
     }
     
-    func showAlert() {
+    func showAlert(mes: String) {
         
         // アラートを作成
         let alert = UIAlertController(
             title: "エラー",
-            message: "単語が入力されていません",
+            message: mes,
             preferredStyle: .alert)
         
         // アラートにボタンをつける
