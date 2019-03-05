@@ -87,34 +87,24 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                 showAlert(errormessage: "訳文が入力されていません")
             }else{
                 let realm: Realm = try! Realm()
-                var result = realm.objects(WordData.self).filter("word == %@ && partofspeech == %@",mean?.word,selectedpartofspeech)
                 if newMeanFlag! {
-                    //
-                    if result.count > 0 {
-                        showAlert(errormessage: "エラー：同じ品詞での訳文が既にあります")
-                    }else{
-                        try! realm.write {
-                            let newWordData = WordData(value: ["word" : mean?.word!,
+                    try! realm.write {
+                        let newWordData = WordData(value: ["word" : mean?.word!,
                                                                "partofspeech" : selectedpartofspeech!,
                                                                "mean" : textField.text!])
-                            realm.add(newWordData)
-                            performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
-                        }
-                    }
-                }else{
-                    if (mean?.partofspeech != selectedpartofspeech) && result.count > 0 {
-                        showAlert(errormessage: "エラー：同じ品詞での訳文が既にあります")
-                    }else{
-                        //編集した意味でWordDataを更新
-                        try! realm.write{
-                            //上書き更新
-                            let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
-                                    .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
-                            toupdatemean.partofspeech = selectedpartofspeech
-                            toupdatemean.mean = textField.text!
-                        }
+                        realm.add(newWordData)
                         performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                     }
+                }else{
+                    //編集した意味でWordDataを更新
+                    try! realm.write{
+                        //上書き更新
+                        let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
+                                    .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
+                        toupdatemean.partofspeech = selectedpartofspeech
+                        toupdatemean.mean = textField.text!
+                    }
+                    performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                 }
             }
         }
