@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //スキーマのバージョンが上記のものよりも低い/を開くときに自動的に呼び出されるブロックを設定する
             migrationBlock: { migration, oldSchemaVersion in
                 //まだ何も移行していないので、oldSchemaVersion == 0
-                if (oldSchemaVersion < 1) {
+                if (oldSchemaVersion < 2) {
                     // Realmは新しいプロパティと削除されたプロパティを自動的に検出します
                     //そして自動的にディスク上のスキーマを更新する
                 }})
