@@ -27,7 +27,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         
         if(wordnote != nil){
             fromdictflag = false
-            selectedword = wordnote?.worddata?.word
+            selectedword = wordnote?.word
         }else if(selectedword != nil){
             fromdictflag = true
         }

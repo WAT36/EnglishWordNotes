@@ -124,7 +124,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 selectedWord = wordlist[indexPath.row]
                 //Realm、既に同じ単語が登録されてないか確認
                 let realm = try! Realm()
-                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && worddata.word.wordName == %@",wnb!,selectedWord?.wordName)
+                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",wnb!,selectedWord?.wordName)
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
                     showAlert(errormessage: "既に同じ英単語が辞書にあります")
@@ -135,15 +135,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                     }else{
                         maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
                     }
-                    let selectedWordData = realm.objects(WordData.self).filter("word.wordName == %@",selectedWord?.wordName)
-                    print(selectedWordData)
+
                     try! realm.write {
-                        for wordDataValue in selectedWordData {
                             realm.add([WordNote(value: ["wordnotebook": wnb!,
-                                                        "worddata": wordDataValue,
+                                                        "word": selectedWord,
                                                         "wordidx": maxId,
                                                         "registereddate": Date()])])
-                        }
                     }
                     performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
                 }
@@ -195,7 +192,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             
             try! realm.write {
                 //単語帳データから削除
-                realm.delete(realm.objects(WordNote.self).filter("worddata.word.wordName == %@",selectedWord.wordName))
+                realm.delete(realm.objects(WordNote.self).filter("word.wordName == %@",selectedWord.wordName))
                 //単語データから削除
                 realm.delete(realm.objects(WordData.self).filter("word.wordName == %@",selectedWord.wordName))
                 //単語マスタから削除

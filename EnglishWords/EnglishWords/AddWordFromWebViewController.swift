@@ -115,7 +115,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                    "option1": pronounce.text!,
                                     "option2": level.text!])
         
-        //現単語帳に登録するためのば登録番号を取得
+        //現単語帳に登録するための登録番号を取得
         var maxId: Int
         let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
         if cardresults.count == 0 {
@@ -126,6 +126,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         
         try! realm.write {
             realm.add([newword])
+            realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
+                                        "word": newword,
+                                        "wordidx": maxId,
+                                        "registereddate": Date()])])
         }
         var pos = self.getPartOfSpeechData(posname: poslist[0])
         for i in 0..<meanlist.count{
@@ -142,10 +146,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                                    "source": "出典（未実装）",
                                                     "example": "例文(未実装)"])
                 realm.add([newworddata])
-                realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
-                                            "worddata": newworddata,
-                                            "wordidx": maxId,
-                                            "registereddate": Date()])])
             }
         }
     }
@@ -186,6 +186,14 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         let fqdn = "https://ejje.weblio.jp/content/" + wordName
         Alamofire.request(fqdn).responseString { response in
             print("\(response.result.isSuccess)")
+            
+            if !response.result.isSuccess {
+                self.wordtextField.text = ""
+                self.inputword = ""
+                self.poslist.removeAll()
+                self.meanlist.removeAll()
+                self.showAlert(mes: "入力した単語\"" + wordName + "\"での検索結果はありません")
+            }
             
             if let html = response.result.value {
                 //入力した単語でスクレイピング開始・テーブル更新

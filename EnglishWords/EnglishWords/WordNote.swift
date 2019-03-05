@@ -11,12 +11,12 @@ import RealmSwift
 
 class WordNote: Object {
     @objc dynamic var wordnotebook: WordNoteBook?
-    @objc dynamic var worddata: WordData?
+    @objc dynamic var word: Word?
     @objc dynamic var wordidx: Int = 0
     @objc dynamic var registereddate: Date = Date()
     
     
     static func ==(a: WordNote, b: WordNote) -> Bool{
-        return a.wordnotebook == b.wordnotebook && a.worddata == a.worddata
+        return a.wordnotebook == b.wordnotebook && a.word == b.word
     }
 }

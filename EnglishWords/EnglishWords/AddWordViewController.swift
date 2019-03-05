@@ -132,7 +132,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     realm.add([newword])
                     realm.add([newworddata])
                     realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
-                                                "worddata": newworddata,
+                                                "word": newword,
                                                 "wordidx": maxId,
                                                 "registereddate": Date()])])
                     
