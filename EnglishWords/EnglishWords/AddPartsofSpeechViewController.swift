@@ -33,7 +33,9 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
     @IBAction func buttonTapped(sender : UIButton) {        
         if (sender.tag == 0){
             if textField.text!.isEmpty {
-                self.showAlert()
+                self.showAlert(m: "品詞名が入力されていません")
+            }else if(self.checkRegisteredPartOfSpeech(partsofspeechname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
+                self.showAlert(m: "既に同じ品詞名が登録されています")
             }else{
                 performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
             }
@@ -63,12 +65,24 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func showAlert() {
+    //既に同じ品詞が登録されているかチェック
+    func checkRegisteredPartOfSpeech(partsofspeechname: String) -> Bool{
+        //Realm
+        let realm = try! Realm()
+        let results = realm.objects(PartsofSpeech.self).filter("partsOfSpeechName = %@",partsofspeechname)
+        if results.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func showAlert(m: String) {
         
         // アラートを作成
         let alert = UIAlertController(
             title: "エラー",
-            message: "品詞名が入力されていません",
+            message: m,
             preferredStyle: .alert)
         
         // アラートにボタンをつける

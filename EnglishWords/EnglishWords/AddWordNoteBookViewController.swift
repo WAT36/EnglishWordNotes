@@ -33,7 +33,9 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     @IBAction func buttonTapped(sender : UIButton) {
         if (sender.tag == 0){
             if textField.text!.isEmpty {
-                self.showAlert()
+                self.showAlert(m: "単語帳名が入力されていません")
+            }else if(self.checkRegisteredWordNoteBook(wordnotebookname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
+                self.showAlert(m: "既に同じ名前の単語帳が登録されています")
             }else{
                 performSegue(withIdentifier: "AddBookandToViewController",sender: nil)
             }
@@ -66,12 +68,24 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func showAlert() {
+    //既に同じ単語帳が登録されているかチェック
+    func checkRegisteredWordNoteBook(wordnotebookname: String) -> Bool{
+        //Realm
+        let realm = try! Realm()
+        let results = realm.objects(WordNoteBook.self).filter("wordNoteBookName = %@",wordnotebookname)
+        if results.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func showAlert(m: String) {
         
         // アラートを作成
         let alert = UIAlertController(
             title: "エラー",
-            message: "単語帳名が入力されていません",
+            message: m,
             preferredStyle: .alert)
         
         // アラートにボタンをつける
