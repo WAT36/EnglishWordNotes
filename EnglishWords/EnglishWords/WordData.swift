@@ -14,8 +14,8 @@ class WordData: Object{
     @objc dynamic var partofspeech: PartsofSpeech?
     @objc dynamic var meanidx: Int = -1
     @objc dynamic var mean = " "
-    @objc dynamic var source = " "
     @objc dynamic var example = " "
+    let source = List<Source>()     //出典のリスト
 
     
     static func ==(a: WordData, b: WordData) -> Bool{
