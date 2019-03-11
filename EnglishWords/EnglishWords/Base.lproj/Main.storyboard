@@ -438,7 +438,7 @@
                                 </connections>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZ7-hN-YET">
-                                <rect key="frame" x="0.0" y="195" width="320" height="373"/>
+                                <rect key="frame" x="0.0" y="195" width="320" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -453,12 +453,41 @@
                                     <action selector="buttonTappedWithSender:" destination="xrM-36-gSR" eventType="touchDown" id="l8R-Ho-lAI"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DQf-7a-1OO">
+                                <rect key="frame" x="0.0" y="381" width="320" height="187"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tablecell" id="u9Y-cH-hxT">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u9Y-cH-hxT" id="4U8-dO-heG">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IL-Tj-vNu">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xrM-36-gSR" id="O1N-1g-sSB"/>
+                                    <outlet property="delegate" destination="xrM-36-gSR" id="ftr-Z5-6sE"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lo8-TR-ZgO"/>
                     </view>
                     <connections>
                         <outlet property="partofspeeches" destination="DMy-cc-4Pn" id="x8F-5b-Fxb"/>
+                        <outlet property="sourcetable" destination="DQf-7a-1OO" id="n4o-PD-bVs"/>
                         <outlet property="textField" destination="hZ7-hN-YET" id="by5-FI-IyH"/>
                     </connections>
                 </viewController>
@@ -762,9 +791,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="man-Lu-bxS"/>
         <segue reference="Zpx-A2-zi1"/>
-        <segue reference="1XP-Pt-sgj"/>
-        <segue reference="SL8-xy-8Jl"/>
+        <segue reference="A0O-Qc-l2F"/>
+        <segue reference="ajh-jD-Zox"/>
     </inferredMetricsTieBreakers>
 </document>

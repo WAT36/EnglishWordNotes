@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource  {
     
     var mean: WordData?
     var partsofspeechlist: [PartsofSpeech] = []
@@ -19,6 +19,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var sourcetable:UITableView!
     
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
     
@@ -73,6 +74,36 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     didSelectRow row: Int,
                     inComponent component: Int) {
         selectedpartofspeech = partsofspeechlist[row]
+    }
+    
+    //Table Viewのセルの数を指定
+    func tableView(_ table: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        return (mean?.source.count)! + 1
+    }
+    
+    //各セルの要素を設定する
+    func tableView(_ table: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // tableCell の ID で UITableViewCell のインスタンスを生成
+        let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
+                                             for: indexPath)
+        if indexPath.row < (mean?.source.count)! {
+            // Tag番号  で UILabel インスタンスの生成
+            let oneworddata = mean!.source[indexPath.row].sourceName
+            let sourcename = cell.viewWithTag(1) as! UILabel
+            sourcename.numberOfLines = 0
+            sourcename.text = oneworddata
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+        } else {
+            let addsourcecell = cell.viewWithTag(1) as! UILabel
+            addsourcecell.numberOfLines = 0
+            addsourcecell.text = "➕出典を追加する"
+            cell.backgroundColor = UIColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 0.5)
+        }
+        
+        return cell
     }
     
     @IBAction func buttonTapped(sender : AnyObject) {
