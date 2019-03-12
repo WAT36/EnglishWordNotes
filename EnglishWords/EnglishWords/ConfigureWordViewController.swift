@@ -13,6 +13,8 @@ import RealmSwift
 class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var wordnamelabel: UILabel!
+    @IBOutlet var pronounce: UILabel!
+    @IBOutlet var level: UILabel!
     @IBOutlet var table:UITableView!
     
     var wordnotebook: WordNoteBook?
@@ -32,6 +34,8 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             fromdictflag = true
         }
         wordnamelabel.text = selectedword?.wordName
+        pronounce.text = selectedword?.option1
+        level.text = selectedword?.option2
             
         //選択したWordからデータベース内に保存してあるWordDataを全て取得
         let realm: Realm = try! Realm()
