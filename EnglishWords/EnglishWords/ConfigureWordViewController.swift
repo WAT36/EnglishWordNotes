@@ -51,6 +51,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         super.didReceiveMemoryWarning()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {

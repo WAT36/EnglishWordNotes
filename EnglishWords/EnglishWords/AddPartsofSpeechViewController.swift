@@ -30,6 +30,10 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func buttonTapped(sender : UIButton) {        
         if (sender.tag == 0){
             if textField.text!.isEmpty {

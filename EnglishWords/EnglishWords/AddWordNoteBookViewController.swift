@@ -44,6 +44,10 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "AddBookandToViewController") {

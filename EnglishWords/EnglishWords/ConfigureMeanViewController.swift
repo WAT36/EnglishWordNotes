@@ -51,6 +51,10 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         super.didReceiveMemoryWarning()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // UIPickerViewの列の数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

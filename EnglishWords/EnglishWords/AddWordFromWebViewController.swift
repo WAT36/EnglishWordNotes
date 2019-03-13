@@ -40,6 +40,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         super.didReceiveMemoryWarning()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //テーブルのセルの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meanlist.count
