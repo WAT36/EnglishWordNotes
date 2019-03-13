@@ -16,7 +16,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
 
     @IBOutlet var table:UITableView!
     @IBOutlet var wordtextField: UITextField!
-    
+    @IBOutlet var inputwordname: UILabel!
     @IBOutlet var level: UILabel!
     @IBOutlet var pronounce: UILabel!
     
@@ -87,6 +87,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.showAlert(mes: "単語が入力されていません")
             }else{
                 inputword = wordtextField.text!
+                inputwordname.text = wordtextField.text!
                 self.scrapeWebsite(wordName: wordtextField.text!)
             }
         }
@@ -190,6 +191,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             if !response.result.isSuccess {
                 self.wordtextField.text = ""
                 self.inputword = ""
+                self.inputwordname.text = ""
                 self.poslist.removeAll()
                 self.meanlist.removeAll()
                 self.showAlert(mes: "入力した単語\"" + wordName + "\"での検索結果はありません")
