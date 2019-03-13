@@ -220,6 +220,88 @@
             </objects>
             <point key="canvasLocation" x="1432.5" y="1774.6478873239437"/>
         </scene>
+        <!--Add Source View Controller-->
+        <scene sceneID="eVs-xZ-Xw3">
+            <objects>
+                <viewController id="mkN-br-moC" customClass="AddSourceViewController" customModule="EnglishWords" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YIT-Do-SY1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rR-1m-18G">
+                                <rect key="frame" x="0.0" y="20" width="90" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="mkN-br-moC" eventType="touchDown" id="8Af-TI-ZDr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出典追加" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfI-4i-Kss">
+                                <rect key="frame" x="93" y="20" width="137" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="・既存の出典から追加する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGW-lx-48K">
+                                <rect key="frame" x="0.0" y="89" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="・新しい出典から追加する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er3-f8-kde">
+                                <rect key="frame" x="0.0" y="318" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7T-Mv-lJF">
+                                <rect key="frame" x="0.0" y="133" width="320" height="125"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="mkN-br-moC" id="1Su-At-QWP"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOU-W3-Jvx">
+                                <rect key="frame" x="0.0" y="266" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="選択した出典から追加する"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="mkN-br-moC" eventType="touchDown" id="cRC-RT-yqf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0l-if-wdU">
+                                <rect key="frame" x="1" y="504" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="入力した出典を追加する"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="mkN-br-moC" eventType="touchDown" id="daX-1X-e0z"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9N0-QM-OeN">
+                                <rect key="frame" x="17" y="420" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="y4V-Tt-Vyn"/>
+                    </view>
+                    <connections>
+                        <outlet property="sources" destination="i7T-Mv-lJF" id="BED-xf-3B0"/>
+                        <outlet property="sourcetext" destination="9N0-QM-OeN" id="rwI-ep-IZL"/>
+                        <segue destination="xrM-36-gSR" kind="presentation" identifier="returnToConfigureMeanViewController" id="6AF-Ab-5Rw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eqr-CQ-ZXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2621.25" y="1774.6478873239437"/>
+        </scene>
         <!--Configure Word Note Book View Controller-->
         <scene sceneID="Lky-6r-8Ux">
             <objects>
@@ -519,6 +601,7 @@
                         <outlet property="partofspeeches" destination="DMy-cc-4Pn" id="x8F-5b-Fxb"/>
                         <outlet property="sourcetable" destination="DQf-7a-1OO" id="n4o-PD-bVs"/>
                         <outlet property="textField" destination="hZ7-hN-YET" id="by5-FI-IyH"/>
+                        <segue destination="mkN-br-moC" kind="presentation" identifier="toAddSourceViewController" id="uV5-z4-GX6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFY-mx-O0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -821,10 +904,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Krk-sv-uPU"/>
         <segue reference="man-Lu-bxS"/>
         <segue reference="Zpx-A2-zi1"/>
+        <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>
-        <segue reference="ajh-jD-Zox"/>
+        <segue reference="SL8-xy-8Jl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -106,6 +106,16 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         return cell
     }
     
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < (mean?.source.count)! {
+            //出典のセルを選択してもとりあえず今は何もしないでおく
+        }else{
+            // AddSourceViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toAddSourceViewController", sender: nil)
+        }
+    }
+    
     @IBAction func buttonTapped(sender : AnyObject) {
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
@@ -146,6 +156,10 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         if (segue.identifier == "returnToConfigureWordViewController") {
             let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             configureWordVC.selectedword = mean?.word
+        }else if(segue.identifier == "toAddSourceViewController"){
+            let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
+            addSourceVC.mean = mean
+            addSourceVC.newMeanFlag = newMeanFlag
         }
     }
     

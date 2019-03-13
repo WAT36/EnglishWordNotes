@@ -16,4 +16,8 @@ class Source: Object {
     override static func primaryKey() -> String? {
         return "sourceName"
     }
+    
+    static func ==(a: Source, b: Source) -> Bool{
+        return a.sourceName == b.sourceName
+    }
 }
