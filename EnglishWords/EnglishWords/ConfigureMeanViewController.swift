@@ -16,6 +16,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedpartofspeech: PartsofSpeech?
     var newMeanFlag: Bool?
+    var selectedsource: Source?
     
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textField: UITextField!
@@ -117,6 +118,30 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         }else{
             // AddSourceViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: "toAddSourceViewController", sender: nil)
+        }
+    }
+    
+    //テーブルでセル毎にスワイプを有効、無効にする
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row < (mean?.source.count)! {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    //選択したセルでスワイプすると削除される
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //選択したセルの出典を記録
+            selectedsource = mean!.source[indexPath.row]
+            //Realmデータベースからも削除
+            let realm = try! Realm()
+            try! realm.write {
+                mean?.source.remove(at: (mean?.source.index(of: selectedsource!))!)
+            }
+            //テーブルから削除
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
