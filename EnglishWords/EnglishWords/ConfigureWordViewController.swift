@@ -22,6 +22,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     var wordnote: WordNote?
     var selectedword: Word?
     var selectedmean: WordData?
+    var toremovemean: WordData?
     var fromdictflag: Bool = false
     
     override func viewDidLoad() {
@@ -128,6 +129,35 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             }else{
                 configureMeanVC.newMeanFlag = true
             }
+        }
+    }
+    
+    //指定したテーブル、セル毎にスワイプを有効、無効にする
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row < worddatalist.count {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    //選択したセルでスワイプすると削除される
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //選択したセルの単語帳を記録
+            toremovemean = worddatalist[indexPath.row]
+            
+            worddatalist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //Realmデータベースからも削除
+            let realm = try! Realm()
+            
+            try! realm.write {
+                realm.delete(toremovemean!)
+            }
+            
+            toremovemean = nil
         }
     }
     
