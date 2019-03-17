@@ -148,7 +148,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                                    "partofspeech": pos,
                                                    "meanidx": i+1,
                                                    "mean": meanlist[i],
-                                                   "source": "出典（未実装）",
                                                     "example": "例文(未実装)"])
                 realm.add([newworddata])
             }
