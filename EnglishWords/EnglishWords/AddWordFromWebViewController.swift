@@ -250,7 +250,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 if(m.css("p[class='lvlB']").count > 0){
                     b = (m.css("p[class='lvlB']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                 }else{
-                    continue
+                    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                 }
                 
                 //品詞：大節：小節：意味
