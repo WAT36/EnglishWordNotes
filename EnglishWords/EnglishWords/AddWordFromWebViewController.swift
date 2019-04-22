@@ -170,12 +170,19 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     func getPartOfSpeechData(posname: String)-> PartsofSpeech{
         //Realm
         let realm = try! Realm()
+        //品詞名から品詞を取得
         let results = realm.objects(PartsofSpeech.self).filter("partsOfSpeechName = %@",posname)
         if results.count > 0 {
             return results.first!
         }else{
-            let maxId = realm.objects(PartsofSpeech.self).value(forKeyPath: "@max.partsOfSpeechId")! as! Int
-            let newpos = PartsofSpeech(value: ["partsOfSpeechId": maxId + 1,
+            //品詞がRealmにない場合は登録
+            var maxId: Int? = realm.objects(PartsofSpeech.self).value(forKeyPath: "@max.partsOfSpeechId") as? Int
+            
+            if(maxId == nil){
+                maxId = -1;
+            }
+            
+            let newpos = PartsofSpeech(value: ["partsOfSpeechId": maxId! + 1,
                                           "partsOfSpeechName": posname,
                                           "createdDate": Date()])
             try! realm.write {
