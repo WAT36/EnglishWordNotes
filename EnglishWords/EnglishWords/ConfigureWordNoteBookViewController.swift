@@ -19,7 +19,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     var card: WordNote?
     var wordnotebook: WordNoteBook?
     
-    let sidebarlist = ["単語追加","確認テスト","オプション"]
+    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション(未実装)"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
