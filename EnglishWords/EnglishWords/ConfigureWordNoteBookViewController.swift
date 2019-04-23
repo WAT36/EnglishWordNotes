@@ -82,7 +82,10 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         if table.tag == 1 {
             if sidebarlist[indexPath.row] == "単語追加" {
                 // AddWordViewController へ遷移するために Segue を呼び出す
-                dispAlert(sender: table)
+                addWordDispAlert(sender: table)
+            }else if sidebarlist[indexPath.row] == "エクスポート" {
+                // AddWordViewController へ遷移するために Segue を呼び出す
+                exportDispAlert(sender: table)
             }
         }else{
             //選択したセルの単語を記録
@@ -149,8 +152,8 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }
     }
     
-    // ボタン（セル）を押下した時にアラートを表示するメソッド
-    @IBAction func dispAlert(sender: UITableView) {
+    // 単語追加ボタン（セル）を押下した時にアラートを表示するメソッド
+    @IBAction func addWordDispAlert(sender: UITableView) {
         
         //アラートの設定
         let alert: UIAlertController = UIAlertController(title: "単語追加", message: "どの方法で英単語を追加しますか？", preferredStyle:  UIAlertControllerStyle.alert)
@@ -188,6 +191,37 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         alert.addAction(addNewWordAction)
         alert.addAction(addNewWordFromWebAction)
 
+        //アラートを表示
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // エクスポートボタン（セル）を押下した時にアラートを表示するメソッド
+    @IBAction func exportDispAlert(sender: UITableView) {
+        
+        //アラートの設定
+        let alert: UIAlertController = UIAlertController(title: "ファイル名指定", message: "エクスポートするファイル名を記入してください", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        //ファイル名入力用textFieldの追加
+        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            text.tag  = 1
+        })
+
+        //ボタン①：入力したファイル名でRealmをエクスポートする
+        let addWordFromDictionaryAction: UIAlertAction = UIAlertAction(title: "決定", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+        })
+        
+        //ボタン②：キャンセル
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+        })
+        
+        //UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(addWordFromDictionaryAction)
+        
         //アラートを表示
         present(alert, animated: true, completion: nil)
     }
