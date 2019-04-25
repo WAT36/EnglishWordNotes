@@ -207,9 +207,26 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         })
 
         //ボタン①：入力したファイル名でRealmをエクスポートする
-        let addWordFromDictionaryAction: UIAlertAction = UIAlertAction(title: "決定", style: UIAlertActionStyle.default, handler:{
+        let okAction: UIAlertAction = UIAlertAction(title: "決定", style: UIAlertActionStyle.default, handler:{[weak alert] (action) -> Void in
             // ボタンが押された時の処理を書く（クロージャ実装）
-            (action: UIAlertAction!) -> Void in
+            guard let textFields = alert?.textFields else {
+                return
+            }
+            
+            guard !textFields.isEmpty else {
+                return
+            }
+            
+            var filename: String = ""
+            for text in textFields {
+                filename = text.text!
+            }
+            
+            if(filename.isEmpty){
+                //エラー出させる
+            }else{
+                self.exportRealmFile(filename: filename)
+            }
         })
         
         //ボタン②：キャンセル
@@ -220,9 +237,24 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         
         //UIAlertControllerにActionを追加
         alert.addAction(cancelAction)
-        alert.addAction(addWordFromDictionaryAction)
+        alert.addAction(okAction)
         
         //アラートを表示
         present(alert, animated: true, completion: nil)
+    }
+    
+    func exportRealmFile(filename: String){
+        
+        let realm = try! Realm()
+        do {
+            //ファイル名
+            let fileURL = realm.configuration.fileURL!.deletingLastPathComponent().appendingPathComponent(filename)
+            try realm.writeCopy(toFile: fileURL)
+            print(fileURL.path)
+            print("Realm export Succeeded.")
+        }catch {
+            //エラー処理
+            print("Error. Realm Export Failed.")
+        }
     }
 }
