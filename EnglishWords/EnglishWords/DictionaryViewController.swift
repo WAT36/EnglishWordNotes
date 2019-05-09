@@ -54,11 +54,18 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func buttonTapped(_ sender: Any) {
-        if(addWordFlag){
-            performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
-        }else{
-            performSegue(withIdentifier: "returnToViewController",sender: nil)
+    @IBAction func buttonTapped(sender: UIButton) {
+        print(0000)
+        if(sender.tag == 0){
+            print(0001)
+            if(addWordFlag){
+                performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
+            }else{
+                performSegue(withIdentifier: "returnToViewController",sender: nil)
+            }
+        }else if(sender.tag == 1){
+            print(1212)
+            performSegue(withIdentifier: "toSearchWordViewController",sender: nil)
         }
     }
     
@@ -166,6 +173,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         }else if (segue.identifier == "returnToViewController") {
             addWordFlag = false
             let _: ViewController = (segue.destination as? ViewController)!
+        }else if (segue.identifier == "toSearchWordViewController") {
+            addWordFlag = false
+            let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }
     }
     
