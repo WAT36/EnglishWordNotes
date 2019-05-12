@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */; };
+		243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */; };
+		243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */; };
+		243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */; };
+		243D265B21FF2D5B004719A3 /* PartsofSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265A21FF2D5B004719A3 /* PartsofSpeech.swift */; };
+		243D265D21FF375E004719A3 /* AddWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265C21FF375E004719A3 /* AddWordViewController.swift */; };
+		243D265F22007455004719A3 /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265E22007455004719A3 /* DictionaryViewController.swift */; };
+		243D26612206A605004719A3 /* ConfigureWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D26602206A605004719A3 /* ConfigureWordViewController.swift */; };
+		243D26632209D75A004719A3 /* ConfigureMeanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D26622209D75A004719A3 /* ConfigureMeanViewController.swift */; };
+		24422F2E22354CC4005BF6CE /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24422F2D22354CC4005BF6CE /* Source.swift */; };
+		24422F3022392CE4005BF6CE /* AddSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */; };
+		249D791822831F1F003496CD /* SearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D791722831F1F003496CD /* SearchWordViewController.swift */; };
+		249D791A228853EA003496CD /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D7919228853EA003496CD /* SearchResultViewController.swift */; };
+		24A4572821EF6445002048A0 /* WordNoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4572721EF6445002048A0 /* WordNoteBook.swift */; };
+		24A4573321EF7548002048A0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573221EF7548002048A0 /* Realm.framework */; };
+		24A4573421EF7548002048A0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573221EF7548002048A0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24A4573721EF7554002048A0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573621EF7554002048A0 /* RealmSwift.framework */; };
+		24A4573821EF7554002048A0 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573621EF7554002048A0 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24A4573B21EF77CF002048A0 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4573A21EF77CF002048A0 /* Word.swift */; };
+		24A4573D21F0BE94002048A0 /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4573C21F0BE94002048A0 /* WordData.swift */; };
+		24A4574121F0C148002048A0 /* WordNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574021F0C148002048A0 /* WordNote.swift */; };
+		24A4574421F2D45A002048A0 /* AddWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */; };
 		24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E6214E7C29009AA57C /* AppDelegate.swift */; };
 		24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E8214E7C29009AA57C /* ViewController.swift */; };
 		24F2B4EC214E7C29009AA57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F2B4EA214E7C29009AA57C /* Main.storyboard */; };
@@ -14,9 +36,8 @@
 		24F2B4F1214E7C2B009AA57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F2B4EF214E7C2B009AA57C /* LaunchScreen.storyboard */; };
 		24F2B4FC214E7C2B009AA57C /* EnglishWordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4FB214E7C2B009AA57C /* EnglishWordsTests.swift */; };
 		24F2B507214E7C2B009AA57C /* EnglishWordsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B506214E7C2B009AA57C /* EnglishWordsUITests.swift */; };
-		2F0FD42A4EE83407D9A6462A /* Pods_EnglishWordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 906AB4256095DD72D344FB2B /* Pods_EnglishWordsUITests.framework */; };
-		5B2B5ABD6E1CFD8B304C3FE9 /* Pods_EnglishWords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5730EC00FE49C475B3781991 /* Pods_EnglishWords.framework */; };
-		CC2EC76A93AAE5276552CDC5 /* Pods_EnglishWordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ABEFE210DB23D9A5E66D38 /* Pods_EnglishWordsTests.framework */; };
+		823E7B5CFBCBEC8305CD326F /* Pods_EnglishWordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */; };
+		E196CCCDBC078645AE9EF6F9 /* Pods_EnglishWords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +57,42 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		24A4573521EF7548002048A0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				24A4573821EF7554002048A0 /* RealmSwift.framework in Embed Frameworks */,
+				24A4573421EF7548002048A0 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1B5169F914E65C70345504BD /* Pods-EnglishWordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordFromWebViewController.swift; sourceTree = "<group>"; };
+		243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWordNoteBookViewController.swift; sourceTree = "<group>"; };
+		243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPartsofSpeechViewController.swift; sourceTree = "<group>"; };
+		243D265A21FF2D5B004719A3 /* PartsofSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsofSpeech.swift; sourceTree = "<group>"; };
+		243D265C21FF375E004719A3 /* AddWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordViewController.swift; sourceTree = "<group>"; };
+		243D265E22007455004719A3 /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
+		243D26602206A605004719A3 /* ConfigureWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWordViewController.swift; sourceTree = "<group>"; };
+		243D26622209D75A004719A3 /* ConfigureMeanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureMeanViewController.swift; sourceTree = "<group>"; };
+		24422F2D22354CC4005BF6CE /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSourceViewController.swift; sourceTree = "<group>"; };
+		249D791722831F1F003496CD /* SearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordViewController.swift; sourceTree = "<group>"; };
+		249D7919228853EA003496CD /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		24A4572721EF6445002048A0 /* WordNoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNoteBook.swift; sourceTree = "<group>"; };
+		24A4573221EF7548002048A0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		24A4573621EF7554002048A0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		24A4573A21EF77CF002048A0 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		24A4573C21F0BE94002048A0 /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
+		24A4574021F0C148002048A0 /* WordNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNote.swift; sourceTree = "<group>"; };
+		24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordNoteBookViewController.swift; sourceTree = "<group>"; };
 		24F2B4E3214E7C29009AA57C /* EnglishWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F2B4E6214E7C29009AA57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24F2B4E8214E7C29009AA57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,15 +106,14 @@
 		24F2B502214E7C2B009AA57C /* EnglishWordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishWordsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F2B506214E7C2B009AA57C /* EnglishWordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishWordsUITests.swift; sourceTree = "<group>"; };
 		24F2B508214E7C2B009AA57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27C922B6D0D39AAFF28703E9 /* Pods-EnglishWordsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3DD011703F3A501FF92CB3C5 /* Pods-EnglishWordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5730EC00FE49C475B3781991 /* Pods_EnglishWords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		80ABEFE210DB23D9A5E66D38 /* Pods_EnglishWordsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F943D37A52C18DA8215ABB9 /* Pods-EnglishWords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.debug.xcconfig"; sourceTree = "<group>"; };
-		906AB4256095DD72D344FB2B /* Pods_EnglishWordsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C15A1E915FF50F34F626E839 /* Pods-EnglishWordsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.release.xcconfig"; sourceTree = "<group>"; };
-		CB9A794B5E0063445A7095EE /* Pods-EnglishWords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.release.xcconfig"; sourceTree = "<group>"; };
-		D21E6BC942FA2F760B71EC26 /* Pods-EnglishWordsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DD3AC23FBE00A05BD6C4DDB /* Pods-EnglishWordsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7587EA93209069544F58032B /* Pods-EnglishWords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.debug.xcconfig"; sourceTree = "<group>"; };
+		764B0292039C250B97AA6FF8 /* Pods-EnglishWordsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.release.xcconfig"; sourceTree = "<group>"; };
+		E059E0E2B09DEFB9EB97729B /* Pods-EnglishWords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.release.xcconfig"; sourceTree = "<group>"; };
+		EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30B5B4A3CC493035348B1D9 /* Pods-EnglishWordsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +121,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B2B5ABD6E1CFD8B304C3FE9 /* Pods_EnglishWords.framework in Frameworks */,
+				24A4573321EF7548002048A0 /* Realm.framework in Frameworks */,
+				24A4573721EF7554002048A0 /* RealmSwift.framework in Frameworks */,
+				E196CCCDBC078645AE9EF6F9 /* Pods_EnglishWords.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC2EC76A93AAE5276552CDC5 /* Pods_EnglishWordsTests.framework in Frameworks */,
+				823E7B5CFBCBEC8305CD326F /* Pods_EnglishWordsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F0FD42A4EE83407D9A6462A /* Pods_EnglishWordsUITests.framework in Frameworks */,
+				08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,12 +149,14 @@
 		24F2B4DA214E7C29009AA57C = {
 			isa = PBXGroup;
 			children = (
+				24A4573621EF7554002048A0 /* RealmSwift.framework */,
+				24A4573221EF7548002048A0 /* Realm.framework */,
 				24F2B4E5214E7C29009AA57C /* EnglishWords */,
 				24F2B4FA214E7C2B009AA57C /* EnglishWordsTests */,
 				24F2B505214E7C2B009AA57C /* EnglishWordsUITests */,
 				24F2B4E4214E7C29009AA57C /* Products */,
-				D358C0078EB4427F1AE2305B /* Pods */,
-				D23153D1EB8CB9F424CD94D4 /* Frameworks */,
+				CE337065910AE43234F5D54F /* Pods */,
+				AD2E415334F8824060C16617 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +179,23 @@
 				24F2B4ED214E7C2B009AA57C /* Assets.xcassets */,
 				24F2B4EF214E7C2B009AA57C /* LaunchScreen.storyboard */,
 				24F2B4F2214E7C2B009AA57C /* Info.plist */,
+				24A4572721EF6445002048A0 /* WordNoteBook.swift */,
+				24A4573A21EF77CF002048A0 /* Word.swift */,
+				24A4573C21F0BE94002048A0 /* WordData.swift */,
+				24A4574021F0C148002048A0 /* WordNote.swift */,
+				24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */,
+				243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */,
+				243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */,
+				243D265A21FF2D5B004719A3 /* PartsofSpeech.swift */,
+				243D265C21FF375E004719A3 /* AddWordViewController.swift */,
+				243D265E22007455004719A3 /* DictionaryViewController.swift */,
+				243D26602206A605004719A3 /* ConfigureWordViewController.swift */,
+				243D26622209D75A004719A3 /* ConfigureMeanViewController.swift */,
+				243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */,
+				24422F2D22354CC4005BF6CE /* Source.swift */,
+				24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */,
+				249D791722831F1F003496CD /* SearchWordViewController.swift */,
+				249D7919228853EA003496CD /* SearchResultViewController.swift */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -142,25 +218,25 @@
 			path = EnglishWordsUITests;
 			sourceTree = "<group>";
 		};
-		D23153D1EB8CB9F424CD94D4 /* Frameworks */ = {
+		AD2E415334F8824060C16617 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5730EC00FE49C475B3781991 /* Pods_EnglishWords.framework */,
-				80ABEFE210DB23D9A5E66D38 /* Pods_EnglishWordsTests.framework */,
-				906AB4256095DD72D344FB2B /* Pods_EnglishWordsUITests.framework */,
+				FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */,
+				EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */,
+				729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D358C0078EB4427F1AE2305B /* Pods */ = {
+		CE337065910AE43234F5D54F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8F943D37A52C18DA8215ABB9 /* Pods-EnglishWords.debug.xcconfig */,
-				CB9A794B5E0063445A7095EE /* Pods-EnglishWords.release.xcconfig */,
-				3DD011703F3A501FF92CB3C5 /* Pods-EnglishWordsTests.debug.xcconfig */,
-				C15A1E915FF50F34F626E839 /* Pods-EnglishWordsTests.release.xcconfig */,
-				D21E6BC942FA2F760B71EC26 /* Pods-EnglishWordsUITests.debug.xcconfig */,
-				27C922B6D0D39AAFF28703E9 /* Pods-EnglishWordsUITests.release.xcconfig */,
+				7587EA93209069544F58032B /* Pods-EnglishWords.debug.xcconfig */,
+				E059E0E2B09DEFB9EB97729B /* Pods-EnglishWords.release.xcconfig */,
+				1B5169F914E65C70345504BD /* Pods-EnglishWordsTests.debug.xcconfig */,
+				764B0292039C250B97AA6FF8 /* Pods-EnglishWordsTests.release.xcconfig */,
+				F30B5B4A3CC493035348B1D9 /* Pods-EnglishWordsUITests.debug.xcconfig */,
+				6DD3AC23FBE00A05BD6C4DDB /* Pods-EnglishWordsUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -172,11 +248,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24F2B50B214E7C2B009AA57C /* Build configuration list for PBXNativeTarget "EnglishWords" */;
 			buildPhases = (
-				C40E7D218815916FBBDF1E0A /* [CP] Check Pods Manifest.lock */,
+				889E20E1AC9E5ABD4DB85097 /* [CP] Check Pods Manifest.lock */,
 				24F2B4DF214E7C29009AA57C /* Sources */,
 				24F2B4E0214E7C29009AA57C /* Frameworks */,
 				24F2B4E1214E7C29009AA57C /* Resources */,
-				7EF96BBB915FF5E5C2B55306 /* [CP] Embed Pods Frameworks */,
+				24A4573521EF7548002048A0 /* Embed Frameworks */,
+				24A4574221F1F72B002048A0 /* ShellScript */,
+				D2531AAF7A7251D4768C5018 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,7 +269,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24F2B50E214E7C2B009AA57C /* Build configuration list for PBXNativeTarget "EnglishWordsTests" */;
 			buildPhases = (
-				51022AB8E083119DF863F6D2 /* [CP] Check Pods Manifest.lock */,
+				A5D6797C76E55EA12E98370E /* [CP] Check Pods Manifest.lock */,
 				24F2B4F3214E7C2B009AA57C /* Sources */,
 				24F2B4F4214E7C2B009AA57C /* Frameworks */,
 				24F2B4F5214E7C2B009AA57C /* Resources */,
@@ -210,7 +288,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24F2B511214E7C2B009AA57C /* Build configuration list for PBXNativeTarget "EnglishWordsUITests" */;
 			buildPhases = (
-				7F9DFF377EC4BE3C169FA1D4 /* [CP] Check Pods Manifest.lock */,
+				BFFB9BEAB95460E13494F705 /* [CP] Check Pods Manifest.lock */,
 				24F2B4FE214E7C2B009AA57C /* Sources */,
 				24F2B4FF214E7C2B009AA57C /* Frameworks */,
 				24F2B500214E7C2B009AA57C /* Resources */,
@@ -233,7 +311,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Wataru Tsukagoshi";
+				ORGANIZATIONNAME = T.Wakasugi;
 				TargetAttributes = {
 					24F2B4E2214E7C29009AA57C = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -296,7 +374,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		51022AB8E083119DF863F6D2 /* [CP] Check Pods Manifest.lock */ = {
+		24A4574221F1F72B002048A0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,67 +382,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EnglishWordsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"\n";
 		};
-		7EF96BBB915FF5E5C2B55306 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7F9DFF377EC4BE3C169FA1D4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EnglishWordsUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C40E7D218815916FBBDF1E0A /* [CP] Check Pods Manifest.lock */ = {
+		889E20E1AC9E5ABD4DB85097 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -386,6 +413,74 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A5D6797C76E55EA12E98370E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EnglishWordsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFFB9BEAB95460E13494F705 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EnglishWordsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2531AAF7A7251D4768C5018 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -393,7 +488,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */,
+				243D265B21FF2D5B004719A3 /* PartsofSpeech.swift in Sources */,
+				243D265D21FF375E004719A3 /* AddWordViewController.swift in Sources */,
+				24A4572821EF6445002048A0 /* WordNoteBook.swift in Sources */,
+				249D791822831F1F003496CD /* SearchWordViewController.swift in Sources */,
+				24A4574121F0C148002048A0 /* WordNote.swift in Sources */,
+				243D26612206A605004719A3 /* ConfigureWordViewController.swift in Sources */,
+				24A4574421F2D45A002048A0 /* AddWordNoteBookViewController.swift in Sources */,
+				24A4573B21EF77CF002048A0 /* Word.swift in Sources */,
+				24422F2E22354CC4005BF6CE /* Source.swift in Sources */,
+				24422F3022392CE4005BF6CE /* AddSourceViewController.swift in Sources */,
+				243D26632209D75A004719A3 /* ConfigureMeanViewController.swift in Sources */,
+				243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */,
+				243D265F22007455004719A3 /* DictionaryViewController.swift in Sources */,
+				243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */,
 				24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */,
+				24A4573D21F0BE94002048A0 /* WordData.swift in Sources */,
+				249D791A228853EA003496CD /* SearchResultViewController.swift in Sources */,
 				24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +594,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -500,7 +613,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -542,6 +655,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -554,7 +668,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -565,17 +679,25 @@
 		};
 		24F2B50C214E7C2B009AA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F943D37A52C18DA8215ABB9 /* Pods-EnglishWords.debug.xcconfig */;
+			baseConfigurationReference = 7587EA93209069544F58032B /* Pods-EnglishWords.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YKWFL9RP4R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = EnglishWords/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EWords.EnglishWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -583,17 +705,25 @@
 		};
 		24F2B50D214E7C2B009AA57C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB9A794B5E0063445A7095EE /* Pods-EnglishWords.release.xcconfig */;
+			baseConfigurationReference = E059E0E2B09DEFB9EB97729B /* Pods-EnglishWords.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YKWFL9RP4R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = EnglishWords/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EWords.EnglishWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -601,7 +731,7 @@
 		};
 		24F2B50F214E7C2B009AA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DD011703F3A501FF92CB3C5 /* Pods-EnglishWordsTests.debug.xcconfig */;
+			baseConfigurationReference = 1B5169F914E65C70345504BD /* Pods-EnglishWordsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -622,7 +752,7 @@
 		};
 		24F2B510214E7C2B009AA57C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C15A1E915FF50F34F626E839 /* Pods-EnglishWordsTests.release.xcconfig */;
+			baseConfigurationReference = 764B0292039C250B97AA6FF8 /* Pods-EnglishWordsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -643,7 +773,7 @@
 		};
 		24F2B512214E7C2B009AA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D21E6BC942FA2F760B71EC26 /* Pods-EnglishWordsUITests.debug.xcconfig */;
+			baseConfigurationReference = F30B5B4A3CC493035348B1D9 /* Pods-EnglishWordsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -663,7 +793,7 @@
 		};
 		24F2B513214E7C2B009AA57C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27C922B6D0D39AAFF28703E9 /* Pods-EnglishWordsUITests.release.xcconfig */;
+			baseConfigurationReference = 6DD3AC23FBE00A05BD6C4DDB /* Pods-EnglishWordsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
