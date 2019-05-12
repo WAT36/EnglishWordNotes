@@ -22,6 +22,8 @@ class SearchWordViewController: UIViewController{
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
+        }else if(sender.tag == 1){
+            performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
         }
     }
     
@@ -29,6 +31,8 @@ class SearchWordViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returnToDictionaryViewController") {
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+        }else if(segue.identifier == "toSearchResultViewController"){
+            let _: SearchResultViewController = (segue.destination as? SearchResultViewController)!
         }
     }
 }
