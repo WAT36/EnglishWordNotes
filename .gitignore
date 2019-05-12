@@ -1,0 +1,5 @@
+HandsOn/Pods/*
+HandsOn/Podfile/*
+HandsOn/Podfile*
+EnglishWords/EnglishWords.xcodeproj/xcuserdata/*
+EnglishWords/EnglishWords.xcodeproj/project.xcworkspace/*
