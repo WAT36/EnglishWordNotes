@@ -55,16 +55,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func buttonTapped(sender: UIButton) {
-        print(0000)
         if(sender.tag == 0){
-            print(0001)
             if(addWordFlag){
                 performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
             }else{
                 performSegue(withIdentifier: "returnToViewController",sender: nil)
             }
         }else if(sender.tag == 1){
-            print(1212)
             performSegue(withIdentifier: "toSearchWordViewController",sender: nil)
         }
     }
