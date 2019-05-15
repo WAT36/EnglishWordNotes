@@ -827,17 +827,49 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
+                                    <action selector="buttonTappedWithSender:" destination="N0O-M5-ZO4" eventType="touchDown" id="Mvu-eY-kYk"/>
                                     <segue destination="IwE-Ct-u8j" kind="presentation" identifier="returnSearchWordViewController" id="oWM-tG-c4i"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HEt-ZQ-CCc">
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tablecell" id="xYA-8j-6RK">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xYA-8j-6RK" id="3Rz-fM-PHS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-LK-ZJP">
+                                                    <rect key="frame" x="15" y="0.0" width="305" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N0O-M5-ZO4" id="RRC-Ne-cPC"/>
+                                    <outlet property="delegate" destination="N0O-M5-ZO4" id="jkx-WI-PrE"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="NeF-4v-84F"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="HEt-ZQ-CCc" id="G5t-AF-yTn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAd-gI-5F4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2619" y="-1099"/>
+            <point key="canvasLocation" x="2617.5" y="-1099.6478873239437"/>
         </scene>
         <!--Dictionary View Controller-->
         <scene sceneID="J2H-I3-Urz">
@@ -959,7 +991,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="DcU-qC-SDl" eventType="touchDown" id="FVm-WM-a2q"/>
+                                    <action selector="buttonTappedWithSender:" destination="IwE-Ct-u8j" eventType="touchDown" id="KjQ-2h-LRe"/>
                                     <segue destination="DcU-qC-SDl" kind="presentation" identifier="returnDictionaryViewController" id="bcZ-mv-AXS"/>
                                 </connections>
                             </button>
@@ -969,7 +1001,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="実行"/>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="DcU-qC-SDl" eventType="touchDown" id="Ovz-Ey-SYK"/>
+                                    <action selector="buttonTappedWithSender:" destination="IwE-Ct-u8j" eventType="touchDown" id="ZZn-Vm-7j0"/>
                                     <segue destination="N0O-M5-ZO4" kind="presentation" identifier="toSearchResultViewController" id="GAa-1y-f0f"/>
                                 </connections>
                             </button>
@@ -998,7 +1030,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IWg-mZ-vLd">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWg-mZ-vLd">
                                         <rect key="frame" x="8" y="76" width="304" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
@@ -1013,6 +1045,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4RE-ce-3My"/>
                     </view>
+                    <connections>
+                        <outlet property="wordNameTextField" destination="nQA-DA-ulN" id="wxx-PE-0bb"/>
+                        <outlet property="wordSearchCondSegmentedControl" destination="IWg-mZ-vLd" id="qUc-jD-gc5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi5-Oc-ExG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1026,6 +1062,6 @@
         <segue reference="Ixl-7z-if7"/>
         <segue reference="Krk-sv-uPU"/>
         <segue reference="LRx-52-lzK"/>
-        <segue reference="HwR-Cb-UNe"/>
+        <segue reference="FhJ-ul-TLu"/>
     </inferredMetricsTieBreakers>
 </document>

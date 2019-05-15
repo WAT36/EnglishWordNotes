@@ -9,10 +9,22 @@
 import Foundation
 import UIKit
 
-class SearchWordViewController: UIViewController{
+class SearchWordViewController: UIViewController, UITextFieldDelegate{
 
+    @IBOutlet var wordNameTextField: UITextField!
+    @IBOutlet var wordSearchCondSegmentedControl: UISegmentedControl!
+    
+    //検索条件のリスト
+    var querylist: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // ボタンを選択中にする場所を指定
+        wordSearchCondSegmentedControl.selectedSegmentIndex = 0
+        // ボタン選択時にボタンを選択状態にするかどうかの設定
+        wordSearchCondSegmentedControl.isMomentary = false
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -20,10 +32,17 @@ class SearchWordViewController: UIViewController{
     }
     
     @IBAction func buttonTapped(sender: UIButton) {
+        print("buttontapped:")
+        print(sender.tag)
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
+            if(wordSearchCondSegmentedControl.selectedSegmentIndex == -1){
+                showAlert(mes: "単語の検索条件を指定してください")
+            }else{
+                makeQuery()
+                performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
+            }
         }
     }
     
@@ -32,7 +51,53 @@ class SearchWordViewController: UIViewController{
         if (segue.identifier == "returnToDictionaryViewController") {
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if(segue.identifier == "toSearchResultViewController"){
-            let _: SearchResultViewController = (segue.destination as? SearchResultViewController)!
+            let srVC: SearchResultViewController = (segue.destination as? SearchResultViewController)!
+            srVC.querylist = querylist
         }
+    }
+    
+    //指定された条件をもとにRealmへの検索条件を作成するメソッド
+    func makeQuery(){
+        print("makeQuery")
+        print(":" + wordNameTextField.text!)
+        //単語名検索の欄に何か入力されている場合、それに則り検索条件を作る
+        if(!(wordNameTextField.text?.isEmpty)!){
+            var wordquery = "wordName "
+            switch wordSearchCondSegmentedControl.selectedSegmentIndex {
+            case 0: //前方一致
+                wordquery.append("BEGINSWITH '")
+                wordquery.append(wordNameTextField.text!)
+                wordquery.append("'")
+            case 1: //後方一致
+                wordquery.append("ENDSWITH '")
+                wordquery.append(wordNameTextField.text!)
+                wordquery.append("'")
+            case 2: //完全一致
+                wordquery.append("= '")
+                wordquery.append(wordNameTextField.text!)
+                wordquery.append("'")
+            default:
+                //
+                print(wordSearchCondSegmentedControl.selectedSegmentIndex)
+            }
+            print(wordquery)
+            querylist.append(wordquery)
+        }
+        
+    }
+    
+    //アラートを出すメソッド
+    func showAlert(mes: String) {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: mes,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }
