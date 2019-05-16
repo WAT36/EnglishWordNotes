@@ -25,8 +25,6 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("SearchResultViewController:")
-        print(querylist)
         //データベース内に保存してあるWordを取得し、検索条件のリストで絞る
         let realm: Realm = try! Realm()
         var results = realm.objects(Word.self).sorted(byKeyPath: "wordName", ascending: true)
