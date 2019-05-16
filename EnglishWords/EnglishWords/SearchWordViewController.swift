@@ -13,7 +13,8 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var wordNameTextField: UITextField!
     @IBOutlet var wordSearchCondSegmentedControl: UISegmentedControl!
-    
+    @IBOutlet var levelTextField: UITextField!
+
     //検索条件のリスト
     var querylist: [String] = []
     
@@ -79,6 +80,12 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
                 wordquery.append("'")
             }
             querylist.append(wordquery)
+        }
+ 
+        //レベル検索の欄に何か入力されている場合、それに則り検索条件を作る
+        if(!(levelTextField.text?.isEmpty)!){
+            let levelquery = "option2 = '" + levelTextField.text! + "'"
+            querylist.append(levelquery)
         }
         
     }

@@ -1016,8 +1016,15 @@
                                 <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="単語名検索" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNR-Sy-gjP">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="単語名指定" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNR-Sy-gjP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="レベル指定" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pff-4y-Dnm">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1039,6 +1046,13 @@
                                             <segment title="完全一致"/>
                                         </segments>
                                     </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hJq-Da-FgZ">
+                                        <rect key="frame" x="8" y="170" width="304" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -1046,6 +1060,7 @@
                         <viewLayoutGuide key="safeArea" id="4RE-ce-3My"/>
                     </view>
                     <connections>
+                        <outlet property="levelTextField" destination="hJq-Da-FgZ" id="bIt-m5-U5S"/>
                         <outlet property="wordNameTextField" destination="nQA-DA-ulN" id="wxx-PE-0bb"/>
                         <outlet property="wordSearchCondSegmentedControl" destination="IWg-mZ-vLd" id="qUc-jD-gc5"/>
                     </connections>
