@@ -865,11 +865,12 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="HEt-ZQ-CCc" id="G5t-AF-yTn"/>
+                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromSearchResultToConfigureWord" id="JsM-cY-WQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAd-gI-5F4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2617.5" y="-1099.6478873239437"/>
+            <point key="canvasLocation" x="2619" y="-222"/>
         </scene>
         <!--Dictionary View Controller-->
         <scene sceneID="J2H-I3-Urz">
@@ -1067,16 +1068,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi5-Oc-ExG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2619.375" y="-223.94366197183098"/>
+            <point key="canvasLocation" x="2621" y="-1099"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GAa-1y-f0f"/>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="Krk-sv-uPU"/>
-        <segue reference="LRx-52-lzK"/>
+        <segue reference="JsM-cY-WQy"/>
         <segue reference="FhJ-ul-TLu"/>
     </inferredMetricsTieBreakers>
 </document>
