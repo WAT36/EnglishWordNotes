@@ -32,8 +32,6 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func buttonTapped(sender: UIButton) {
-        print("buttontapped:")
-        print(sender.tag)
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
         }else if(sender.tag == 1){
@@ -58,8 +56,6 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     
     //指定された条件をもとにRealmへの検索条件を作成するメソッド
     func makeQuery(){
-        print("makeQuery")
-        print(":" + wordNameTextField.text!)
         //単語名検索の欄に何か入力されている場合、それに則り検索条件を作る
         if(!(wordNameTextField.text?.isEmpty)!){
             var wordquery = "wordName "
@@ -77,10 +73,11 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
                 wordquery.append(wordNameTextField.text!)
                 wordquery.append("'")
             default:
-                //
-                print(wordSearchCondSegmentedControl.selectedSegmentIndex)
+                //（基本ないが、何も選択されてない場合）→とりあえず完全一致にする
+                wordquery.append("= '")
+                wordquery.append(wordNameTextField.text!)
+                wordquery.append("'")
             }
-            print(wordquery)
             querylist.append(wordquery)
         }
         
