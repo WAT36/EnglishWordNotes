@@ -302,6 +302,48 @@
             </objects>
             <point key="canvasLocation" x="2621.25" y="1774.6478873239437"/>
         </scene>
+        <!--Configure Test Of Word Note Book View Controller-->
+        <scene sceneID="389-wJ-aE0">
+            <objects>
+                <viewController id="V3r-MM-YQO" customClass="ConfigureTestOfWordNoteBookViewController" customModule="EnglishWords" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wh6-U4-ftZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト設定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUr-V0-OPh">
+                                <rect key="frame" x="91" y="20" width="138" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btJ-11-eiI">
+                                <rect key="frame" x="0.0" y="20" width="90" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="V3r-MM-YQO" eventType="touchDown" id="ba6-q8-bgM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yU2-eR-5Ou">
+                                <rect key="frame" x="231" y="20" width="90" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="実行"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9go-Iz-VJL"/>
+                    </view>
+                    <connections>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="oOJ-iW-al9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BU-9w-wu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-891" y="804"/>
+        </scene>
         <!--Configure Word Note Book View Controller-->
         <scene sceneID="Lky-6r-8Ux">
             <objects>
@@ -393,6 +435,7 @@
                         <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="rjS-2a-6nI"/>
                         <segue destination="2zv-yB-cMJ" kind="presentation" identifier="toConfigureWordViewController" id="1XP-Pt-sgj"/>
                         <segue destination="8L6-2p-9K2" kind="presentation" identifier="toAddWordFromWebViewController" id="DSP-2a-0cZ"/>
+                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="toConfigureTestFromConfigureWordNoteViewController" id="D8I-QV-sop"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0A-mO-z6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1073,10 +1116,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="oWM-tG-c4i"/>
-        <segue reference="bcZ-mv-AXS"/>
-        <segue reference="Ixl-7z-if7"/>
+        <segue reference="rjS-2a-6nI"/>
+        <segue reference="Zpx-A2-zi1"/>
         <segue reference="Krk-sv-uPU"/>
-        <segue reference="JsM-cY-WQy"/>
-        <segue reference="FhJ-ul-TLu"/>
+        <segue reference="1XP-Pt-sgj"/>
+        <segue reference="oOJ-iW-al9"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -86,6 +86,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }else if sidebarlist[indexPath.row] == "エクスポート" {
                 // AddWordViewController へ遷移するために Segue を呼び出す
                 exportDispAlert(sender: table)
+            }else if sidebarlist[indexPath.row] == "確認テスト"{
+                // ConfigureTestOfWordNoteBookViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "toConfigureTestFromConfigureWordNoteViewController", sender: nil)
             }
         }else{
             //選択したセルの単語を記録
@@ -112,6 +115,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }else if (segue.identifier == "toAddWordFromWebViewController"){
             let awfwVC: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
             awfwVC.wordnotebook = wordnotebook
+        }else if(segue.identifier == "toConfigureTestFromConfigureWordNoteViewController"){
+            let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
+            ctwnbVC.wordnotebook = wordnotebook
         }
     }
     

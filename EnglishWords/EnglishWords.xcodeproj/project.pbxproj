@@ -20,6 +20,7 @@
 		24422F3022392CE4005BF6CE /* AddSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */; };
 		249D791822831F1F003496CD /* SearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D791722831F1F003496CD /* SearchWordViewController.swift */; };
 		249D791A228853EA003496CD /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D7919228853EA003496CD /* SearchResultViewController.swift */; };
+		249D791C228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */; };
 		24A4572821EF6445002048A0 /* WordNoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4572721EF6445002048A0 /* WordNoteBook.swift */; };
 		24A4573321EF7548002048A0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573221EF7548002048A0 /* Realm.framework */; };
 		24A4573421EF7548002048A0 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4573221EF7548002048A0 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -86,6 +87,7 @@
 		24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSourceViewController.swift; sourceTree = "<group>"; };
 		249D791722831F1F003496CD /* SearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordViewController.swift; sourceTree = "<group>"; };
 		249D7919228853EA003496CD /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTestOfWordNoteBookViewController.swift; sourceTree = "<group>"; };
 		24A4572721EF6445002048A0 /* WordNoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNoteBook.swift; sourceTree = "<group>"; };
 		24A4573221EF7548002048A0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		24A4573621EF7554002048A0 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */,
 				249D791722831F1F003496CD /* SearchWordViewController.swift */,
 				249D7919228853EA003496CD /* SearchResultViewController.swift */,
+				249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				24422F3022392CE4005BF6CE /* AddSourceViewController.swift in Sources */,
 				243D26632209D75A004719A3 /* ConfigureMeanViewController.swift in Sources */,
 				243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */,
+				249D791C228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift in Sources */,
 				243D265F22007455004719A3 /* DictionaryViewController.swift in Sources */,
 				243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */,
 				24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */,
