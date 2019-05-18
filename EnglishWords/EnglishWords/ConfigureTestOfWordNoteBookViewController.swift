@@ -25,7 +25,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController {
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
         }else if(sender.tag == 1){
-            //テスト実行(未実装)
+            performSegue(withIdentifier: "toTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
         }
     }
     
@@ -34,6 +34,9 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController {
         if (segue.identifier == "returnToConfigureWordNoteViewController") {
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             cwnbVC.wordnotebook = wordnotebook
+        }else if(segue.identifier == "toTestFromConfigureTestOfWordNoteBookViewController"){
+            let twnbVC: TestOfWordNoteBookViewController = (segue.destination as? TestOfWordNoteBookViewController)!
+            twnbVC.wordnotebook = wordnotebook
         }
     }
 }
