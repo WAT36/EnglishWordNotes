@@ -13,6 +13,10 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController {
     
     var wordnotebook: WordNoteBook?
     
+    //検索条件のリスト
+    var querylist: [String] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
