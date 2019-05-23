@@ -429,21 +429,44 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="次の単語"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="gRV-Ux-UlU" eventType="touchDown" id="xcy-AE-OsH"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PKa-fy-Gfe">
                                 <rect key="frame" x="0.0" y="222" width="320" height="326"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ofM-6p-u6g">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tablecell" rowHeight="120" id="ofM-6p-u6g">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ofM-6p-u6g" id="uXl-PH-C3y">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="partofspeech" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFT-cf-GCh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mean" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="TVw-oO-xar">
+                                                    <rect key="frame" x="0.0" y="22" width="320" height="98"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gRV-Ux-UlU" id="x8o-wN-cIA"/>
+                                    <outlet property="delegate" destination="gRV-Ux-UlU" id="DXF-BV-Ddh"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -451,8 +474,9 @@
                     </view>
                     <connections>
                         <outlet property="count" destination="r6f-KX-5BV" id="7Ni-7m-7nf"/>
-                        <outlet property="nowWord" destination="jwP-T7-kRW" id="YeJ-B4-qxI"/>
-                        <outlet property="nowWordNote" destination="1cN-YM-F7s" id="CWR-MF-DjV"/>
+                        <outlet property="table" destination="PKa-fy-Gfe" id="NDI-tp-iE4"/>
+                        <outlet property="word" destination="jwP-T7-kRW" id="80D-xj-UUI"/>
+                        <outlet property="wordNote" destination="1cN-YM-F7s" id="Kp7-M7-4L4"/>
                         <segue destination="V3r-MM-YQO" kind="presentation" identifier="returntoConfigureTestOfWordNoteBookViewController" id="e7O-GL-CqK"/>
                     </connections>
                 </viewController>
@@ -1232,7 +1256,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="oWM-tG-c4i"/>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="man-Lu-bxS"/>
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="Krk-sv-uPU"/>
         <segue reference="1XP-Pt-sgj"/>
