@@ -478,6 +478,7 @@
                         <outlet property="word" destination="jwP-T7-kRW" id="80D-xj-UUI"/>
                         <outlet property="wordNote" destination="1cN-YM-F7s" id="Kp7-M7-4L4"/>
                         <segue destination="V3r-MM-YQO" kind="presentation" identifier="returntoConfigureTestOfWordNoteBookViewController" id="e7O-GL-CqK"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returntoConfigureWordNoteBookViewController" id="Okm-en-fS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZtZ-Xa-UPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1260,7 +1261,7 @@
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="Krk-sv-uPU"/>
         <segue reference="1XP-Pt-sgj"/>
-        <segue reference="oOJ-iW-al9"/>
+        <segue reference="Okm-en-fS9"/>
         <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>

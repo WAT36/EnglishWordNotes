@@ -49,7 +49,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = wordnotebook?.wordNoteBookName
-            count.text = wordIdx.description + "/" + wordNoteList.count.description
+            count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
 
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
@@ -77,6 +77,9 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
             let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
             ctwnbVC.wordnotebook = wordnotebook
+        }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
+            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
+            cwnbVC.wordnotebook = wordnotebook
         }
     }
     
@@ -109,13 +112,14 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     func toNextWord(){
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
+            testEndDispAlert()
         }else{
             wordIdx += 1
             nowWord = wordNoteList[wordIdx].word
             
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = wordnotebook?.wordNoteBookName
-            count.text = wordIdx.description + "/" + wordNoteList.count.description
+            count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
@@ -127,11 +131,32 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         }
     }
     
-    // tableのCell の高さを１２０にする
+    // tableのCell の高さを９０にする
     func tableView(_ table: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
+    
+    // 最後の単語が終わった時にアラートを表示するメソッド
+    @IBAction func testEndDispAlert() {
+        
+        //アラートの設定
+        let alert: UIAlertController = UIAlertController(title: "テストが終了しました", message: "単語帳設定画面へ戻ります", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        //OKボタン
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: "returntoConfigureWordNoteBookViewController", sender: nil)
+        })
+        
+        //UIAlertControllerにActionを追加
+        alert.addAction(okAction)
+        
+        //アラートを表示
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     //アラートを出すメソッド
     func showAlert(mes: String) {
