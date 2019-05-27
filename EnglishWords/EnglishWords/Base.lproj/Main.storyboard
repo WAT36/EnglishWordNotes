@@ -423,6 +423,9 @@
                                 <rect key="frame" x="258" y="171" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="実行"/>
+                                <connections>
+                                    <action selector="buttonTappedWithSender:" destination="gRV-Ux-UlU" eventType="touchDown" id="Cae-Mr-QGc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyJ-tv-reE">
                                 <rect key="frame" x="240" y="20" width="80" height="61"/>
@@ -468,11 +471,20 @@
                                     <outlet property="delegate" destination="gRV-Ux-UlU" id="DXF-BV-Ddh"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CLEAR!!↑次へ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paX-IM-uQx">
+                                <rect key="frame" x="208" y="60" width="112" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="frz-wi-vhe"/>
                     </view>
                     <connections>
+                        <outlet property="answerMeanTextField" destination="OOk-pz-asU" id="s5H-6H-7mD"/>
+                        <outlet property="clearLabel" destination="paX-IM-uQx" id="q7b-1b-gDI"/>
                         <outlet property="count" destination="r6f-KX-5BV" id="7Ni-7m-7nf"/>
                         <outlet property="table" destination="PKa-fy-Gfe" id="NDI-tp-iE4"/>
                         <outlet property="word" destination="jwP-T7-kRW" id="80D-xj-UUI"/>
@@ -1258,7 +1270,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="man-Lu-bxS"/>
-        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="wlc-XI-6N7"/>
         <segue reference="Krk-sv-uPU"/>
         <segue reference="1XP-Pt-sgj"/>
         <segue reference="Okm-en-fS9"/>

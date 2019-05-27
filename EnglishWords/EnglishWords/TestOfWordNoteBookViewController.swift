@@ -10,18 +10,22 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
     
     @IBOutlet var word: UILabel!
     @IBOutlet var wordNote: UILabel!
     @IBOutlet var count: UILabel!
+    @IBOutlet var clearLabel: UILabel!
     
     @IBOutlet var table:UITableView!
+    @IBOutlet var answerMeanTextField:UITextField!
 
     var nowWord: Word?
     var wordIdx: Int = 0
     var wordnotebook: WordNoteBook?
     var nowWordDataList: [WordData] = []
+    
+    var numOfClear: [Int] = []  //正答した訳文のインデックス
     
     //検索条件のリスト
     var queryList: [String] = []
@@ -32,6 +36,9 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        clearLabel.textColor = UIColor.white
+        
         //データベース内に保存してあるWordnoteを取得し、検索条件のリストで絞る
         let realm: Realm = try! Realm()
         var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",wordnotebook?.wordNoteBookId)
@@ -55,7 +62,6 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             let realm: Realm = try! Realm()
             let results = realm.objects(WordData.self).filter("word.wordName == %@",nowWord?.wordName)
             nowWordDataList = Array(results)
-
         }
     }
     
@@ -69,6 +75,14 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         }else if(sender.tag == 1){
             //次の単語へ
             toNextWord()
+        }else if(sender.tag == 2){
+            if((answerMeanTextField.text?.isEmpty)!){
+                //エラーアラート出させて戻る
+                showAlert(mes: "入力がありません")
+            }else{
+                //入力したテキストを元にテーブル更新
+                table.reloadData()
+            }
         }
     }
     
@@ -92,6 +106,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     //各セルの要素を設定する
     func tableView(_ table: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(numOfClear)
         // tableCell の ID で UITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
                                              for: indexPath)
@@ -99,22 +114,39 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         let oneworddata = nowWordDataList[indexPath.row]
         let partofspeech = cell.viewWithTag(1) as! UILabel
         partofspeech.numberOfLines = 0
-        //partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
         let mean = cell.viewWithTag(2) as! UILabel
         mean.numberOfLines = 0
-        //mean.text = oneworddata.mean
-        //cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
         
-        partofspeech.text = ""
-        mean.text = "?"
-        mean.textColor = UIColor.white
-        cell.backgroundColor = UIColor.black
+        if(numOfClear.contains(indexPath.row) || oneworddata.mean.contains((answerMeanTextField.text)!)){
+            partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
+            mean.text = oneworddata.mean
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+            if(!numOfClear.contains(indexPath.row)){
+                numOfClear.append(indexPath.row)
+            }
+        }else{
+            partofspeech.text = ""
+            mean.text = "?"
+            mean.textColor = UIColor.white
+            cell.backgroundColor = UIColor.black
+        }
+        
+        if(nowWordDataList.count <= numOfClear.count){
+            //訳文を全部正答した
+            //隠しラベル点灯
+            clearLabel.textColor = UIColor.red
+        }
         
         return cell
     }
     
     //次の単語へ移る
     func toNextWord(){
+        
+        numOfClear = []
+        //隠しラベル非点灯へ
+        clearLabel.textColor = UIColor.white
+        
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
             testEndDispAlert()
