@@ -99,11 +99,16 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         let oneworddata = nowWordDataList[indexPath.row]
         let partofspeech = cell.viewWithTag(1) as! UILabel
         partofspeech.numberOfLines = 0
-        partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
+        //partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName
         let mean = cell.viewWithTag(2) as! UILabel
         mean.numberOfLines = 0
-        mean.text = oneworddata.mean
-        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+        //mean.text = oneworddata.mean
+        //cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+        
+        partofspeech.text = ""
+        mean.text = "?"
+        mean.textColor = UIColor.white
+        cell.backgroundColor = UIColor.black
         
         return cell
     }
