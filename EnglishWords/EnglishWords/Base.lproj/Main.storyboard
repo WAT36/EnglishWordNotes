@@ -478,6 +478,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(正/答)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1d-Om-9dr">
+                                <rect key="frame" x="0.0" y="201" width="53" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="frz-wi-vhe"/>
@@ -486,6 +493,7 @@
                         <outlet property="answerMeanTextField" destination="OOk-pz-asU" id="s5H-6H-7mD"/>
                         <outlet property="clearLabel" destination="paX-IM-uQx" id="q7b-1b-gDI"/>
                         <outlet property="count" destination="r6f-KX-5BV" id="7Ni-7m-7nf"/>
+                        <outlet property="rate" destination="G1d-Om-9dr" id="IC1-iq-5YE"/>
                         <outlet property="table" destination="PKa-fy-Gfe" id="NDI-tp-iE4"/>
                         <outlet property="word" destination="jwP-T7-kRW" id="80D-xj-UUI"/>
                         <outlet property="wordNote" destination="1cN-YM-F7s" id="Kp7-M7-4L4"/>

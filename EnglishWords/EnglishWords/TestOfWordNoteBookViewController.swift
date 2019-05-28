@@ -16,6 +16,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet var wordNote: UILabel!
     @IBOutlet var count: UILabel!
     @IBOutlet var clearLabel: UILabel!
+    @IBOutlet var rate: UILabel!
     
     @IBOutlet var table:UITableView!
     @IBOutlet var answerMeanTextField:UITextField!
@@ -57,6 +58,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = wordnotebook?.wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
+            rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
 
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
@@ -143,10 +145,24 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     //次の単語へ移る
     func toNextWord(){
         
-        numOfClear = []
         //隠しラベル非点灯へ
         clearLabel.textColor = UIColor.white
         
+        //正答数と回答数を記録（Wordを取得して更新）
+        let realm = try! Realm()
+        let results = realm.objects(Word.self).filter("wordName == %@",nowWord?.wordName).first
+        
+        try! realm.write {
+            results?.numOfAnswer = (nowWord?.numOfAnswer)! + 1
+            if(nowWordDataList.count <= numOfClear.count){
+                //訳文を全部正答したなら正答数も+1
+                results?.numOfCorrect = (nowWord?.numOfCorrect)! + 1
+            }
+        }
+        
+        //正答した訳文のインデックスをクリア
+        numOfClear = []
+
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
             testEndDispAlert()
@@ -157,6 +173,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = wordnotebook?.wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
+            rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
             
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
