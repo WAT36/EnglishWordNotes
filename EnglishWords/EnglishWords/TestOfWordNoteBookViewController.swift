@@ -108,7 +108,6 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     //各セルの要素を設定する
     func tableView(_ table: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(numOfClear)
         // tableCell の ID で UITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
                                              for: indexPath)
