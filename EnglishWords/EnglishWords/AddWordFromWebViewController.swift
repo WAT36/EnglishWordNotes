@@ -217,8 +217,19 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     func parseHTML(html: String) {
         if let doc = try? HTML(html: html, encoding: .utf8) {
-            level.text = doc.css("span[class='learning-level-content']").first!.text
-            pronounce.text = doc.css("span[class='phoneticEjjeDesc']").first!.text
+            var csstemp = doc.css("span[class='learning-level-content']")
+            if(csstemp.count != 0){
+                level.text = csstemp.first!.text
+            }else{
+                level.text = ""
+            }
+            
+            csstemp = doc.css("span[class='phoneticEjjeDesc']")
+            if(csstemp.count != 0){
+                pronounce.text = csstemp.first!.text
+            }else{
+                pronounce.text = ""
+            }
             
             let means = doc.xpath("//div[@class='mainBlock hlt_KENEJ']/div[@class='kijiWrp']/div[@class='kiji']/div[@class='Kejje']/div[@class='level0']")
             
