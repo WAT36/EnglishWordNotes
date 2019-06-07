@@ -10,18 +10,56 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate {
+class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var table:UITableView!
+    
+    var partsofSpeechList: [PartsofSpeech] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //データベース内に保存してあるPartOfSpeechを全て取得
+        let realm: Realm = try! Realm()
+        let results = realm.objects(PartsofSpeech.self).sorted(byKeyPath: "partsOfSpeechId", ascending: true)
+        partsofSpeechList = Array(results)
+
         label.text = "新しく追加する品詞名を記入して下さい"
         
         // textField の情報を受け取るための delegate を設定
         textField.delegate = self
+    }
+    
+    //Table Viewのセルの数を指定
+    func tableView(_ table: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        return partsofSpeechList.count
+    }
+    
+    //各セルの要素を設定する
+    func tableView(_ table: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // tableCell の ID で UITableViewCell のインスタンスを生成
+        let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
+                                                 for: indexPath)
+        // Tag番号  で UILabel インスタンスの生成
+        let partsofSpeech = partsofSpeechList[indexPath.row]
+        let label1 = cell.viewWithTag(1) as! UILabel
+        label1.numberOfLines = 0
+        label1.text = partsofSpeech.partsOfSpeechName
+        cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        //ラベルをセル内で上下中央揃えにする
+        label1.baselineAdjustment = UIBaselineAdjustment.alignCenters
+            
+        return cell
+    }
+    
+    // Cell の高さを３０にする
+    func tableView(_ table: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30.0
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
