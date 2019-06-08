@@ -17,23 +17,19 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var level: UILabel!
     @IBOutlet var table:UITableView!
     
-    var wordnotebook: WordNoteBook?
     var worddatalist: [WordData] = []
     var wordnote: WordNote?
     var selectedword: Word?
     var selectedmean: WordData?
     var toremovemean: WordData?
-    var fromdictflag: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(wordnote != nil){
-            fromdictflag = false
             selectedword = wordnote?.word
-        }else if(selectedword != nil){
-            fromdictflag = true
         }
+        
         wordnamelabel.text = selectedword?.wordName
         pronounce.text = selectedword?.option1
         level.text = selectedword?.option2
@@ -118,12 +114,16 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordNote") {
             let configureWordNoteVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            configureWordNoteVC.wordnotebook = wordnotebook
+            configureWordNoteVC.wordnotebook = wordnote?.wordnotebook
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if (segue.identifier == "toConfigureMeanViewController"){
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
             configureMeanVC.mean = selectedmean
+            if wordnote != nil {
+                configureMeanVC.wordnote = wordnote
+            }
+            
             if selectedmean?.partofspeech != nil {
                 configureMeanVC.newMeanFlag = false
             }else{

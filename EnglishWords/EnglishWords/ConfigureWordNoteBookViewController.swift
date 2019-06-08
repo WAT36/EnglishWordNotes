@@ -115,7 +115,6 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }else if (segue.identifier == "toConfigureWordViewController"){
             let configWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             configWordVC.wordnote = card
-            configWordVC.wordnotebook = wordnotebook
         }else if (segue.identifier == "toAddWordFromWebViewController"){
             let awfwVC: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
             awfwVC.wordnotebook = wordnotebook

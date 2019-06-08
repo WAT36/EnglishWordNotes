@@ -17,6 +17,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     var selectedpartofspeech: PartsofSpeech?
     var newMeanFlag: Bool?
     var selectedsource: Source?
+    var wordnote: WordNote?
     
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textField: UITextField!
@@ -185,10 +186,18 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         if (segue.identifier == "returnToConfigureWordViewController") {
             let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             configureWordVC.selectedword = mean?.word
+            
+            if wordnote != nil {
+                configureWordVC.wordnote = wordnote
+            }
         }else if(segue.identifier == "toAddSourceViewController"){
             let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
             addSourceVC.mean = mean
             addSourceVC.newMeanFlag = newMeanFlag
+            
+            if wordnote != nil {
+                addSourceVC.wordnote = wordnote
+            }
         }
     }
     

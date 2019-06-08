@@ -14,7 +14,8 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBOutlet var sources: UIPickerView!
     @IBOutlet var sourcetext: UITextField!
-    
+    var wordnote: WordNote?
+
     //訳文設定画面のパラメータ保持用変数
     var mean: WordData?
     var newMeanFlag: Bool?
@@ -129,6 +130,10 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
             configureMeanVC.mean = mean
             configureMeanVC.newMeanFlag = newMeanFlag
+            
+            if wordnote != nil {
+                configureMeanVC.wordnote = wordnote
+            }
         }
     }
     
