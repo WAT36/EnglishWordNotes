@@ -24,10 +24,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     var wordlist: [Word] = []
     var selectedWord: Word?
     
-    let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    //セルの高さ
+    let cellHeight: CGFloat = 60
     
+    let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     let smallalphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     var alphabetlocked: [Bool] = []
+    var alphabetIndex: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +41,16 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         wordlist = Array(results)
         
         for i in 0..<smallalphabet.count {
-            if results.filter("wordName BEGINSWITH %@", smallalphabet[i]).count > 0 {
+            let resultsOfi = results.filter("wordName BEGINSWITH %@", smallalphabet[i]).sorted(byKeyPath: "wordName", ascending: true)
+            if resultsOfi.count > 0 {
                 alphabetlocked.append(true)
+                
+                let firstWord = resultsOfi.first
+                let index = wordlist.index(of: firstWord!)
+                alphabetIndex.append(index!)
             }else{
                 alphabetlocked.append(false)
+                alphabetIndex.append(0)
             }
         }
         
@@ -154,6 +163,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 // ConfigureWordViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
             }
+        }else{
+            //テーブルを指定したアルファベットの単語までスクロール
+            scrolltoTopofSelectedAlphabetCell(wordIndex: indexPath.row)
         }
     }
     
@@ -212,9 +224,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ table: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         if table.tag == 1 {
-            return 120.0
+            return cellHeight*2
         }else{
-            return 60.0
+            return cellHeight
         }
     }
     
@@ -230,5 +242,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // アラート表示
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func scrolltoTopofSelectedAlphabetCell(wordIndex: Int){
+        //サイドバーで選択したアルファベットから始まる単語がテーブルの一番上にスクロールされるようにする
+        let rowheight: CGFloat = cellHeight
+        let offset = CGPoint(x:0,y:rowheight*CGFloat(alphabetIndex[wordIndex]))
+        table.setContentOffset(offset, animated: true)
     }
 }
