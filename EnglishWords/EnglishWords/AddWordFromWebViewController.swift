@@ -193,8 +193,12 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     }
     
     func scrapeWebsite(wordName: String) {
+        //入力されたテキストをtrim、また文中にスペース(=熟語)があったらそれを"+"にする
+        var inputWord = wordName.trimmingCharacters(in: .whitespaces)
+        inputWord = inputWord.replacingOccurrences(of: " ", with: "+")
+        
         //GETリクエスト 指定URLのコードを取得
-        let fqdn = "https://ejje.weblio.jp/content/" + wordName
+        let fqdn = "https://ejje.weblio.jp/content/" + inputWord
         Alamofire.request(fqdn).responseString { response in
             print("\(response.result.isSuccess)")
             
