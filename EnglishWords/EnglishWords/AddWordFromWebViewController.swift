@@ -16,6 +16,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
 
     @IBOutlet var table:UITableView!
     @IBOutlet var wordtextField: UITextField!
+    @IBOutlet var uiswitch: UISwitch!
     @IBOutlet var inputwordname: UILabel!
     @IBOutlet var level: UILabel!
     @IBOutlet var pronounce: UILabel!
@@ -23,6 +24,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     var inputword: String = ""
     var poslist: [String] = []
     var meanlist: [String] = []
+    var addSourceSwitch: Bool = false
     
     var wordnotebook: WordNoteBook?
     
@@ -30,6 +32,9 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         super.viewDidLoad()
         
         wordtextField.placeholder = "単語を入力してください"
+        
+        //スイッチは最初OFF
+        uiswitch.isOn = false
         
         //tableのラベルを折り返す設定
         table.estimatedRowHeight=120
@@ -42,6 +47,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func switchChanged(_ sender: UISwitch){
+        addSourceSwitch = sender.isOn
     }
     
     //テーブルのセルの数を設定
@@ -137,6 +146,33 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                         "registereddate": Date()])])
         }
         var pos = self.getPartOfSpeechData(posname: poslist[0])
+        
+        var source = Source(value: ["sourceName" : "hoge",
+                                    "createdDate" : Date()])
+        if(addSourceSwitch){
+            //出典に単語帳名を追加する場合
+            
+            //追加する出典（単語帳名）
+            let wnbn = wordnotebook?.wordNoteBookName
+            source = Source(value: ["sourceName" : wnbn!,
+                                    "createdDate": Date()])
+
+            //データベース内に保存してあるSourceを単語帳名で検索し取得
+            let results = realm.objects(Source.self).filter("sourceName = %@",wnbn!)
+            let sourcelist: [Source] = Array(results)
+            
+            if(sourcelist.isEmpty){
+                //初めて来る出典なら出典を新規登録する
+                try! realm.write {
+                    realm.add(source)
+                }
+            }else{
+                //既にSourceにあった出典なら、取ってきたSourceを追加用の出典にする
+                //(ここで新規に作ったSourceでやると追加時にキー重複エラーになる)
+                source = results.first!
+            }
+        }
+        
         for i in 0..<meanlist.count{
             //品詞データを取得
             if i>0 && poslist[i-1] != poslist[i] {
@@ -144,12 +180,18 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
             try! realm.write {
                 //新規単語データを登録
-                let newworddata = WordData(value: ["word": newword,
+                var newworddata = WordData(value: ["word": newword,
                                                    "partofspeech": pos,
                                                    "meanidx": i+1,
                                                    "mean": meanlist[i],
                                                     "example": "例文(未実装)"])
-                realm.add([newworddata])
+                
+                realm.add(newworddata)
+
+                if(addSourceSwitch){
+                    //「出典に単語帳名を追加する」スイッチがON → 出典を追加
+                    newworddata.source.append(source)
+                }
             }
         }
     }
