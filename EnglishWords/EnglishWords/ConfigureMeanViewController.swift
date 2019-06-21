@@ -20,7 +20,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     var wordnote: WordNote?
     
     @IBOutlet var partofspeeches: UIPickerView!
-    @IBOutlet var textField: UITextField!
+    @IBOutlet var textView: UITextView!
     @IBOutlet var sourcetable:UITableView!
     
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
@@ -43,10 +43,14 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                                                        "createdDate": Date()]), at: 0)
         selectedpartofspeech = partsofspeechlist[0]
         
-        //テキストフィールドの初期値に登録されてある意味
+        //テキストビューの初期値に登録されてある意味
         if !newMeanFlag! {
-            textField.text = mean?.mean
+            textView.text = mean?.mean
         }
+        
+        //テキストビューの枠線設定
+        textView.layer.borderColor = UIColor.black.cgColor  //色
+        textView.layer.borderWidth = 1.0                    //幅
     }
     
     override func didReceiveMemoryWarning() {
@@ -154,7 +158,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                 showAlert(errormessage: "エラー：単語データがありません")
             }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
                 showAlert(errormessage: "品詞が選択されていません")
-            }else if (textField.text?.isEmpty)! {
+            }else if (textView.text?.isEmpty)! {
                 showAlert(errormessage: "訳文が入力されていません")
             }else{
                 let realm: Realm = try! Realm()
@@ -162,7 +166,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     try! realm.write {
                         let newWordData = WordData(value: ["word" : mean?.word!,
                                                                "partofspeech" : selectedpartofspeech!,
-                                                               "mean" : textField.text!])
+                                                               "mean" : textView.text!])
                         realm.add(newWordData)
                         performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                     }
@@ -173,7 +177,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                         let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
                                     .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
                         toupdatemean.partofspeech = selectedpartofspeech
-                        toupdatemean.mean = textField.text!
+                        toupdatemean.mean = textView.text!
                     }
                     performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                 }
