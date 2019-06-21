@@ -15,6 +15,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     @IBOutlet var table:UITableView!
     @IBOutlet var sidetable:UITableView!
     @IBOutlet var wordNote: UILabel!
+    @IBOutlet var wordNum: UILabel!
 
     var wordlist: [WordNote] = []
     var card: WordNote?
@@ -29,8 +30,10 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
         wordlist = Array(results)
 
-        //単語帳名ラベルに単語帳名を登録する
+        //単語帳名ラベルに単語帳名を設定する
         wordNote.text = wordnotebook?.wordNoteBookName
+        //登録語数ラベルに登録語数を設定する
+        wordNum.text =  wordlist.count.description + "語"
 
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120

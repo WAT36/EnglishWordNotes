@@ -601,7 +601,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="単語帳名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Te-H9-S6P">
-                                <rect key="frame" x="0.0" y="548" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="548" width="227" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登録語数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qq4-QT-WGo">
+                                <rect key="frame" x="228" y="548" width="92" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -615,6 +622,7 @@
                         <outlet property="sidetable" destination="0AP-EW-olz" id="d81-B0-rSR"/>
                         <outlet property="table" destination="dhF-nz-wcd" id="rXM-Pm-Pv6"/>
                         <outlet property="wordNote" destination="7Te-H9-S6P" id="Ibr-xH-EcT"/>
+                        <outlet property="wordNum" destination="qq4-QT-WGo" id="UaC-bW-JgK"/>
                         <segue destination="stC-xV-xaY" kind="presentation" identifier="toAddWordViewController" id="6Zt-hW-hrY"/>
                         <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="rjS-2a-6nI"/>
                         <segue destination="2zv-yB-cMJ" kind="presentation" identifier="toConfigureWordViewController" id="1XP-Pt-sgj"/>
@@ -1353,11 +1361,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="6Zt-hW-hrY"/>
         <segue reference="oWM-tG-c4i"/>
-        <segue reference="man-Lu-bxS"/>
-        <segue reference="CQZ-zJ-6zW"/>
+        <segue reference="rjS-2a-6nI"/>
+        <segue reference="Zpx-A2-zi1"/>
         <segue reference="Krk-sv-uPU"/>
-        <segue reference="A0O-Qc-l2F"/>
+        <segue reference="1XP-Pt-sgj"/>
         <segue reference="DEy-PW-Kfb"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
