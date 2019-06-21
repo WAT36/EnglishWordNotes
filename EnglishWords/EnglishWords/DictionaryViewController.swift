@@ -15,6 +15,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var table:UITableView!
     @IBOutlet var sidetable:UITableView!
     
+    //登録語数
+    @IBOutlet var wordNum: UILabel!
+    
     //単語帳設定画面から来たことを示すフラグ
     var addWordFlag: Bool = false
     //単語帳設定画面からきた場合どの単語帳かも記録
@@ -57,6 +60,11 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
         sidetable.rowHeight=UITableViewAutomaticDimension
+        
+        //登録語数ラベルに登録語数を設定する
+        wordNum.text =  wordlist.count.description + "語"
+        wordNum.textColor = UIColor.white                   //字は白
+        wordNum.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 1.0)  //ラベルの背景色
     }
     
     override func didReceiveMemoryWarning() {

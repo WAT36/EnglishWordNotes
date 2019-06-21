@@ -1218,7 +1218,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VIU-ai-02k">
-                                <rect key="frame" x="229" y="73" width="91" height="495"/>
+                                <rect key="frame" x="229" y="73" width="91" height="475"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -1252,6 +1252,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登録語数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2l-PR-xiR">
+                                <rect key="frame" x="228" y="547" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cit-og-rHP"/>
@@ -1259,6 +1266,7 @@
                     <connections>
                         <outlet property="sidetable" destination="VIU-ai-02k" id="hm4-j3-zxS"/>
                         <outlet property="table" destination="7Ta-lD-3nR" id="exs-i7-YrA"/>
+                        <outlet property="wordNum" destination="M2l-PR-xiR" id="4n1-Nj-F16"/>
                         <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromDictionarytoConfigureWord" id="LRx-52-lzK"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="FhJ-ul-TLu"/>
                     </connections>
@@ -1361,13 +1369,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6Zt-hW-hrY"/>
-        <segue reference="oWM-tG-c4i"/>
+        <segue reference="mnH-Mq-rlh"/>
         <segue reference="rjS-2a-6nI"/>
-        <segue reference="Zpx-A2-zi1"/>
+        <segue reference="Ixl-7z-if7"/>
         <segue reference="Krk-sv-uPU"/>
-        <segue reference="1XP-Pt-sgj"/>
-        <segue reference="DEy-PW-Kfb"/>
+        <segue reference="LRx-52-lzK"/>
+        <segue reference="FhJ-ul-TLu"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>
