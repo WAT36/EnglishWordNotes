@@ -160,7 +160,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         if table.tag == 1 {
             return 120.0
         }else{
-            return 60.0
+            return 40.0
         }
     }
     
