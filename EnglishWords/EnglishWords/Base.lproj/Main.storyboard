@@ -361,12 +361,52 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LM0-OV-EdI">
                                 <rect key="frame" x="0.0" y="89" width="320" height="479"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出題順序" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2l-oQ-HaJ">
+                                        <rect key="frame" x="8" y="0.0" width="304" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="基準：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63K-2F-ha7">
+                                        <rect key="frame" x="20" y="41" width="54" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="順序：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-mF-7ae">
+                                        <rect key="frame" x="20" y="94" width="54" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZOg-Ei-4Jk">
+                                        <rect key="frame" x="82" y="27" width="238" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="V3r-MM-YQO" id="jDG-We-zII"/>
+                                        </connections>
+                                    </pickerView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ypt-sX-WJm">
+                                        <rect key="frame" x="82" y="94" width="238" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="昇順"/>
+                                            <segment title="降順"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="9go-Iz-VJL"/>
                     </view>
                     <connections>
+                        <outlet property="testOrderAscDesc" destination="Ypt-sX-WJm" id="OKw-cZ-cTN"/>
+                        <outlet property="testOrderby" destination="ZOg-Ei-4Jk" id="EeG-gL-7f6"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="oOJ-iW-al9"/>
                         <segue destination="gRV-Ux-UlU" kind="presentation" identifier="toTestFromConfigureTestOfWordNoteBookViewController" id="UTA-ih-Hd9"/>
                     </connections>
@@ -1370,11 +1410,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mnH-Mq-rlh"/>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
-        <segue reference="Krk-sv-uPU"/>
-        <segue reference="LRx-52-lzK"/>
-        <segue reference="FhJ-ul-TLu"/>
+        <segue reference="6AF-Ab-5Rw"/>
+        <segue reference="A0O-Qc-l2F"/>
+        <segue reference="oOJ-iW-al9"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>

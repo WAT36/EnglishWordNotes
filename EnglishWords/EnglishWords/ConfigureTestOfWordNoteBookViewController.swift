@@ -8,10 +8,20 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-class ConfigureTestOfWordNoteBookViewController: UIViewController {
+class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource{
+    
+    @IBOutlet var testOrderby: UIPickerView!
+    @IBOutlet var testOrderAscDesc: UISegmentedControl!
+    
+    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順"]
+    var selectedorderlist: String?
     
     var wordnotebook: WordNoteBook?
+    
+    //検索結果の単語リスト
+    var wordNoteList: [WordNote] = []
     
     //検索条件のリスト
     var querylist: [String] = []
@@ -19,17 +29,61 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Delegate設定
+        testOrderby.delegate = self
+        testOrderby.dataSource = self
+
+        // ボタンを選択中にする場所を指定
+        testOrderAscDesc.selectedSegmentIndex = 0
+        // ボタン選択時にボタンを選択状態にするかどうかの設定
+        testOrderAscDesc.isMomentary = false
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    // UIPickerViewの列の数
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // UIPickerViewの行数、リストの数
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return orderlist.count
+    }
+    
+    // UIPickerViewに表示する配列
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
+        return orderlist[row]
+    }
+    
+    // UIPickerViewのRowが選択された時の挙動
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
+        selectedorderlist = orderlist[row]
+    }
+    
+    
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "toTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
+            //条件をもとにテストに出す英単語を取得
+            makeTest()
+            
+            if(wordNoteList.count == 0){
+                //検索結果無し、エラーアラート出して戻させる
+                showAlert(mes: "検索結果がありません")
+            }else{
+                performSegue(withIdentifier: "toTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
+            }
         }
     }
     
@@ -41,6 +95,48 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController {
         }else if(segue.identifier == "toTestFromConfigureTestOfWordNoteBookViewController"){
             let twnbVC: TestOfWordNoteBookViewController = (segue.destination as? TestOfWordNoteBookViewController)!
             twnbVC.wordnotebook = wordnotebook
+            twnbVC.wordNoteList = wordNoteList
         }
+    }
+    
+    //入力をもとにRealmで抽出条件文作成・実行
+    func makeTest(){
+        
+        //データベース内に保存してあるWordnoteを取得し、検索条件のリストで絞る
+        let realm: Realm = try! Realm()
+        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",wordnotebook?.wordNoteBookId)
+        
+        //昇順か降順か
+        let isAsc = (testOrderAscDesc.selectedSegmentIndex == 1) ? false : true
+        
+        switch selectedorderlist{
+        case orderlist[0]:
+            print()
+        case orderlist[1]:
+            results = results.sorted(byKeyPath: "wordidx", ascending: isAsc)
+        case orderlist[2]:
+            results = results.sorted(byKeyPath: "word.wordName", ascending: isAsc)
+        case orderlist[3]:
+            results = results.sorted(byKeyPath: "word.option2", ascending: isAsc)
+        default:
+            print()
+        }
+        
+        wordNoteList = Array(results)        
+    }
+    
+    //アラートを出すメソッド
+    func showAlert(mes: String) {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: mes,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }

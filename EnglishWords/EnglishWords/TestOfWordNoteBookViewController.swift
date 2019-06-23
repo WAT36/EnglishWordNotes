@@ -40,14 +40,6 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         
         clearLabel.textColor = UIColor.white
         
-        //データベース内に保存してあるWordnoteを取得し、検索条件のリストで絞る
-        let realm: Realm = try! Realm()
-        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",wordnotebook?.wordNoteBookId)
-            .sorted(byKeyPath: "wordidx", ascending: true)
-        for i in 0..<queryList.count {
-            results = results.filter(queryList[i])
-        }
-        wordNoteList = Array(results)
         if(wordNoteList.count == 0){
             //検索結果無し、エラーアラート出して戻させる
             showAlert(mes: "検索結果がありません")
