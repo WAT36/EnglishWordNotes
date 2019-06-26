@@ -123,11 +123,21 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         //Realm
         let realm = try! Realm()
         
+        //レベルを数値に変換
+        var levelnum: Int
+        if let temp = Int(level.text!) {
+            //取得したレベルが数値ならそれを使う
+            levelnum = temp
+        } else {
+            //レベルが取得できないならレベル無しとして-1とする
+            levelnum = -1
+        }
+        
         //単語を新規登録する。pronounceには発音記号、levelにはレベルを書く
         let newword = Word(value: ["wordName": inputword,
                                    "createdDate": Date(),
                                    "pronounce": pronounce.text!,
-                                    "level": level.text!])
+                                    "level": levelnum])
         
         //現単語帳に登録するための登録番号を取得
         var maxId: Int

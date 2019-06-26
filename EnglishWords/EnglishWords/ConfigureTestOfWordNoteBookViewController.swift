@@ -14,6 +14,8 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     
     @IBOutlet var testOrderby: UIPickerView!
     @IBOutlet var testOrderAscDesc: UISegmentedControl!
+    @IBOutlet var minLevel: UITextField!
+    @IBOutlet var maxLevel: UITextField!
     
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順"]
     var selectedorderlist: String?
@@ -106,6 +108,14 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
         let realm: Realm = try! Realm()
         var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",wordnotebook?.wordNoteBookId)
         
+        //入力されたレベルの間の単語のみ抽出（入力なければ無視）
+        if(!(minLevel.text?.isEmpty)!){
+            results = results.filter("word.level >= " + minLevel.text!)
+        }
+        if(!(maxLevel.text?.isEmpty)!){
+            results = results.filter("word.level <= " + maxLevel.text!)
+        }
+
         //昇順か降順か
         let isAsc = (testOrderAscDesc.selectedSegmentIndex == 1) ? false : true
         
@@ -117,7 +127,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
         case orderlist[2]:
             results = results.sorted(byKeyPath: "word.wordName", ascending: isAsc)
         case orderlist[3]:
-            results = results.sorted(byKeyPath: "word.option2", ascending: isAsc)
+            results = results.sorted(byKeyPath: "word.level", ascending: isAsc)
         default:
             print()
         }
