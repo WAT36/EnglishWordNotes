@@ -31,8 +31,8 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         wordnamelabel.text = selectedword?.wordName
-        pronounce.text = selectedword?.option1
-        level.text = selectedword?.option2
+        pronounce.text = selectedword?.pronounce
+        level.text = selectedword?.level.description
             
         //選択したWordからデータベース内に保存してあるWordDataを全て取得
         let realm: Realm = try! Realm()
