@@ -14,6 +14,8 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var wordNameTextField: UITextField!
     @IBOutlet var wordSearchCondSegmentedControl: UISegmentedControl!
     @IBOutlet var levelTextField: UITextField!
+    @IBOutlet var meanTextField: UITextField!
+    @IBOutlet var meanSearchCondSegmentedControl: UISegmentedControl!
 
     //検索条件のリスト
     var querylist: [String] = []
@@ -39,7 +41,12 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
             if(wordSearchCondSegmentedControl.selectedSegmentIndex == -1){
                 showAlert(mes: "単語の検索条件を指定してください")
             }else{
-                makeQuery()
+                //単語の検索条件作成
+                makeQuery(textfield: wordNameTextField,segmentedcontrol: wordSearchCondSegmentedControl,attribute: "wordName")
+                //レベルの検索条件作成
+                makeQuery(textfield: levelTextField,attribute: "level")
+                //訳文の検索条件作成
+                makeQuery(textfield: meanTextField,segmentedcontrol: meanSearchCondSegmentedControl,attribute: "mean")
                 performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
             }
         }
@@ -56,38 +63,40 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     }
     
     //指定された条件をもとにRealmへの検索条件を作成するメソッド
-    func makeQuery(){
+    func makeQuery(textfield: UITextField,segmentedcontrol: UISegmentedControl,attribute: String){
         //単語名検索の欄に何か入力されている場合、それに則り検索条件を作る
-        if(!(wordNameTextField.text?.isEmpty)!){
-            var wordquery = "wordName "
-            switch wordSearchCondSegmentedControl.selectedSegmentIndex {
+        if(!(textfield.text?.isEmpty)!){
+            var wordquery = attribute + " "
+            switch segmentedcontrol.selectedSegmentIndex {
             case 0: //前方一致
                 wordquery.append("BEGINSWITH '")
-                wordquery.append(wordNameTextField.text!)
+                wordquery.append(textfield.text!)
                 wordquery.append("'")
             case 1: //後方一致
                 wordquery.append("ENDSWITH '")
-                wordquery.append(wordNameTextField.text!)
+                wordquery.append(textfield.text!)
                 wordquery.append("'")
             case 2: //完全一致
                 wordquery.append("= '")
-                wordquery.append(wordNameTextField.text!)
+                wordquery.append(textfield.text!)
                 wordquery.append("'")
             default:
                 //（基本ないが、何も選択されてない場合）→とりあえず完全一致にする
                 wordquery.append("= '")
-                wordquery.append(wordNameTextField.text!)
+                wordquery.append(textfield.text!)
                 wordquery.append("'")
             }
             querylist.append(wordquery)
         }
- 
+    }
+    
+    //指定された条件をもとにRealmへの検索条件を作成するメソッド
+    func makeQuery(textfield: UITextField,attribute: String){
         //レベル検索の欄に何か入力されている場合、それに則り検索条件を作る
-        if(!(levelTextField.text?.isEmpty)!){
-            let levelquery = "level = " + levelTextField.text!
-            querylist.append(levelquery)
+        if(!(textfield.text?.isEmpty)!){
+            let query = attribute + " = " + textfield.text!
+            querylist.append(query)
         }
-        
     }
     
     //アラートを出すメソッド

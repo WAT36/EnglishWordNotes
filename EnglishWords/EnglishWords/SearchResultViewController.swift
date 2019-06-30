@@ -16,7 +16,9 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     var querylist: [String] = []
     //検索結果の単語リスト
     var wordlist: [Word] = []
-    
+    //検索結果の単語リスト
+    var worddatalist: [WordData] = []
+
     //選択した単語
     var selectedWord: Word?
     
@@ -27,16 +29,25 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         //データベース内に保存してあるWordを取得し、検索条件のリストで絞る
         let realm: Realm = try! Realm()
-        var results = realm.objects(Word.self).sorted(byKeyPath: "wordName", ascending: true)
+        var results = realm.objects(WordData.self)
         
         for i in 0..<querylist.count {
             results = results.filter(querylist[i])
         }
-        wordlist = Array(results)
         
-        if(wordlist.count == 0){
+        //WordDataを配列に
+        worddatalist = Array(results)
+        
+        if(worddatalist.count == 0){
             //検索結果無し、エラーアラート出して戻させる
             showAlert(mes: "検索結果がありません")
+        }else{
+            for i in 0..<worddatalist.count {
+                //取得したWordDataからWordリストを作る
+                if(!(wordlist.contains(worddatalist[i].word!))){
+                    wordlist.append(worddatalist[i].word!)
+                }
+            }
         }
         
     }
