@@ -21,7 +21,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     var card: WordNote?
     var wordnotebook: WordNoteBook?
     
-    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション(未実装)"]
+    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +96,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }else if sidebarlist[indexPath.row] == "確認テスト"{
                 // ConfigureTestOfWordNoteBookViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "toConfigureTestFromConfigureWordNoteViewController", sender: nil)
+            }else if sidebarlist[indexPath.row] == "オプション"{
+                // OptionConfigureWordNoteViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: "toOption", sender: nil)
             }
         }else{
             //選択したセルの単語を記録
@@ -124,6 +127,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }else if(segue.identifier == "toConfigureTestFromConfigureWordNoteViewController"){
             let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
             ctwnbVC.wordnotebook = wordnotebook
+        }else if(segue.identifier == "toOption"){
+            let ocwnVC: OptionConfigureWordNoteViewController = (segue.destination as? OptionConfigureWordNoteViewController)!
+            ocwnVC.wordnotebook = wordnotebook
         }
     }
     

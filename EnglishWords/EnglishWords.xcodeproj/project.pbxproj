@@ -31,6 +31,7 @@
 		24A4573D21F0BE94002048A0 /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4573C21F0BE94002048A0 /* WordData.swift */; };
 		24A4574121F0C148002048A0 /* WordNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574021F0C148002048A0 /* WordNote.swift */; };
 		24A4574421F2D45A002048A0 /* AddWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */; };
+		24EA74AA22CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EA74A922CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift */; };
 		24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E6214E7C29009AA57C /* AppDelegate.swift */; };
 		24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E8214E7C29009AA57C /* ViewController.swift */; };
 		24F2B4EC214E7C29009AA57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F2B4EA214E7C29009AA57C /* Main.storyboard */; };
@@ -97,6 +98,7 @@
 		24A4573C21F0BE94002048A0 /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
 		24A4574021F0C148002048A0 /* WordNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNote.swift; sourceTree = "<group>"; };
 		24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordNoteBookViewController.swift; sourceTree = "<group>"; };
+		24EA74A922CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionConfigureWordNoteViewController.swift; sourceTree = "<group>"; };
 		24F2B4E3214E7C29009AA57C /* EnglishWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F2B4E6214E7C29009AA57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24F2B4E8214E7C29009AA57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				249D7919228853EA003496CD /* SearchResultViewController.swift */,
 				249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */,
 				249D791D22903E28003496CD /* TestOfWordNoteBookViewController.swift */,
+				24EA74A922CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24EA74AA22CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift in Sources */,
 				243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */,
 				243D265B21FF2D5B004719A3 /* PartsofSpeech.swift in Sources */,
 				243D265D21FF375E004719A3 /* AddWordViewController.swift in Sources */,
