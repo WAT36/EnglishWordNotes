@@ -947,12 +947,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="並べ替え" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-At-qMn">
+                                <rect key="frame" x="0.0" y="89" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwi-oA-Nha">
+                                <rect key="frame" x="88" y="127" width="227" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="昇順"/>
+                                    <segment title="指定なし"/>
+                                    <segment title="降順"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgK-9X-Zcf">
+                                <rect key="frame" x="0.0" y="127" width="80" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="IKy-Rb-Btt"/>
                     </view>
                     <connections>
                         <outlet property="viewName" destination="5Gn-Rk-7q2" id="wAs-0u-urh"/>
+                        <outlet property="wordNameSegmentedControl" destination="qwi-oA-Nha" id="YCS-QT-pkr"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="AHA-D8-YQ2"/>
                     </connections>
                 </viewController>
@@ -1512,7 +1536,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mnH-Mq-rlh"/>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="bcZ-mv-AXS"/>
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="1XP-Pt-sgj"/>

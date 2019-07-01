@@ -20,6 +20,8 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     var wordlist: [WordNote] = []
     var card: WordNote?
     var wordnotebook: WordNoteBook?
+    var querykeylist: [String] = []
+    var orderlist: [Bool] = []
     
     let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション"]
     
@@ -27,7 +29,12 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         super.viewDidLoad()
         //データベース内に保存してあるWordNoteを全て取得
         let realm: Realm = try! Realm()
-        let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+        
+        for i in 0..<querykeylist.count{
+            results = results.sorted(byKeyPath: querykeylist[i], ascending: orderlist[i])
+        }
+        
         wordlist = Array(results)
 
         //単語帳名ラベルに単語帳名を設定する
