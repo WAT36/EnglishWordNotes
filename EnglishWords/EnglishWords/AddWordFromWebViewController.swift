@@ -24,6 +24,8 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     var inputword: String = ""
     var poslist: [String] = []
     var meanlist: [String] = []
+    var exEnlist: [String] = []
+    var exJalist: [String] = []
     var addSourceSwitch: Bool = false
     
     var wordnotebook: WordNoteBook?
@@ -190,11 +192,12 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
             try! realm.write {
                 //新規単語データを登録
-                var newworddata = WordData(value: ["word": newword,
+                let newworddata = WordData(value: ["word": newword,
                                                    "partofspeech": pos,
                                                    "meanidx": i+1,
                                                    "mean": meanlist[i],
-                                                    "example": "例文(未実装)"])
+                                                    "example_q": exEnlist[i],
+                                                    "example_a": exJalist[i]])
                 
                 realm.add(newworddata)
 
@@ -260,6 +263,8 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.inputwordname.text = ""
                 self.poslist.removeAll()
                 self.meanlist.removeAll()
+                self.exEnlist.removeAll()
+                self.exJalist.removeAll()
                 self.showAlert(mes: "入力した単語\"" + wordName + "\"での検索結果はありません")
             }
             
@@ -287,16 +292,22 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 pronounce.text = ""
             }
             
-            let means = doc.xpath("//div[@class='mainBlock hlt_KENEJ']/div[@class='kijiWrp']/div[@class='kiji']/div[@class='Kejje']/div[@class='level0']")
+            let means = doc.xpath("//div[@class='mainBlock hlt_KENEJ']/div[@class='kijiWrp']/div[@class='kiji']/div[@class='Kejje']//div[@class='level0' or @class='KejjeYrHd']")
             
             //品詞・意味リストを全削除
             poslist.removeAll()
             meanlist.removeAll()
+            exEnlist.removeAll()
+            exJalist.removeAll()
             
             var mean: String = ""
             var nh: String = ""
             var ah: String = ""
             var b: String = ""
+            var exEn: String = ""
+            var exJa: String = ""
+            
+            var meannum = -1;
             for m in means{
             
                 //品詞のタグがある場合は品詞を入れて次に進む
@@ -323,14 +334,44 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 //意味のタグがある場合は小節を入れる
                 if(m.css("p[class='lvlB']").count > 0){
                     b = (m.css("p[class='lvlB']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                }else{
+                    meannum = meannum + 1
+                    poslist.append("")
+                    meanlist.append("")
+                    exEnlist.append("")
+                    exJalist.append("")
+                }else if(m.css("div[class='KejjeYrLn']").count <= 0){
                     b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
+                    meannum = meannum + 1
+                    poslist.append("")
+                    meanlist.append("")
+                    exEnlist.append("")
+                    exJalist.append("")
+                }
+
+                //例文(英語)のタグがある場合は例文を入れる
+                if(m.css("span[class='KejjeYrEn']").count > 0){
+                    exEn = (m.css("span[class='KejjeYrEn']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
+                }
+
+                //例文(日本語)のタグがある場合は例文を入れる
+                if(m.css("span[class='KejjeYrJp']").count > 0){
+                    exJa = (m.css("span[class='KejjeYrJp']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
+                }
+
+                //品詞：大節：小節：意味
+                print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa)
+                if(!b.isEmpty){
+                    poslist[meannum] = mean
+                    meanlist[meannum] = b
+                    b = ""
                 }
                 
-                //品詞：大節：小節：意味
-                print(mean + ":" + nh + ":" + ah + ":" + b)
-                poslist.append(mean)
-                meanlist.append(b)
+                if(!exEn.isEmpty){
+                    exEnlist[meannum] = exEn
+                    exJalist[meannum] = exJa
+                    exEn = ""
+                    exJa = ""
+                }
             }
         }
     }

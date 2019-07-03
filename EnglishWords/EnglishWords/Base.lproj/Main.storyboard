@@ -893,17 +893,33 @@
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N5f-sc-VUF">
-                                <rect key="frame" x="0.0" y="195" width="321" height="186"/>
+                                <rect key="frame" x="0.0" y="195" width="321" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(例文：未設定)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gm-Jy-XOU">
+                                <rect key="frame" x="0.0" y="287" width="321" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hC-x7-qj2">
+                                <rect key="frame" x="0.0" y="336" width="321" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lo8-TR-ZgO"/>
                     </view>
                     <connections>
+                        <outlet property="exampleEn" destination="5Gm-Jy-XOU" id="uuP-Gr-lXd"/>
+                        <outlet property="exampleJa" destination="6hC-x7-qj2" id="hJY-sW-kpQ"/>
                         <outlet property="partofspeeches" destination="DMy-cc-4Pn" id="x8F-5b-Fxb"/>
                         <outlet property="sourcetable" destination="DQf-7a-1OO" id="n4o-PD-bVs"/>
                         <outlet property="textView" destination="N5f-sc-VUF" id="fIa-cy-TJg"/>
@@ -1535,11 +1551,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="uV5-z4-GX6"/>
         <segue reference="mnH-Mq-rlh"/>
         <segue reference="bcZ-mv-AXS"/>
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="6AF-Ab-5Rw"/>
-        <segue reference="1XP-Pt-sgj"/>
+        <segue reference="A0O-Qc-l2F"/>
         <segue reference="AHA-D8-YQ2"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>

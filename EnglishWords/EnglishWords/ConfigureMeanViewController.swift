@@ -22,6 +22,8 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var sourcetable:UITableView!
+    @IBOutlet var exampleEn:UILabel!
+    @IBOutlet var exampleJa:UILabel!
     
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
     
@@ -51,6 +53,10 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         //テキストビューの枠線設定
         textView.layer.borderColor = UIColor.black.cgColor  //色
         textView.layer.borderWidth = 1.0                    //幅
+        
+        //例文設定
+        exampleEn.text = mean?.example_q
+        exampleJa.text = mean?.example_a
     }
     
     override func didReceiveMemoryWarning() {
