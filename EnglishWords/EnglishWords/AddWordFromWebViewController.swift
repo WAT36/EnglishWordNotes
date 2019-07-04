@@ -342,24 +342,19 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                     meanlist.append("")
                     exEnlist.append("")
                     exJalist.append("")
-                }else if(m.css("span[class='KejjeYrEn']").count <= 0){
-                    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                    meannum = meannum + 1
-                    poslist.append("")
-                    meanlist.append("")
-                    exEnlist.append("")
-                    exJalist.append("")
-                }
-
-                //例文(英語)のタグがある場合は例文を入れる
-                if(m.css("span[class='KejjeYrEn']").count > 0){
+                }else if((m.css("span[class='KejjeYrEn']").count > 0) && (m.css("span[class='KejjeYrJp']").count > 0)){
+                    //例文(英日)のタグがある場合は例文を入れる
                     exEn = (m.css("span[class='KejjeYrEn']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                }
-
-                //例文(日本語)のタグがある場合は例文を入れる
-                if(m.css("span[class='KejjeYrJp']").count > 0){
                     exJa = (m.css("span[class='KejjeYrJp']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                 }
+                //else{
+                //    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
+                //    meannum = meannum + 1
+                //    poslist.append("")
+                //    meanlist.append("")
+                //    exEnlist.append("")
+                //    exJalist.append("")
+                //}
 
                 //品詞：大節：小節：意味
                 print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa + ":" + meannum.description)
