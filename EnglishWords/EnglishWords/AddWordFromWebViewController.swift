@@ -72,8 +72,11 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         let meanlabel = cell.viewWithTag(2) as! UILabel
         meanlabel.numberOfLines = 0
         meanlabel.text = meanlist[indexPath.row]
-        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)
-        
+        if(exEnlist[indexPath.row].isEmpty){
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)
+        }else{
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.5, alpha: 0.5)
+        }
         return cell
     }
     
