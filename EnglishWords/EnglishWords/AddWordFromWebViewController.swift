@@ -342,7 +342,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                     meanlist.append("")
                     exEnlist.append("")
                     exJalist.append("")
-                }else if(m.css("div[class='KejjeYrLn']").count <= 0){
+                }else if(m.css("span[class='KejjeYrEn']").count <= 0){
                     b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                     meannum = meannum + 1
                     poslist.append("")
@@ -362,7 +362,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 }
 
                 //品詞：大節：小節：意味
-                print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa)
+                print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa + ":" + meannum.description)
                 if(!b.isEmpty){
                     poslist[meannum] = mean
                     meanlist[meannum] = b
