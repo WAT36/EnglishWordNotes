@@ -347,14 +347,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                     exEn = (m.css("span[class='KejjeYrEn']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                     exJa = (m.css("span[class='KejjeYrJp']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                 }
-                //else{
-                //    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                //    meannum = meannum + 1
-                //    poslist.append("")
-                //    meanlist.append("")
-                //    exEnlist.append("")
-                //    exJalist.append("")
-                //}
 
                 //品詞：大節：小節：意味
                 print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa + ":" + meannum.description)
