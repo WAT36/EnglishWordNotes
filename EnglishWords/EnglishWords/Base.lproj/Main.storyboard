@@ -426,6 +426,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト形式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArX-VB-1Mb">
+                                        <rect key="frame" x="8" y="213" width="304" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eRM-bA-uHo">
+                                        <rect key="frame" x="20" y="254" width="292" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="四択"/>
+                                            <segment title="訳文回答"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -435,11 +450,12 @@
                     <connections>
                         <outlet property="maxLevel" destination="w9E-Uk-RhY" id="3Mn-cn-Mxw"/>
                         <outlet property="minLevel" destination="AIR-bA-yNe" id="H7X-3J-9Fm"/>
+                        <outlet property="testForm" destination="eRM-bA-uHo" id="jRg-AX-1Df"/>
                         <outlet property="testOrderAscDesc" destination="Ypt-sX-WJm" id="OKw-cZ-cTN"/>
                         <outlet property="testOrderby" destination="ZOg-Ei-4Jk" id="EeG-gL-7f6"/>
                         <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="oOJ-iW-al9"/>
                         <segue destination="gRV-Ux-UlU" kind="presentation" identifier="toTestFromConfigureTestOfWordNoteBookViewController" id="UTA-ih-Hd9"/>
-                        <segue destination="AIr-57-Nyp" kind="presentation" id="rqo-uU-H8Z"/>
+                        <segue destination="AIr-57-Nyp" kind="presentation" identifier="toFourOptionTestFromConfigureTestOfWordNoteBookViewController" id="rqo-uU-H8Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BU-9w-wu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -467,7 +483,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
-                                    <action selector="buttonTappedWithSender:" destination="gRV-Ux-UlU" eventType="touchDown" id="QsC-eb-zSN"/>
+                                    <action selector="buttonTappedWithSender:" destination="AIr-57-Nyp" eventType="touchDown" id="PP8-gV-gQJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neM-8Y-WEB">
@@ -490,10 +506,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="次の単語"/>
                                 <connections>
-                                    <action selector="buttonTappedWithSender:" destination="gRV-Ux-UlU" eventType="touchDown" id="gW6-Gd-fd2"/>
+                                    <action selector="buttonTappedWithSender:" destination="AIr-57-Nyp" eventType="touchDown" id="QAk-wS-0yc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CLEAR!!↑次へ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ze-os-5ic">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="↑次へ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ze-os-5ic">
                                 <rect key="frame" x="208" y="60" width="112" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -519,10 +535,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mean" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="ax3-H8-qgR">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mean" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="ax3-H8-qgR">
                                                     <rect key="frame" x="0.0" y="22" width="320" height="98"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -531,8 +547,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="gRV-Ux-UlU" id="Ohn-fT-9ok"/>
-                                    <outlet property="delegate" destination="gRV-Ux-UlU" id="KF6-ns-rYm"/>
+                                    <outlet property="dataSource" destination="AIr-57-Nyp" id="IEV-PB-zU4"/>
+                                    <outlet property="delegate" destination="AIr-57-Nyp" id="jza-3x-izN"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="単語帳名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqi-1O-cF9">
@@ -549,6 +565,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(正/答)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV6-DJ-txL">
+                                <rect key="frame" x="0.0" y="151" width="53" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="I7M-WH-fTN"/>
@@ -556,10 +579,12 @@
                     <connections>
                         <outlet property="clearLabel" destination="3Ze-os-5ic" id="S6S-gi-le7"/>
                         <outlet property="count" destination="BCN-38-keD" id="ar5-8g-z8x"/>
+                        <outlet property="rate" destination="YV6-DJ-txL" id="aKC-FX-tmh"/>
+                        <outlet property="table" destination="rVa-wG-fwH" id="5RS-hW-cR8"/>
                         <outlet property="word" destination="neM-8Y-WEB" id="Icd-YK-sq6"/>
                         <outlet property="wordNote" destination="kqi-1O-cF9" id="TWI-ij-iYQ"/>
-                        <segue destination="V3r-MM-YQO" kind="presentation" id="isr-Vw-a6S"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" id="bjT-ZX-jMp"/>
+                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="returntoConfigureTestOfWordNoteBookViewController" id="isr-Vw-a6S"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returntoConfigureWordNoteBookViewController" id="bjT-ZX-jMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehf-gj-Q4e" userLabel="First Responder" sceneMemberID="firstResponder"/>

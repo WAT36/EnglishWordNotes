@@ -16,7 +16,8 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     @IBOutlet var testOrderAscDesc: UISegmentedControl!
     @IBOutlet var minLevel: UITextField!
     @IBOutlet var maxLevel: UITextField!
-    
+    @IBOutlet var testForm: UISegmentedControl!
+
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順"]
     var selectedorderlist: String?
     
@@ -38,9 +39,10 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
 
         // ボタンを選択中にする場所を指定
         testOrderAscDesc.selectedSegmentIndex = 0
+        testForm.selectedSegmentIndex = 0
         // ボタン選択時にボタンを選択状態にするかどうかの設定
         testOrderAscDesc.isMomentary = false
-
+        testForm.isMomentary = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +85,9 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             if(wordNoteList.count == 0){
                 //検索結果無し、エラーアラート出して戻させる
                 showAlert(mes: "検索結果がありません")
-            }else{
+            }else if(testForm.selectedSegmentIndex == 0){
+                performSegue(withIdentifier: "toFourOptionTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
+            }else if(testForm.selectedSegmentIndex == 1){
                 performSegue(withIdentifier: "toTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
             }
         }
@@ -98,6 +102,10 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             let twnbVC: TestOfWordNoteBookViewController = (segue.destination as? TestOfWordNoteBookViewController)!
             twnbVC.wordnotebook = wordnotebook
             twnbVC.wordNoteList = wordNoteList
+        }else if(segue.identifier == "toFourOptionTestFromConfigureTestOfWordNoteBookViewController"){
+            let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
+            fotwnbVC.wordnotebook = wordnotebook
+            fotwnbVC.wordNoteList = wordNoteList
         }
     }
     
