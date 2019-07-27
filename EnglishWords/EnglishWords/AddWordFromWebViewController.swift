@@ -268,7 +268,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.meanlist.removeAll()
                 self.exEnlist.removeAll()
                 self.exJalist.removeAll()
-                self.showAlert(mes: "入力した単語\"" + wordName + "\"での検索結果はありません")
+                self.showAlert(mes: "HTTPエラー")
             }
             
             if let html = response.result.value {
@@ -362,6 +362,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                     exEn = ""
                     exJa = ""
                 }
+            }
+            
+            if( poslist.isEmpty || meanlist.isEmpty ){
+                showAlert(mes: "入力された単語では訳文が検出されませんでした")
             }
         }
     }
