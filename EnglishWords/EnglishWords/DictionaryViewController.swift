@@ -160,7 +160,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                     try! realm.write {
                             realm.add([WordNote(value: ["wordnotebook": wnb!,
                                                         "word": selectedWord,
-                                                        "wordidx": maxId,
+                                                        "wordidx": (maxId + 1),
                                                         "registereddate": Date()])])
                     }
                     performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)

@@ -20,6 +20,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     @IBOutlet var inputwordname: UILabel!
     @IBOutlet var level: UILabel!
     @IBOutlet var pronounce: UILabel!
+    @IBOutlet var addWordAlert: UILabel!
     
     var inputword: String = ""
     var poslist: [String] = []
@@ -41,6 +42,9 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         //tableのラベルを折り返す設定
         table.estimatedRowHeight=120
         table.rowHeight=UITableViewAutomaticDimension
+        
+        //警告ラベルを見えなくする
+        addWordAlert.textColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,8 +98,11 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.showAlert(mes: "登録する訳文がありません")
             }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
                 self.showAlert(mes: "単語が入力されていません")
-            }else if (self.checkRegisteredWord(wordname: inputword)){
-                self.showAlert(mes: "既に同じ英単語が登録されています")
+            }else if (self.checkRegisteredWordinWordNote(wordname: inputword)){
+                    self.showAlert(mes: "既に同じ英単語が単語帳に登録されています")
+            }else if(self.checkRegisteredWordinDictionary(wordname: inputword)){
+                self.addWordalreadyinDictionary()
+                performSegue(withIdentifier: "toConfigureWordNoteBookViewContoller",sender: nil)
             }else{
                 self.addScrapedWord()
                 performSegue(withIdentifier: "toConfigureWordNoteBookViewContoller",sender: nil)
@@ -119,6 +126,30 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         } else if (segue.identifier == "toConfigureWordNoteBookViewContoller") {
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             cwnbVC.wordnotebook = wordnotebook
+        }
+    }
+    
+    //スクレイピングで取得したが既に辞書に登録されていた単語の場合、辞書から単語帳に登録する
+    func addWordalreadyinDictionary(){
+        let realm = try! Realm()
+        let addWord = realm.objects(Word.self).filter("wordName == %@",inputword)
+        if(addWord.count == 1){
+            let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
+            var maxId: Int = -1
+            if cardresults.count == 0 {
+                maxId = 0
+            }else{
+                maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
+            }
+        
+            try! realm.write {
+                realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
+                                            "word": addWord.first!,
+                                            "wordidx": (maxId + 1),
+                                            "registereddate": Date()])])
+            }
+        }else{
+            showAlert(mes: "入力された単語は辞書に無いか、複数登録されています")
         }
     }
     
@@ -157,7 +188,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             realm.add([newword])
             realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
                                         "word": newword,
-                                        "wordidx": maxId,
+                                        "wordidx": (maxId + 1),
                                         "registereddate": Date()])])
         }
         var pos = self.getPartOfSpeechData(posname: poslist[0])
@@ -213,7 +244,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     }
     
     //既に同じ英単語が辞書に登録されているかチェック
-    func checkRegisteredWord(wordname: String) -> Bool{
+    func checkRegisteredWordinDictionary(wordname: String) -> Bool{
         //Realm
         let realm = try! Realm()
         let results = realm.objects(Word.self).filter("wordName = %@",wordname)
@@ -223,7 +254,19 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             return false
         }
     }
-    
+
+    //既に同じ英単語が単語帳に登録されているかチェック
+    func checkRegisteredWordinWordNote(wordname: String) -> Bool{
+        //Realm
+        let realm = try! Realm()
+        let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookName = %@",wordnotebook?.wordNoteBookName).filter("word.wordName = %@",wordname)
+        if results.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+
     //品詞名から品詞データを取得。無い場合は新しく追加する
     func getPartOfSpeechData(posname: String)-> PartsofSpeech{
         //Realm
@@ -254,6 +297,12 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         //入力されたテキストをtrim、また文中にスペース(=熟語)があったらそれを"+"にする
         var inputWord = wordName.trimmingCharacters(in: .whitespaces)
         inputWord = inputWord.replacingOccurrences(of: " ", with: "+")
+        
+        if(self.checkRegisteredWordinDictionary(wordname: wordName)){
+            addWordAlert.textColor = UIColor.black
+        }else{
+            addWordAlert.textColor = UIColor.white
+        }
         
         //GETリクエスト 指定URLのコードを取得
         let fqdn = "https://ejje.weblio.jp/content/" + inputWord

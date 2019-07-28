@@ -226,11 +226,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="※注 既に辞書に登録されているため、単語追加には辞書データが使われます" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-dT-jxg">
+                                <rect key="frame" x="0.0" y="130" width="320" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JrQ-RO-ZfR"/>
                     </view>
                     <connections>
+                        <outlet property="addWordAlert" destination="y3g-dT-jxg" id="Fpe-NP-3mA"/>
                         <outlet property="inputwordname" destination="zRm-te-gBn" id="gId-qe-oEs"/>
                         <outlet property="level" destination="sQ3-y3-Ln3" id="X9x-YL-xEv"/>
                         <outlet property="pronounce" destination="q1m-XA-MJF" id="5O7-xn-NK8"/>
@@ -1702,7 +1710,7 @@
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>
-        <segue reference="bjT-ZX-jMp"/>
-        <segue reference="isr-Vw-a6S"/>
+        <segue reference="MCo-3g-Cay"/>
+        <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>
