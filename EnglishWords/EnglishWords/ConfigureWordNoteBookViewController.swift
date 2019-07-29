@@ -23,7 +23,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     var querykeylist: [String] = []
     var orderlist: [Bool] = []
     
-    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション"]
+    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション","名称変更"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +106,9 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }else if sidebarlist[indexPath.row] == "オプション"{
                 // OptionConfigureWordNoteViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "toOption", sender: nil)
+            }else if sidebarlist[indexPath.row] == "名称変更"{
+                // 単語帳名称を変えるためのウィンドウを出させる
+                renameWordNoteAlert(sender: table)
             }
         }else{
             //選択したセルの単語を記録
@@ -281,5 +284,104 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             //エラー処理
             print("Error. Realm Export Failed.")
         }
+    }
+    
+    
+    // 名称変更ボタン（セル）を押下した時にアラートを表示するメソッド
+    @IBAction func renameWordNoteAlert(sender: UITableView) {
+        
+        //アラートの設定
+        let alert: UIAlertController = UIAlertController(title: "単語帳名称変更", message: "新しい単語帳名を入力してください\n(注:登録されている出典名は変わりません)", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        //入力用textFieldの追加
+        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+        })
+        
+        //アラート①：OK(名称変更)
+        let renameAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            
+            guard let textFields = alert.textFields else {
+                return
+            }
+            
+            guard !textFields.isEmpty else {
+                self.showAlert(mes: "単語帳名が入力されていません")
+                return
+            }
+            
+            if (textFields.first?.text?.isEmpty)! {
+                self.showAlert(mes: "単語帳名が入力されていません")
+                return
+            }
+            
+            //単語帳の名前変更
+            self.renameWordNote(newWordNoteName: (textFields.first?.text)!)
+            //画面を更新して表示
+            self.loadView()
+            self.viewDidLoad()
+        })
+        
+        //アラート②：キャンセル
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+        })
+        
+        //UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(renameAction)
+        
+        //アラートを表示
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //単語帳の名称変更
+    func renameWordNote(newWordNoteName: String){
+        
+        //データベース内に保存してあるWordNoteBookを全て取得
+        let realm: Realm = try! Realm()
+        let results = realm.objects(WordNoteBook.self).filter("wordNoteBookId == %@",wordnotebook?.wordNoteBookId)
+        
+        
+        try! realm.write {
+            wordnotebook = results.first
+            wordnotebook?.wordNoteBookName = newWordNoteName
+
+            //WordNoteBookをUpdate
+            realm.create(WordNoteBook.self,
+                         value: wordnotebook,
+                         update: true)
+        }
+        
+        let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+        let wnlist: [WordNote] = Array(wnresults)
+        
+        try! realm.write {
+            for i in 0..<wnlist.count{
+                //WordNoteをUpdate (WordNoteには主キーがないので)
+                wnlist[i].wordnotebook?.wordNoteBookName = newWordNoteName
+                
+                
+            }
+        }
+
+
+    }
+    
+    func showAlert(mes: String) {
+        
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "エラー",
+            message: mes,
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
 }
