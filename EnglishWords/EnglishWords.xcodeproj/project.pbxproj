@@ -163,6 +163,7 @@
 		24F2B4DA214E7C29009AA57C = {
 			isa = PBXGroup;
 			children = (
+				2453B79A23052B0D006FAE80 /* DeployGateSDK.framework */,
 				24A4573621EF7554002048A0 /* RealmSwift.framework */,
 				24A4573221EF7548002048A0 /* Realm.framework */,
 				24F2B4E5214E7C29009AA57C /* EnglishWords */,
@@ -240,7 +241,6 @@
 		AD2E415334F8824060C16617 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2453B79A23052B0D006FAE80 /* DeployGateSDK.framework */,
 				FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */,
 				EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */,
 				729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */,
