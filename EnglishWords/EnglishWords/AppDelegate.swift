@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(realm, "Realm")
         print(config,"Realm Version")
         
+        //DeployGate用
+        DeployGateSDK
+            .sharedInstance()
+            .launchApplication(withAuthor: "USERNAME", key: "API_KEY")
+        
         // Override point for customization after application launch.
         return true
     }

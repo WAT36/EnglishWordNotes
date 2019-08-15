@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.8.1)
+  - DeployGateSDK (1.0.7)
   - Kanna (4.0.3)
 
 DEPENDENCIES:
   - Alamofire
+  - DeployGateSDK
   - Kanna
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - DeployGateSDK
     - Kanna
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  DeployGateSDK: df3d5838db7e35c05a711c35a3bdeef3c2b016ba
   Kanna: 0ebbdd0e7e3308f0aafbd569e79c8cadc5eb877c
 
-PODFILE CHECKSUM: 16cc55f8ede522a5d9b4f963305affb3fd7bf3e4
+PODFILE CHECKSUM: 417760fc52f909cb4a52c9d12ef2ae8f967dce10
 
 COCOAPODS: 1.5.3

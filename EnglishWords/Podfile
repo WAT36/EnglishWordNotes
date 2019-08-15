@@ -19,5 +19,6 @@ target 'EnglishWords' do
 
   pod "Alamofire"
   pod "Kanna"
+  pod "DeployGateSDK"
 
 end
