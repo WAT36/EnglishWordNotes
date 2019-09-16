@@ -103,9 +103,16 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             twnbVC.wordnotebook = wordnotebook
             twnbVC.wordNoteList = wordNoteList
         }else if(segue.identifier == "toFourOptionTestFromConfigureTestOfWordNoteBookViewController"){
-            let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
-            fotwnbVC.wordnotebook = wordnotebook
-            fotwnbVC.wordNoteList = wordNoteList
+            let realm: Realm = try! Realm()
+            if(realm.objects(Word.self).count < 2){
+                //四択テストを行えるだけの単語の数が足りてない（少なくとも正解単語１つ、不正解単語１つの２つが必要）
+                //のでエラーアラート出して戻させる
+                showAlert(mes: "単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります")
+            }else{
+                let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
+                fotwnbVC.wordnotebook = wordnotebook
+                fotwnbVC.wordNoteList = wordNoteList
+            }
         }
     }
     
