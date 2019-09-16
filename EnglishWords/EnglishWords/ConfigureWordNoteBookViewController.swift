@@ -85,8 +85,11 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let label1 = cell.viewWithTag(1) as! UILabel
             label1.numberOfLines = 0
             label1.text = oneword.word?.wordName
-            cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
-            
+            if((oneword.word?.wordName.contains(" "))!){
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1.0)
+            }else{
+                cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+            }
             return cell
         }
     }
