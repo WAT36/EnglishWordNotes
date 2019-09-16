@@ -123,7 +123,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         mean.numberOfLines = 0
         mean.text = oneworddata.mean
         mean.textColor = UIColor.black
-        mean.sizeToFit()
+        mean.lineBreakMode = .byCharWrapping
         cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 0.5)
         return cell
     }
