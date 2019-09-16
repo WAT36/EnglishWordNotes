@@ -34,6 +34,11 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
     }
     
+    //キーボード外タップしたらキーボード閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
