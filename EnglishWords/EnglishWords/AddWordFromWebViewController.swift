@@ -360,6 +360,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             var exJa: String = ""
             
             var meannum = -1;
+            var knenjsubflag = 0 // 品詞が来た時のフラグ。この次のlevel0は必ず意味として受け取る
             for m in means{
             
                 //品詞のタグがある場合は品詞を入れて次に進む
@@ -370,7 +371,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                         mean = mean.replacingOccurrences(of: submean!, with: "")
                         mean = mean + "(" + (submean?.trimmingCharacters(in: .whitespaces))! + ")"
                     }
+                    knenjsubflag = 2
                     continue
+                }else{
+                    knenjsubflag -= 1
                 }
                 
                 //大節のタグがある場合は大節を入れる
@@ -391,13 +395,20 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                     meanlist.append("")
                     exEnlist.append("")
                     exJalist.append("")
+                }else if(knenjsubflag > 0){
+                    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
+                    meannum = meannum + 1
+                    poslist.append("")
+                    meanlist.append("")
+                    exEnlist.append("")
+                    exJalist.append("")
                 }else if((m.css("span[class='KejjeYrEn']").count > 0) && (m.css("span[class='KejjeYrJp']").count > 0)){
                     //例文(英日)のタグがある場合は例文を入れる
                     exEn = (m.css("span[class='KejjeYrEn']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                     exJa = (m.css("span[class='KejjeYrJp']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                 }
 
-                //品詞：大節：小節：意味
+                //品詞：大節：小節：意味：英例文：日例文
                 print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa + ":" + meannum.description)
                 if(!b.isEmpty){
                     poslist[meannum] = mean
