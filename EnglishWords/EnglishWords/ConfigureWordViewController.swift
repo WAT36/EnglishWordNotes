@@ -34,9 +34,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         pronounce.text = selectedword?.pronounce
         level.text = selectedword?.level.description
             
-        //選択したWordからデータベース内に保存してあるWordDataを全て取得
+        //選択したWordからデータベース内に保存してあるWordDataを全て取得、meanidxでソート
         let realm: Realm = try! Realm()
-        let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName)
+        let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName).sorted(byKeyPath: "meanidx")
         worddatalist = Array(results)
         
         //tableのラベルを折り返す設定

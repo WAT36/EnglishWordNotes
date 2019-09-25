@@ -181,9 +181,9 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     try! realm.write{
                         //上書き更新
                         let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any)
-                                    .filter("partofspeech == %@",mean?.partofspeech! as Any)[0]
-                        toupdatemean.partofspeech = selectedpartofspeech
-                        toupdatemean.mean = textView.text!
+                                    .filter("meanidx == %@",mean?.meanidx as Any).first
+                        toupdatemean!.partofspeech = selectedpartofspeech
+                        toupdatemean!.mean = textView.text!
                     }
                     performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                 }
