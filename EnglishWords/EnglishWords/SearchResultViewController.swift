@@ -37,10 +37,10 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         //WordDataを配列に
         worddatalist = Array(results)
-        
+        print(worddatalist.count)
         if(worddatalist.count == 0){
             //検索結果無し、エラーアラート出して戻させる
-            showAlert(mes: "検索結果がありません")
+            self.showAlert(mes: "検索結果がありません")
         }else{
             for i in 0..<worddatalist.count {
                 //取得したWordDataからWordリストを作る
@@ -49,7 +49,6 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

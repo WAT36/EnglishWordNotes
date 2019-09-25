@@ -25,9 +25,10 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
         
         // ボタンを選択中にする場所を指定
         wordSearchCondSegmentedControl.selectedSegmentIndex = 0
+        meanSearchCondSegmentedControl.selectedSegmentIndex = 0
         // ボタン選択時にボタンを選択状態にするかどうかの設定
         wordSearchCondSegmentedControl.isMomentary = false
-        
+        meanSearchCondSegmentedControl.isMomentary = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,11 +48,12 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
                 showAlert(mes: "単語の検索条件を指定してください")
             }else{
                 //単語の検索条件作成
-                makeQuery(textfield: wordNameTextField,segmentedcontrol: wordSearchCondSegmentedControl,attribute: "wordName")
+                makeQuery(textfield: wordNameTextField,segmentedcontrol: wordSearchCondSegmentedControl,attribute: "word.wordName")
                 //レベルの検索条件作成
-                makeQuery(textfield: levelTextField,attribute: "level")
+                makeQuery(textfield: levelTextField,attribute: "word.level")
                 //訳文の検索条件作成
                 makeQuery(textfield: meanTextField,segmentedcontrol: meanSearchCondSegmentedControl,attribute: "mean")
+                print(querylist)
                 performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
             }
         }
