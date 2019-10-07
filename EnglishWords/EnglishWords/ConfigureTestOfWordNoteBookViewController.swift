@@ -18,7 +18,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     @IBOutlet var maxLevel: UITextField!
     @IBOutlet var testForm: UISegmentedControl!
 
-    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順"]
+    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順"]
     var selectedorderlist: String?
     
     var wordnotebook: WordNoteBook?
@@ -148,6 +148,8 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             results = results.sorted(byKeyPath: "word.wordName", ascending: isAsc)
         case orderlist[3]:
             results = results.sorted(byKeyPath: "word.level", ascending: isAsc)
+        case orderlist[4]:
+            results = results.sorted(byKeyPath: "word.accuracyRate", ascending: isAsc)
         default:
             print()
         }

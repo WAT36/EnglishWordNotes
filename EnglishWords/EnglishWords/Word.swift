@@ -12,13 +12,14 @@ import RealmSwift
 class Word: Object {
     @objc dynamic var wordName = " "
     @objc dynamic var createdDate = Date()
-    @objc dynamic var numOfCorrect: Int = 0     //正答数
-    @objc dynamic var numOfAnswer: Int = 0      //回答数
-    @objc dynamic var pronounce: String = ""    //発音記号
-    @objc dynamic var level: Int = 0            //レベル
-    @objc dynamic var option1: String = ""      //
-    @objc dynamic var option2: String = ""      //
-    @objc dynamic var option3: String = ""
+    @objc dynamic var numOfCorrect: Int = 0      //正答数
+    @objc dynamic var numOfAnswer: Int = 0       //回答数
+    @objc dynamic var accuracyRate: Double = 0.0 //正答率
+    @objc dynamic var pronounce: String = ""     //発音記号
+    @objc dynamic var level: Int = 0             //レベル
+    @objc dynamic var option1: String = ""       //
+    @objc dynamic var option2: String = ""       //
+    @objc dynamic var option3: String = ""       //
     
     override static func primaryKey() -> String? {
         return "wordName"

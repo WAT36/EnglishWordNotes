@@ -88,7 +88,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             if((oneword.word?.wordName.contains(" "))!){
                 cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1.0)
             }else{
-                let rate = Double(oneword.word!.numOfCorrect) / ((oneword.word!.numOfAnswer == 0) ? 1.0 : Double(oneword.word!.numOfAnswer))
+                let rate = oneword.word!.accuracyRate
                 cell.backgroundColor = UIColor(red: CGFloat(1.0-rate), green: 0.0, blue: CGFloat(rate), alpha: 0.5)
             }
             return cell

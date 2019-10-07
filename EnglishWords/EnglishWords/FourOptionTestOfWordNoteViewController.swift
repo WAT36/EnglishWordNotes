@@ -55,7 +55,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
             wordNote.text = wordnotebook?.wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
-            
+
             //選択したWordからデータベース内に保存してあるWordDataを取得
             let realm: Realm = try! Realm()
             //正解データ
@@ -161,6 +161,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
                 //訳文を全部正答したなら正答数も+1
                 results?.numOfCorrect = (nowWord?.numOfCorrect)! + 1
             }
+            results?.accuracyRate = Double((nowWord?.numOfCorrect)! + 1) / Double((nowWord?.numOfAnswer)! + 1)
         }
 
         //隠しラベル非点灯へ

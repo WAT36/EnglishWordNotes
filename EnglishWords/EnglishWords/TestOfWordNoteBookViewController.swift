@@ -154,6 +154,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
                 //訳文を全部正答したなら正答数も+1
                 results?.numOfCorrect = (nowWord?.numOfCorrect)! + 1
             }
+            results?.accuracyRate = Double((nowWord?.numOfCorrect)! + 1) / Double((nowWord?.numOfAnswer)! + 1)
         }
         
         //正答した訳文のインデックスをクリア
