@@ -17,6 +17,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     @IBOutlet var minLevel: UITextField!
     @IBOutlet var maxLevel: UITextField!
     @IBOutlet var testForm: UISegmentedControl!
+    @IBOutlet var questionNum: UITextField!
 
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順"]
     var selectedorderlist: String?
@@ -29,7 +30,6 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     //検索条件のリスト
     var querylist: [String] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -154,7 +154,15 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             print()
         }
         
-        wordNoteList = Array(results)        
+        wordNoteList = Array(results)
+
+        //出題個数が指定されている場合はその個数分だけ取得
+        if(!(questionNum.text?.isEmpty)!){
+            let questionNum = Int(self.questionNum.text!)
+            if(0 < questionNum! && questionNum! < wordNoteList.count){
+                wordNoteList = wordNoteList.prefix(questionNum!).map{$0}
+            }
+        }
     }
     
     //アラートを出すメソッド

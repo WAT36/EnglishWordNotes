@@ -434,21 +434,35 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト形式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArX-VB-1Mb">
-                                        <rect key="frame" x="8" y="213" width="304" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="テスト形式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzA-HD-ygj">
+                                        <rect key="frame" x="8" y="223" width="314" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eRM-bA-uHo">
-                                        <rect key="frame" x="20" y="254" width="292" height="29"/>
+                                        <rect key="frame" x="8" y="254" width="304" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="四択"/>
                                             <segment title="訳文回答"/>
                                         </segments>
                                     </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcW-gC-Orz">
+                                        <rect key="frame" x="8" y="331" width="304" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出題個数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArX-VB-1Mb">
+                                        <rect key="frame" x="8" y="290" width="304" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -458,6 +472,7 @@
                     <connections>
                         <outlet property="maxLevel" destination="w9E-Uk-RhY" id="3Mn-cn-Mxw"/>
                         <outlet property="minLevel" destination="AIR-bA-yNe" id="H7X-3J-9Fm"/>
+                        <outlet property="questionNum" destination="lcW-gC-Orz" id="BCf-aa-6DM"/>
                         <outlet property="testForm" destination="eRM-bA-uHo" id="jRg-AX-1Df"/>
                         <outlet property="testOrderAscDesc" destination="Ypt-sX-WJm" id="OKw-cZ-cTN"/>
                         <outlet property="testOrderby" destination="ZOg-Ei-4Jk" id="EeG-gL-7f6"/>
@@ -574,7 +589,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(正/答)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV6-DJ-txL">
-                                <rect key="frame" x="0.0" y="151" width="53" height="21"/>
+                                <rect key="frame" x="0.0" y="151" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -718,7 +733,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(正/答)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1d-Om-9dr">
-                                <rect key="frame" x="0.0" y="201" width="53" height="21"/>
+                                <rect key="frame" x="0.0" y="201" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1710,7 +1725,7 @@
         <segue reference="Zpx-A2-zi1"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="1XP-Pt-sgj"/>
-        <segue reference="AHA-D8-YQ2"/>
+        <segue reference="Okm-en-fS9"/>
         <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>
