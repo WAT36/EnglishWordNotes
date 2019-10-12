@@ -16,6 +16,8 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
     @IBOutlet var textField: UITextField!
     @IBOutlet var table:UITableView!
     
+    let aa = AlertAction()
+    
     var partsofSpeechList: [PartsofSpeech] = []
     
     override func viewDidLoad() {
@@ -75,9 +77,9 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
     @IBAction func buttonTapped(sender : UIButton) {        
         if (sender.tag == 0){
             if textField.text!.isEmpty {
-                self.showAlert(m: "品詞名が入力されていません")
+                aa.showErrorAlert(vc: self, m: "品詞名が入力されていません")
             }else if(self.checkRegisteredPartOfSpeech(partsofspeechname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
-                self.showAlert(m: "既に同じ品詞名が登録されています")
+                aa.showErrorAlert(vc: self, m: "既に同じ品詞名が登録されています")
             }else{
                 performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
             }
@@ -117,21 +119,6 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
         }else{
             return false
         }
-    }
-    
-    func showAlert(m: String) {
-        
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: m,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

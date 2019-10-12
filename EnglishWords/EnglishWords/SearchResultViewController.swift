@@ -24,6 +24,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet var table:UITableView!
 
+    let aa = AlertAction()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         print(worddatalist.count)
         if(worddatalist.count == 0){
             //検索結果無し、エラーアラート出して戻させる
-            self.showAlert(mes: "検索結果がありません")
+            aa.showErrorAlert(vc: self, m: "検索結果がありません")
         }else{
             for i in 0..<worddatalist.count {
                 //取得したWordDataからWordリストを作る
@@ -103,20 +104,5 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             cwVC.selectedword = selectedWord
         }
-    }
-    
-    //アラートを出すメソッド
-    func showAlert(mes: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

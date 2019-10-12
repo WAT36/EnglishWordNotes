@@ -20,6 +20,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
 
     @IBOutlet var table:UITableView!
     
+    let aa = AlertAction()
     var nowWord: Word?
     var wordIdx: Int = 0
     var wordnotebook: WordNoteBook?
@@ -46,7 +47,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         
         if(wordNoteList.count == 0){
             //検索結果無し、エラーアラート出して戻させる
-            showAlert(mes: "検索結果がありません")
+            aa.showErrorAlert(vc: self, m: "検索結果がありません")
         }else{
             wordIdx = 0
             nowWord = wordNoteList[wordIdx].word
@@ -229,19 +230,5 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         
         //アラートを表示
         present(alert, animated: true, completion: nil)
-    }
-    //アラートを出すメソッド
-    func showAlert(mes: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

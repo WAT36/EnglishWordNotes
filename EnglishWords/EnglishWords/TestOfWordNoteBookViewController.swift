@@ -21,6 +21,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet var table:UITableView!
     @IBOutlet var answerMeanTextField:UITextField!
 
+    let aa = AlertAction()
     var nowWord: Word?
     var wordIdx: Int = 0
     var wordnotebook: WordNoteBook?
@@ -42,7 +43,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         
         if(wordNoteList.count == 0){
             //検索結果無し、エラーアラート出して戻させる
-            showAlert(mes: "検索結果がありません")
+            aa.showErrorAlert(vc: self, m: "検索結果がありません")
         }else{
             wordIdx = 0
             nowWord = wordNoteList[wordIdx].word
@@ -77,7 +78,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         }else if(sender.tag == 2){
             if((answerMeanTextField.text?.isEmpty)!){
                 //エラーアラート出させて戻る
-                showAlert(mes: "入力がありません")
+                aa.showErrorAlert(vc: self, m: "入力がありません")
             }else{
                 //入力したテキストを元にテーブル更新
                 table.reloadData()
@@ -206,21 +207,5 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         
         //アラートを表示
         present(alert, animated: true, completion: nil)
-    }
-    
-    
-    //アラートを出すメソッド
-    func showAlert(mes: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

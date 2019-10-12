@@ -14,6 +14,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBOutlet var sources: UIPickerView!
     @IBOutlet var sourcetext: UITextField!
+    let aa = AlertAction()
     var wordnote: WordNote?
 
     //訳文設定画面のパラメータ保持用変数
@@ -85,9 +86,9 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             //選択した出典から追加する　ボタン
             
             if (selectedsource?.sourceName.isEmpty)! || selectedsource?.sourceName == notSelectedSource {
-                showAlert(errormessage: "出典が選択されていません")
+                aa.showErrorAlert(vc: self, m: "出典が選択されていません")
             }else if((mean?.source.contains(selectedsource!))!){
-                showAlert(errormessage: "選択した出典は既に選択した単語データに登録されています")
+                aa.showErrorAlert(vc: self, m: "選択した出典は既に選択した単語データに登録されています")
             }else{
                 //Realm、出典を新規登録
                 let realm = try! Realm()
@@ -101,14 +102,14 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             //入力した出典を追加する　ボタン
             
             if (sourcetext.text?.isEmpty)! {
-                showAlert(errormessage: "登録する出典が入力されていません")
+                aa.showErrorAlert(vc: self, m: "登録する出典が入力されていません")
             }else{
                 let newsource = Source(value: ["sourceName" : sourcetext.text!,
                                                "createdDate": Date()])
                 if(sourcelist.contains(newsource)){
-                    showAlert(errormessage: "その出典は既に既存の出典データに登録されています")
+                    aa.showErrorAlert(vc: self, m: "その出典は既に既存の出典データに登録されています")
                 }else if((mean?.source.contains(newsource))!){
-                    showAlert(errormessage: "その出典は既に選択した単語データに登録されています")
+                    aa.showErrorAlert(vc: self, m: "その出典は既に選択した単語データに登録されています")
                 }else{
 
                     //Realm、出典を新規登録
@@ -135,19 +136,5 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
                 configureMeanVC.wordnote = wordnote
             }
         }
-    }
-    
-    func showAlert(errormessage: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: errormessage,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

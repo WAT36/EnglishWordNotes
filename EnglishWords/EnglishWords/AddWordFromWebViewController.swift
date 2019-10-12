@@ -22,6 +22,8 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     @IBOutlet var pronounce: UILabel!
     @IBOutlet var addWordAlert: UILabel!
     
+    let aa = AlertAction()
+    
     var inputword: String = ""
     var poslist: [String] = []
     var meanlist: [String] = []
@@ -95,11 +97,11 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             performSegue(withIdentifier: "returnConfigureWordNoteBookViewContoller",sender: nil)
         }else if(sender.tag == 1){
             if poslist.isEmpty || meanlist.isEmpty {
-                self.showAlert(mes: "登録する訳文がありません")
+                aa.showErrorAlert(vc: self, m: "登録する訳文がありません")
             }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
-                self.showAlert(mes: "単語が入力されていません")
+                aa.showErrorAlert(vc: self, m: "単語が入力されていません")
             }else if (self.checkRegisteredWordinWordNote(wordname: inputword)){
-                    self.showAlert(mes: "既に同じ英単語が単語帳に登録されています")
+                aa.showErrorAlert(vc: self, m: "既に同じ英単語が単語帳に登録されています")
             }else if(self.checkRegisteredWordinDictionary(wordname: inputword)){
                 self.addWordalreadyinDictionary()
                 performSegue(withIdentifier: "toConfigureWordNoteBookViewContoller",sender: nil)
@@ -109,7 +111,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
         }else if(sender.tag == 2){
             if wordtextField.text!.isEmpty {
-                self.showAlert(mes: "単語が入力されていません")
+                aa.showErrorAlert(vc: self, m: "単語が入力されていません")
             }else{
                 inputword = wordtextField.text!
                 inputwordname.text = wordtextField.text!
@@ -149,7 +151,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                             "registereddate": Date()])])
             }
         }else{
-            showAlert(mes: "入力された単語は辞書に無いか、複数登録されています")
+            aa.showErrorAlert(vc: self, m: "入力された単語は辞書に無いか、複数登録されています")
         }
     }
     
@@ -317,7 +319,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.meanlist.removeAll()
                 self.exEnlist.removeAll()
                 self.exJalist.removeAll()
-                self.showAlert(mes: "HTTPエラー")
+                self.aa.showErrorAlert(vc: self, m: "HTTPエラー")
             }
             
             if let html = response.result.value {
@@ -425,23 +427,8 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
             
             if( poslist.isEmpty || meanlist.isEmpty ){
-                showAlert(mes: "入力された単語では訳文が検出されませんでした")
+                aa.showErrorAlert(vc: self, m: "入力された単語では訳文が検出されませんでした")
             }
         }
-    }
-    
-    func showAlert(mes: String) {
-        
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

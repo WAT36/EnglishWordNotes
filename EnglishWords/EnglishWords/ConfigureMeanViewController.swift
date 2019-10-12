@@ -25,6 +25,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     @IBOutlet var exampleEn:UILabel!
     @IBOutlet var exampleJa:UILabel!
     
+    let aa = AlertAction()
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
     
     override func viewDidLoad() {
@@ -161,11 +162,11 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
             performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
         }else if(sender.tag == 1){
             if(mean?.word == nil){
-                showAlert(errormessage: "エラー：単語データがありません")
+                aa.showErrorAlert(vc: self, m: "単語データがありません")
             }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
-                showAlert(errormessage: "品詞が選択されていません")
+                aa.showErrorAlert(vc: self, m: "品詞が選択されていません")
             }else if (textView.text?.isEmpty)! {
-                showAlert(errormessage: "訳文が入力されていません")
+                aa.showErrorAlert(vc: self, m: "訳文が入力されていません")
             }else{
                 let realm: Realm = try! Realm()
                 if newMeanFlag! {
@@ -209,19 +210,5 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                 addSourceVC.wordnote = wordnote
             }
         }
-    }
-    
-    func showAlert(errormessage: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: errormessage,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

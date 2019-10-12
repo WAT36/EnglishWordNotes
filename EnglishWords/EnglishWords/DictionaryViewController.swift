@@ -27,6 +27,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     var wordlist: [Word] = []
     var selectedWord: Word?
     
+    let aa = AlertAction()
+    
     //セルの高さ
     let cellHeight: CGFloat = 60
     
@@ -151,7 +153,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",wnb!,selectedWord?.wordName)
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
-                    showAlert(errormessage: "既に同じ英単語が辞書にあります")
+                    aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
                 }else{
                     let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wnb!)
                     if cardresults.count == 0 {
@@ -239,20 +241,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         }else{
             return cellHeight
         }
-    }
-    
-    func showAlert(errormessage: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: errormessage,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
     
     func scrolltoTopofSelectedAlphabetCell(wordIndex: Int){

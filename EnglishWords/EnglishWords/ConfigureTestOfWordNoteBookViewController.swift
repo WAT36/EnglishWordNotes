@@ -19,6 +19,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     @IBOutlet var testForm: UISegmentedControl!
     @IBOutlet var questionNum: UITextField!
 
+    let aa = AlertAction()
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順"]
     var selectedorderlist: String?
     
@@ -89,7 +90,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             
             if(wordNoteList.count == 0){
                 //検索結果無し、エラーアラート出して戻させる
-                showAlert(mes: "検索結果がありません")
+                aa.showErrorAlert(vc: self, m: "検索結果がありません")
             }else if(testForm.selectedSegmentIndex == 0){
                 performSegue(withIdentifier: "toFourOptionTestFromConfigureTestOfWordNoteBookViewController", sender: nil)
             }else if(testForm.selectedSegmentIndex == 1){
@@ -112,7 +113,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             if(realm.objects(Word.self).count < 2){
                 //四択テストを行えるだけの単語の数が足りてない（少なくとも正解単語１つ、不正解単語１つの２つが必要）
                 //のでエラーアラート出して戻させる
-                showAlert(mes: "単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります")
+                aa.showErrorAlert(vc: self, m: "単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります")
             }else{
                 let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
                 fotwnbVC.wordnotebook = wordnotebook
@@ -163,20 +164,5 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
                 wordNoteList = wordNoteList.prefix(questionNum!).map{$0}
             }
         }
-    }
-    
-    //アラートを出すメソッド
-    func showAlert(mes: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

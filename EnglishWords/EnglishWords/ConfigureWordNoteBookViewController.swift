@@ -23,6 +23,8 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     var querykeylist: [String] = []
     var orderlist: [Bool] = []
     
+    
+    let aa = AlertAction()
     let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション","名称変更"]
     
     override func viewDidLoad() {
@@ -311,12 +313,12 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }
             
             guard !textFields.isEmpty else {
-                self.showAlert(mes: "単語帳名が入力されていません")
+                self.aa.showErrorAlert(vc: self, m: "単語帳名が入力されていません")
                 return
             }
             
             if (textFields.first?.text?.isEmpty)! {
-                self.showAlert(mes: "単語帳名が入力されていません")
+                self.aa.showErrorAlert(vc: self, m: "単語帳名が入力されていません")
                 return
             }
             
@@ -366,26 +368,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             for i in 0..<wnlist.count{
                 //WordNoteをUpdate (WordNoteには主キーがないので)
                 wnlist[i].wordnotebook?.wordNoteBookName = newWordNoteName
-                
-                
             }
         }
-
-
-    }
-    
-    func showAlert(mes: String) {
-        
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

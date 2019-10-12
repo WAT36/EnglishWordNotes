@@ -16,6 +16,8 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     @IBOutlet weak var meantextView: UITextView!
     @IBOutlet var pickerView: UIPickerView!
     
+    let aa = AlertAction()
+    
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedPartsOfSpeech: PartsofSpeech?
     var wordnotebook: WordNoteBook?
@@ -85,11 +87,11 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             performSegue(withIdentifier: "ReturnConfigureWordNoteBookViewContoller",sender: nil)
         }else if(sender.tag == 1){
             if wordtextField.text!.isEmpty {
-                showAlert(errormessage: "単語名が入力されていません")
+                aa.showErrorAlert(vc: self, m: "単語名が入力されていません")
             }else if meantextView.text!.isEmpty || meantextView.text == "(訳文を入力してください)" {
-                showAlert(errormessage: "訳文が入力されていません")
+                aa.showErrorAlert(vc: self, m: "訳文が入力されていません")
             }else if (selectedPartsOfSpeech?.partsOfSpeechName.isEmpty)! || selectedPartsOfSpeech?.partsOfSpeechName == notSelectedPartOfSpeech {
-                showAlert(errormessage: "品詞が選択されていません")
+                aa.showErrorAlert(vc: self, m: "品詞が選択されていません")
             }else{
                 
                 //Realm、既に同じ単語が登録されてないか確認
@@ -104,7 +106,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
-                    showAlert(errormessage: "既に同じ英単語が辞書にあります")
+                    aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
                 }else{
                     performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
                 }
@@ -144,19 +146,5 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定
             cwnbVC2.wordnotebook = wordnotebook
         }
-    }
-    
-    func showAlert(errormessage: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: errormessage,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }

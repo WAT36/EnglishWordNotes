@@ -17,6 +17,8 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var meanTextField: UITextField!
     @IBOutlet var meanSearchCondSegmentedControl: UISegmentedControl!
 
+    let aa = AlertAction()
+    
     //検索条件のリスト
     var querylist: [String] = []
     
@@ -45,7 +47,7 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
         }else if(sender.tag == 1){
             if(wordSearchCondSegmentedControl.selectedSegmentIndex == -1){
-                showAlert(mes: "単語の検索条件を指定してください")
+                aa.showErrorAlert(vc: self, m: "単語の検索条件を指定してください")
             }else{
                 //単語の検索条件作成
                 makeQuery(textfield: wordNameTextField,segmentedcontrol: wordSearchCondSegmentedControl,attribute: "word.wordName")
@@ -104,20 +106,5 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
             let query = attribute + " = " + textfield.text!
             querylist.append(query)
         }
-    }
-    
-    //アラートを出すメソッド
-    func showAlert(mes: String) {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "エラー",
-            message: mes,
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
     }
 }
