@@ -171,7 +171,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
-            testEndDispAlert()
+            aa.testEndDispAlert(vc: self, identifier: "returntoConfigureWordNoteBookViewController")
         }else{
             wordIdx += 1
             nowWord = wordNoteList[wordIdx].word
@@ -210,25 +210,5 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     func tableView(_ table: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
-    }
-    
-    // 最後の単語が終わった時にアラートを表示するメソッド
-    @IBAction func testEndDispAlert() {
-        
-        //アラートの設定
-        let alert: UIAlertController = UIAlertController(title: "テストが終了しました", message: "単語帳設定画面へ戻ります", preferredStyle:  UIAlertControllerStyle.alert)
-        
-        //OKボタン
-        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
-            (action: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: "returntoConfigureWordNoteBookViewController", sender: nil)
-        })
-        
-        //UIAlertControllerにActionを追加
-        alert.addAction(okAction)
-        
-        //アラートを表示
-        present(alert, animated: true, completion: nil)
     }
 }
