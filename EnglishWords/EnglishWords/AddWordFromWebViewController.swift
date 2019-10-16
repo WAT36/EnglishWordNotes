@@ -86,6 +86,23 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         return cell
     }
     
+    //指定したテーブル、セル毎にスワイプを有効、無効にする
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //選択したセルでスワイプすると削除される
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //選択したセルの訳文を削除
+            poslist.remove(at: indexPath.row)
+            meanlist.remove(at: indexPath.row)
+            exEnlist.remove(at: indexPath.row)
+            exJalist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
     // TableのCell の高さを１２０にする
     func tableView(_ table: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
