@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var sidetable:UITableView!
     
     var booknamelist: [WordNoteBook] = []
-    var wordnotebook: WordNoteBook?
+    let singleton :Singleton = Singleton.sharedInstance
     
     let sidebarlist = ["単語帳追加","品詞追加","マスター英単語帳","オプション"]
     
@@ -80,7 +80,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if table.tag == 0 {
             //選択したセルの単語帳を記録
-            wordnotebook = booknamelist[indexPath.row]
+            singleton.saveWordNoteBook(wnb: booknamelist[indexPath.row])
             // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: "toConfigureWordNoteBookViewController", sender: nil)
         }else{
@@ -102,9 +102,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (segue.identifier == "toSubViewController") {
             let _: AddWordNoteBookViewController = (segue.destination as? AddWordNoteBookViewController)!
         }else if (segue.identifier == "toConfigureWordNoteBookViewController"){
-            let subVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            //遷移先の画面に選択した単語帳を表示
-            subVC.wordnotebook = wordnotebook!
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "toAddPartsofSpeechViewController"){
             let _: AddPartsofSpeechViewController = (segue.destination as? AddPartsofSpeechViewController)!
         }else if (segue.identifier == "toDictionaryViewController"){
@@ -125,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //選択したセルの単語帳を記録
-            wordnotebook = booknamelist[indexPath.row]
+            let wordnotebook = booknamelist[indexPath.row]
             
             booknamelist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -136,9 +134,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             try! realm.write {
                 
                 //単語帳データから削除
-                realm.delete(realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId))
+                realm.delete(realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook.wordNoteBookId))
+
                 //単語帳マスタから削除
-                realm.delete(wordnotebook!)
+                realm.delete(wordnotebook)
             }
         }
     }
