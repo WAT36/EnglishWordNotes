@@ -211,12 +211,12 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordViewController") {
             let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            configureWordVC.selectedword = mean?.word //singleton適用によっては削除
+//            configureWordVC.selectedword = mean?.word //singleton適用によっては削除
             
             //singleton適用によっては削除
-            if wordnote != nil {
-                configureWordVC.wordnote = wordnote
-            }
+//            if wordnote != nil {
+//                configureWordVC.wordnote = wordnote
+//            }
         }else if(segue.identifier == "toAddSourceViewController"){
             let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
             addSourceVC.mean = mean //singleton適用によっては削除

@@ -14,6 +14,13 @@ class Singleton: NSObject {
     static let sharedInstance: Singleton = Singleton()
     private override init() {}
     
+    func allReset(){
+        nowdata.wordNoteBook = WordNoteBook()
+        nowdata.wordNote = WordNote()
+        nowdata.wordData = WordData()
+        nowdata.word = Word()
+    }
+    
     func saveWordNoteBook(wnb:WordNoteBook){
         nowdata.wordNoteBook = wnb
     }

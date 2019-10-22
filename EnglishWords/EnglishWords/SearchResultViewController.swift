@@ -104,7 +104,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }else if (segue.identifier == "fromSearchResultToConfigureWord") {
             let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            cwVC.selectedword = selectedWord // singleton適用によっては削除
+//            cwVC.selectedword = selectedWord // singleton適用によっては削除
         }
     }
 }

@@ -18,33 +18,17 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var table:UITableView!
     
     var worddatalist: [WordData] = []
-    var wordnote: WordNote? // singleton適用によっては削除
-    var selectedword: Word? // singleton適用によっては削除
-    var selectedmean: WordData? //singleton適用によっては削除
-//    var toremovemean: WordData?
-    
     let singleton :Singleton = Singleton.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //singleton適用によっては削除
-        if(wordnote != nil){
-            selectedword = wordnote?.word
-        }
-        
-        //singleton適用によっては削除
-//        wordnamelabel.text = selectedword?.wordName
-//        pronounce.text = selectedword?.pronounce
-//        level.text = selectedword?.level.description
-
         wordnamelabel.text = singleton.getWord().wordName
         pronounce.text = singleton.getWord().pronounce
         level.text = singleton.getWord().level.description
 
         //選択したWordからデータベース内に保存してあるWordDataを全て取得、meanidxでソート
         let realm: Realm = try! Realm()
-//        let results = realm.objects(WordData.self).filter("word.wordName == %@",selectedword?.wordName).sorted(byKeyPath: "meanidx") //singleton適用によっては削除
         let results = realm.objects(WordData.self).filter("word.wordName == %@",singleton.getWord().wordName).sorted(byKeyPath: "meanidx")
         worddatalist = Array(results)
         
@@ -102,10 +86,8 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func ButtonTouchDown(_ sender: Any) {
-//        if(wordnote != nil){ // singleton適用によっては削除
-        if(singleton.getWordNote().wordidx != 0){
+        if(singleton.getWordNote().wordidx != -1){
             performSegue(withIdentifier: "returnToConfigureWordNote",sender: nil)
-//        }else if(selectedword != nil){ // singleton適用によっては削除
         }else if(singleton.getWord().wordName != " "){
             performSegue(withIdentifier: "returnToDictionary",sender: nil)
         }
@@ -114,13 +96,11 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < worddatalist.count {
-            //選択したセルの単語を記録
-            selectedmean = worddatalist[indexPath.row]//singleton適用によっては削除
+            //選択したセルの訳文を記録
             singleton.saveWordData(wd: worddatalist[indexPath.row])
         }else{
-            //単語名だけを入れたもの
-            selectedmean = WordData(value: ["word": selectedword])//singleton適用によっては削除
-            singleton.saveWordData(wd: WordData(value: ["word": selectedword]))
+            //「訳文を追加する」を押した時。単語名だけを入れた訳文を設定
+            singleton.saveWordData(wd: WordData(value: ["word": singleton.getWord()]))
         }
         // ConfigureWordViewController へ遷移するために Segue を呼び出す
         performSegue(withIdentifier: "toConfigureMeanViewController", sender: nil)
@@ -130,20 +110,14 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordNote") {
-            let configureWordNoteVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-//            configureWordNoteVC.wordnotebook = wordnote?.wordnotebook //singleton適用によっては削除
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if (segue.identifier == "toConfigureMeanViewController"){
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
-            configureMeanVC.mean = selectedmean //singleton適用によっては削除
+            configureMeanVC.mean = singleton.getWordData() //singleton適用によっては削除
             
-            //singleton適用によっては削除
-            if wordnote != nil {
-                configureMeanVC.wordnote = wordnote
-            }
-            
-            if selectedmean?.partofspeech != nil {
+            if singleton.getWordData().partofspeech != nil {
                 configureMeanVC.newMeanFlag = false
             }else{
                 configureMeanVC.newMeanFlag = true
@@ -175,8 +149,6 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             try! realm.write {
                 realm.delete(toremovemean)
             }
-            
-//            toremovemean = nil  //singleton適用によっては削除
         }
     }
     

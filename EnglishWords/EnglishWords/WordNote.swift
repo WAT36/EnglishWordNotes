@@ -12,7 +12,7 @@ import RealmSwift
 class WordNote: Object {
     @objc dynamic var wordnotebook: WordNoteBook?
     @objc dynamic var word: Word?
-    @objc dynamic var wordidx: Int = 0
+    @objc dynamic var wordidx: Int = -1
     @objc dynamic var registereddate: Date = Date()
     
     

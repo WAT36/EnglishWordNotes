@@ -195,13 +195,17 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         addWordFlag = false
         if (segue.identifier == "fromDictionarytoConfigureWord") {
             let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            cwVC.selectedword = selectedWord // singleton適用によっては削除
+//            cwVC.selectedword = selectedWord // singleton適用によっては削除
+            //現選択単語帳リセット（単語設定->辞書に戻るために設定）
+            singleton.saveWordNoteBook(wnb: WordNoteBook())
+            singleton.saveWordNote(wn: WordNote())
         }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
 //            cwnbVC.wordnotebook = wnb //singleton適用によっては削除
         }else if (segue.identifier == "returnToViewController") {
             let _: ViewController = (segue.destination as? ViewController)!
             //singleton 全要素リセット？
+            singleton.allReset()
         }else if (segue.identifier == "toSearchWordViewController") {
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }
