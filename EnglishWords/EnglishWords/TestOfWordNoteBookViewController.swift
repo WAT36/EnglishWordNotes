@@ -22,9 +22,10 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet var answerMeanTextField:UITextField!
 
     let aa = AlertAction()
+    let singleton :Singleton = Singleton.sharedInstance
     var nowWord: Word?
     var wordIdx: Int = 0
-    var wordnotebook: WordNoteBook?
+    var wordnotebook: WordNoteBook? // singleton適用によっては削除
     var nowWordDataList: [WordData] = []
     
     var numOfClear: [Int] = []  //正答した訳文のインデックス
@@ -49,7 +50,8 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             nowWord = wordNoteList[wordIdx].word
 
             word.text = wordNoteList[wordIdx].word?.wordName
-            wordNote.text = wordnotebook?.wordNoteBookName
+//            wordNote.text = wordnotebook?.wordNoteBookName
+            wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
 
@@ -90,10 +92,10 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
             let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-            ctwnbVC.wordnotebook = wordnotebook
+            ctwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
         }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            cwnbVC.wordnotebook = wordnotebook
+//            cwnbVC.wordnotebook = wordnotebook // singleton適用によっては削除
         }
     }
     
@@ -169,7 +171,8 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             nowWord = wordNoteList[wordIdx].word
             
             word.text = wordNoteList[wordIdx].word?.wordName
-            wordNote.text = wordnotebook?.wordNoteBookName
+//            wordNote.text = wordnotebook?.wordNoteBookName
+            wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
             

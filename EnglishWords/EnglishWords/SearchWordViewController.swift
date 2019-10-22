@@ -55,7 +55,6 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
                 makeQuery(textfield: levelTextField,attribute: "word.level")
                 //訳文の検索条件作成
                 makeQuery(textfield: meanTextField,segmentedcontrol: meanSearchCondSegmentedControl,attribute: "mean")
-                print(querylist)
                 performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
             }
         }

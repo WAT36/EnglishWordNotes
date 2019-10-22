@@ -21,14 +21,15 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     //単語帳設定画面から来たことを示すフラグ
     var addWordFlag: Bool = false
     //単語帳設定画面からきた場合どの単語帳かも記録
-    var wnb: WordNoteBook?
+    var wnb: WordNoteBook? //singleton適用によっては削除
     var maxId: Int = -1
     
     var wordlist: [Word] = []
-    var selectedWord: Word?
+    var selectedWord: Word? // singleton適用によっては削除
     
     let aa = AlertAction()
-    
+    let singleton :Singleton = Singleton.sharedInstance
+
     //セルの高さ
     let cellHeight: CGFloat = 60
     
@@ -147,15 +148,17 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             if(addWordFlag){
                 //単語帳設定画面から遷移して単語を選択した時の動作
                 //選択したセルの単語を記録
-                selectedWord = wordlist[indexPath.row]
+                let selectedWord = wordlist[indexPath.row]
                 //Realm、既に同じ単語が登録されてないか確認
                 let realm = try! Realm()
-                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",wnb!,selectedWord?.wordName)
+//                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",wnb!,selectedWord?.wordName)
+                let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",singleton.getWordNoteBook(),selectedWord.wordName)
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
                     aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
                 }else{
-                    let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wnb!)
+//                    let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wnb!)
+                    let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
                     if cardresults.count == 0 {
                         maxId = 0
                     }else{
@@ -163,16 +166,21 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
 
                     try! realm.write {
-                            realm.add([WordNote(value: ["wordnotebook": wnb!,
-                                                        "word": selectedWord,
-                                                        "wordidx": (maxId + 1),
-                                                        "registereddate": Date()])])
+//                            realm.add([WordNote(value: ["wordnotebook": wnb!,
+//                                                        "word": selectedWord,
+//                                                        "wordidx": (maxId + 1),
+//                                                        "registereddate": Date()])])
+                        realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
+                                                    "word": selectedWord,
+                                                    "wordidx": (maxId + 1),
+                                                    "registereddate": Date()])])
                     }
                     performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
                 }
             }else{
                 //選択したセルの単語を記録
-                selectedWord = wordlist[indexPath.row]
+                selectedWord = wordlist[indexPath.row]//singleton適用によっては削除
+                singleton.saveWord(w: wordlist[indexPath.row])
                 // ConfigureWordViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
             }
@@ -184,19 +192,17 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        addWordFlag = false
         if (segue.identifier == "fromDictionarytoConfigureWord") {
-            addWordFlag = false
             let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            cwVC.selectedword = selectedWord
+            cwVC.selectedword = selectedWord // singleton適用によっては削除
         }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
-            addWordFlag = false
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            cwnbVC.wordnotebook = wnb
+//            cwnbVC.wordnotebook = wnb //singleton適用によっては削除
         }else if (segue.identifier == "returnToViewController") {
-            addWordFlag = false
             let _: ViewController = (segue.destination as? ViewController)!
+            //singleton 全要素リセット？
         }else if (segue.identifier == "toSearchWordViewController") {
-            addWordFlag = false
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }
     }

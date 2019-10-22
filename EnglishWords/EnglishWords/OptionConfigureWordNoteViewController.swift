@@ -15,7 +15,7 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     @IBOutlet var wordOrderby: UIPickerView!
     @IBOutlet var wordNameSegmentedControl: UISegmentedControl!
 
-    var wordnotebook: WordNoteBook?
+    var wordnotebook: WordNoteBook? // singleton適用によっては削除
     
     var querykeylist: [String] = []
     var orderlist: [Bool] = []
@@ -83,7 +83,7 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returnToConfigureWordNoteViewController") {
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            cwnbVC.wordnotebook = wordnotebook
+//            cwnbVC.wordnotebook = wordnotebook // singleton適用によっては削除
             cwnbVC.querykeylist = querykeylist
             cwnbVC.orderlist = orderlist
         }

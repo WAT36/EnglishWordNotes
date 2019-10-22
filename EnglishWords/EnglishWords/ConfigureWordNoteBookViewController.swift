@@ -18,21 +18,19 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     @IBOutlet var wordNum: UILabel!
 
     var wordlist: [WordNote] = []
-    var card: WordNote?
-    var wordnotebook: WordNoteBook?
     var querykeylist: [String] = []
     var orderlist: [Bool] = []
     
-    
     let aa = AlertAction()
+    let singleton :Singleton = Singleton.sharedInstance
     let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション","名称変更"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //データベース内に保存してあるWordNoteを全て取得
         let realm: Realm = try! Realm()
-        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
-        
+        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+
         for i in 0..<querykeylist.count{
             results = results.sorted(byKeyPath: querykeylist[i], ascending: orderlist[i])
         }
@@ -40,7 +38,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         wordlist = Array(results)
 
         //単語帳名ラベルに単語帳名を設定する
-        wordNote.text = wordnotebook?.wordNoteBookName
+        wordNote.text = singleton.getWordNoteBook().wordNoteBookName
         //登録語数ラベルに登録語数を設定する
         wordNum.text =  wordlist.count.description + "語"
 
@@ -118,7 +116,8 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }
         }else{
             //選択したセルの単語を記録
-            card = wordlist[indexPath.row]
+            singleton.saveWordNote(wn: wordlist[indexPath.row])
+            singleton.saveWord(w: wordlist[indexPath.row].word!)
             // ConfigureWordViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: "toConfigureWordViewController", sender: nil)
             
@@ -128,24 +127,18 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "toAddWordViewController") {
-            let addWordVC: AddWordViewController = (segue.destination as? AddWordViewController)!
-            addWordVC.wordnotebook = wordnotebook
+            let _: AddWordViewController = (segue.destination as? AddWordViewController)!
         }else if (segue.identifier == "toDictionaryViewController"){
             let addDVC: DictionaryViewController = (segue.destination as? DictionaryViewController)!
             addDVC.addWordFlag = true
-            addDVC.wnb = wordnotebook
         }else if (segue.identifier == "toConfigureWordViewController"){
-            let configWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            configWordVC.wordnote = card
+            let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }else if (segue.identifier == "toAddWordFromWebViewController"){
-            let awfwVC: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
-            awfwVC.wordnotebook = wordnotebook
+            let _: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
         }else if(segue.identifier == "toConfigureTestFromConfigureWordNoteViewController"){
-            let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-            ctwnbVC.wordnotebook = wordnotebook
+            let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
         }else if(segue.identifier == "toOption"){
-            let ocwnVC: OptionConfigureWordNoteViewController = (segue.destination as? OptionConfigureWordNoteViewController)!
-            ocwnVC.wordnotebook = wordnotebook
+            let _: OptionConfigureWordNoteViewController = (segue.destination as? OptionConfigureWordNoteViewController)!
         }
     }
     
@@ -162,7 +155,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //選択したセルの単語帳を記録
-            card = wordlist[indexPath.row]
+            let card = wordlist[indexPath.row]
             
             wordlist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -171,7 +164,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             let realm = try! Realm()
             
             try! realm.write {
-                realm.delete(card!)
+                realm.delete(card)
             }
         }
     }
@@ -348,20 +341,21 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         
         //データベース内に保存してあるWordNoteBookを全て取得
         let realm: Realm = try! Realm()
-        let results = realm.objects(WordNoteBook.self).filter("wordNoteBookId == %@",wordnotebook?.wordNoteBookId)
-        
+        let results = realm.objects(WordNoteBook.self).filter("wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId)
+
         
         try! realm.write {
-            wordnotebook = results.first
-            wordnotebook?.wordNoteBookName = newWordNoteName
+            let wnb = results.first
+            wnb?.wordNoteBookName = newWordNoteName
 
             //WordNoteBookをUpdate
             realm.create(WordNoteBook.self,
-                         value: wordnotebook,
+                         value: wnb!,
                          update: true)
         }
         
-        let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",wordnotebook?.wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+    let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+
         let wnlist: [WordNote] = Array(wnresults)
         
         try! realm.write {

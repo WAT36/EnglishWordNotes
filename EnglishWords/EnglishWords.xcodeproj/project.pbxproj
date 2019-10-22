@@ -20,6 +20,8 @@
 		24422F3022392CE4005BF6CE /* AddSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */; };
 		244234CB22D393F10029EC10 /* FourOptionTestOfWordNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244234CA22D393F10029EC10 /* FourOptionTestOfWordNoteViewController.swift */; };
 		2493D965235225D200651150 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493D964235225D200651150 /* AlertAction.swift */; };
+		2493D9672357581700651150 /* NowSelectedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493D9662357581700651150 /* NowSelectedData.swift */; };
+		2493D96923575CB400651150 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493D96823575CB400651150 /* Singleton.swift */; };
 		249D791822831F1F003496CD /* SearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D791722831F1F003496CD /* SearchWordViewController.swift */; };
 		249D791A228853EA003496CD /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D7919228853EA003496CD /* SearchResultViewController.swift */; };
 		249D791C228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */; };
@@ -91,6 +93,8 @@
 		24422F2F22392CE4005BF6CE /* AddSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSourceViewController.swift; sourceTree = "<group>"; };
 		244234CA22D393F10029EC10 /* FourOptionTestOfWordNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourOptionTestOfWordNoteViewController.swift; sourceTree = "<group>"; };
 		2493D964235225D200651150 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		2493D9662357581700651150 /* NowSelectedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowSelectedData.swift; sourceTree = "<group>"; };
+		2493D96823575CB400651150 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		249D791722831F1F003496CD /* SearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordViewController.swift; sourceTree = "<group>"; };
 		249D7919228853EA003496CD /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		249D791B228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTestOfWordNoteBookViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				24EA74A922CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift */,
 				244234CA22D393F10029EC10 /* FourOptionTestOfWordNoteViewController.swift */,
 				2493D964235225D200651150 /* AlertAction.swift */,
+				2493D9662357581700651150 /* NowSelectedData.swift */,
+				2493D96823575CB400651150 /* Singleton.swift */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 				243D265B21FF2D5B004719A3 /* PartsofSpeech.swift in Sources */,
 				243D265D21FF375E004719A3 /* AddWordViewController.swift in Sources */,
 				24A4572821EF6445002048A0 /* WordNoteBook.swift in Sources */,
+				2493D96923575CB400651150 /* Singleton.swift in Sources */,
 				249D791822831F1F003496CD /* SearchWordViewController.swift in Sources */,
 				24A4574121F0C148002048A0 /* WordNote.swift in Sources */,
 				243D26612206A605004719A3 /* ConfigureWordViewController.swift in Sources */,
@@ -524,6 +531,7 @@
 				2493D965235225D200651150 /* AlertAction.swift in Sources */,
 				243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */,
 				24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */,
+				2493D9672357581700651150 /* NowSelectedData.swift in Sources */,
 				24A4573D21F0BE94002048A0 /* WordData.swift in Sources */,
 				249D791A228853EA003496CD /* SearchResultViewController.swift in Sources */,
 				24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */,
