@@ -16,10 +16,8 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var sourcetext: UITextField!
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    var wordnote: WordNote? //singleton適用によっては削除
 
     //訳文設定画面のパラメータ保持用変数
-    var mean: WordData? //singleton適用によっては削除
     var newMeanFlag: Bool?
     
     var sourcelist: [Source] = []
@@ -88,14 +86,12 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             
             if (selectedsource?.sourceName.isEmpty)! || selectedsource?.sourceName == notSelectedSource {
                 aa.showErrorAlert(vc: self, m: "出典が選択されていません")
-//            }else if((mean?.source.contains(selectedsource!))!){
             }else if(singleton.getWordData().source.contains(selectedsource!)){
                 aa.showErrorAlert(vc: self, m: "選択した出典は既に選択した単語データに登録されています")
             }else{
                 //Realm、出典を新規登録
                 let realm = try! Realm()
                 try! realm.write {
-//                    mean?.source.append(selectedsource!)
                     singleton.getWordData().source.append(selectedsource!)
                 }
                 performSegue(withIdentifier: "returnToConfigureMeanViewController",sender: nil)
@@ -103,15 +99,16 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             
         }else if(sender.tag == 2){
             //入力した出典を追加する　ボタン
-            
             if (sourcetext.text?.isEmpty)! {
                 aa.showErrorAlert(vc: self, m: "登録する出典が入力されていません")
             }else{
                 let newsource = Source(value: ["sourceName" : sourcetext.text!,
                                                "createdDate": Date()])
-                if(sourcelist.contains(newsource)){
+                //入力した出典が既にSourceにあるかを確認する
+                let realm = try! Realm()
+                let results = realm.objects(Source.self).filter("sourceName == %@",sourcetext.text!)
+                if(results.count > 0){
                     aa.showErrorAlert(vc: self, m: "その出典は既に既存の出典データに登録されています")
-//                }else if((mean?.source.contains(newsource))!){
                 }else if(singleton.getWordData().source.contains(newsource)){
                     aa.showErrorAlert(vc: self, m: "その出典は既に選択した単語データに登録されています")
                 }else{
@@ -119,7 +116,6 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
                     //Realm、出典を新規登録
                     let realm = try! Realm()
                     try! realm.write {
-//                        mean?.source.append(newsource)
                         singleton.getWordData().source.append(newsource)
                         realm.add(newsource)
                     }
@@ -134,13 +130,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureMeanViewController") {
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
-//            configureMeanVC.mean = mean //singleton適用によっては削除
             configureMeanVC.newMeanFlag = newMeanFlag
-            
-//            //singleton適用によっては削除
-//            if wordnote != nil {
-//                configureMeanVC.wordnote = wordnote
-//            }
         }
     }
 }
