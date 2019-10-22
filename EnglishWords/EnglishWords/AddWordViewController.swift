@@ -21,7 +21,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedPartsOfSpeech: PartsofSpeech?
-    var wordnotebook: WordNoteBook? // singleton適用によっては削除
     
     var maxId:Int = -1
     
@@ -98,7 +97,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                 //Realm、既に同じ単語が登録されてないか確認
                 let realm = try! Realm()
                 let results = realm.objects(Word.self).filter("wordName = %@",wordtextField.text!)
-//                let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
                 let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
                 if cardresults.count == 0 {
                     maxId = 0
@@ -119,13 +117,9 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ReturnConfigureWordNoteBookViewContoller"){
-            let cwnbVC2: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定
-//            cwnbVC2.wordnotebook = wordnotebook //singleton適用によっては削除
-            
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
-            let cwnbVC2: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             //Realm、単語を登録
             let realm = try! Realm()
 
@@ -138,19 +132,11 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             try! realm.write {
                     realm.add([newword])
                     realm.add([newworddata])
-//                    realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
-//                                                "word": newword,
-//                                                "wordidx": maxId,
-//                                                "registereddate": Date()])])  singleton適用によっては削除
                     realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
                                                 "word": newword,
                                                 "wordidx": maxId,
                                                 "registereddate": Date()])])
-
             }
-            
-            // ConfigureWordNoteBookViewControllerのwordnotebookに設定している単語帳を設定
-//            cwnbVC2.wordnotebook = wordnotebook // singleton適用によっては削除
         }
     }
 }
