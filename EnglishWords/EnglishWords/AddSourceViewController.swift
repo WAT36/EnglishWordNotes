@@ -134,13 +134,13 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureMeanViewController") {
             let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
-            configureMeanVC.mean = mean //singleton適用によっては削除
+//            configureMeanVC.mean = mean //singleton適用によっては削除
             configureMeanVC.newMeanFlag = newMeanFlag
             
-            //singleton適用によっては削除
-            if wordnote != nil {
-                configureMeanVC.wordnote = wordnote
-            }
+//            //singleton適用によっては削除
+//            if wordnote != nil {
+//                configureMeanVC.wordnote = wordnote
+//            }
         }
     }
 }

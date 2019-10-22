@@ -12,12 +12,10 @@ import RealmSwift
 
 class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource  {
     
-    var mean: WordData? //singleton適用によっては削除
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedpartofspeech: PartsofSpeech?
     var newMeanFlag: Bool?
     var selectedsource: Source?
-    var wordnote: WordNote? //singleton適用によっては削除
     
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textView: UITextView!
@@ -49,7 +47,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         
         //テキストビューの初期値に登録されてある意味
         if !newMeanFlag! {
-//            textView.text = mean?.mean //singleton適用によっては削除
             textView.text = singleton.getWordData().mean
         }
         
@@ -58,8 +55,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         textView.layer.borderWidth = 1.0                    //幅
         
         //例文設定
-//        exampleEn.text = mean?.example_q
-//        exampleJa.text = mean?.example_a //singleton適用によっては削除
         exampleEn.text = singleton.getWordData().example_q
         exampleJa.text = singleton.getWordData().example_a
     }
@@ -100,7 +95,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     //Table Viewのセルの数を指定
     func tableView(_ table: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-//        return (mean?.source.count)! + 1 //singleton適用によっては削除
         return singleton.getWordData().source.count + 1
     }
     
@@ -111,10 +105,8 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         // tableCell の ID で UITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "tablecell",
                                              for: indexPath)
-//        if indexPath.row < (mean?.source.count)! { //singleton適用によっては削除
         if indexPath.row < singleton.getWordData().source.count {
             // Tag番号  で UILabel インスタンスの生成
-//            let oneworddata = mean!.source[indexPath.row].sourceName
             let oneworddata = singleton.getWordData().source[indexPath.row].sourceName
             let sourcename = cell.viewWithTag(1) as! UILabel
             sourcename.numberOfLines = 0
@@ -132,7 +124,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row < (mean?.source.count)! {
         if indexPath.row < singleton.getWordData().source.count {
             //出典のセルを選択してもとりあえず今は何もしないでおく
         }else{
@@ -143,7 +134,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     //テーブルでセル毎にスワイプを有効、無効にする
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        if indexPath.row < (mean?.source.count)! {
         if indexPath.row < singleton.getWordData().source.count {
             return true
         }else{
@@ -155,13 +145,11 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //選択したセルの出典を記録
-//            selectedsource = mean!.source[indexPath.row]
             selectedsource = singleton.getWordData().source[indexPath.row]
             //Realmデータベースからも削除
             let realm = try! Realm()
             try! realm.write {
-//                mean?.source.remove(at: (mean?.source.index(of: selectedsource!))!)
-                singleton.getWordData().source.remove(at: (mean?.source.index(of: selectedsource!))!)
+                singleton.getWordData().source.remove(at: (singleton.getWordData().source.index(of: selectedsource!))!)
             }
             //テーブルから削除
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -172,7 +160,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
         }else if(sender.tag == 1){
-//            if(mean?.word == nil){
             if(singleton.getWord().wordName == " "){
                 aa.showErrorAlert(vc: self, m: "単語データがありません")
             }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
@@ -183,9 +170,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                 let realm: Realm = try! Realm()
                 if newMeanFlag! {
                     try! realm.write {
-//                        let newWordData = WordData(value: ["word" : mean?.word!,
-//                                                               "partofspeech" : selectedpartofspeech!,
-//                                                               "mean" : textView.text!])
                         let newWordData = WordData(value: ["word" : singleton.getWordData().word!,
                                                            "partofspeech" : selectedpartofspeech!,
                                                            "mean" : textView.text!])
@@ -196,7 +180,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     //編集した意味でWordDataを更新
                     try! realm.write{
                         //上書き更新
-//                        let toupdatemean = realm.objects(WordData.self).filter("word == %@",mean?.word! as Any).filter("meanidx == %@",mean?.meanidx as Any).first
                         let toupdatemean = realm.objects(WordData.self).filter("word == %@",singleton.getWordData().word as Any).filter("meanidx == %@",singleton.getWordData().meanidx as Any).first
                         toupdatemean!.partofspeech = selectedpartofspeech
                         toupdatemean!.mean = textView.text!
@@ -210,22 +193,10 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordViewController") {
-            let configureWordVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-//            configureWordVC.selectedword = mean?.word //singleton適用によっては削除
-            
-            //singleton適用によっては削除
-//            if wordnote != nil {
-//                configureWordVC.wordnote = wordnote
-//            }
+            let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }else if(segue.identifier == "toAddSourceViewController"){
             let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
-            addSourceVC.mean = mean //singleton適用によっては削除
             addSourceVC.newMeanFlag = newMeanFlag
-            
-            //singleton適用によっては削除
-            if wordnote != nil {
-                addSourceVC.wordnote = wordnote
-            }
         }
     }
 }

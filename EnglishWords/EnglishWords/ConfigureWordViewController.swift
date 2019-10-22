@@ -114,9 +114,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if (segue.identifier == "toConfigureMeanViewController"){
-            let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
-            configureMeanVC.mean = singleton.getWordData() //singleton適用によっては削除
-            
+            let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!            
             if singleton.getWordData().partofspeech != nil {
                 configureMeanVC.newMeanFlag = false
             }else{
