@@ -18,9 +18,6 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     var wordlist: [Word] = []
     //検索結果の単語リスト
     var worddatalist: [WordData] = []
-
-    //選択した単語
-    var selectedWord: Word? //singleton適用によっては削除
     
     @IBOutlet var table:UITableView!
 
@@ -91,7 +88,6 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         //選択したセルの単語を記録
-        selectedWord = wordlist[indexPath.row] // singleton適用によっては削除
         singleton.saveWord(w: wordlist[indexPath.row])
         // ConfigureWordViewController へ遷移するために Segue を呼び出す
         performSegue(withIdentifier: "fromSearchResultToConfigureWord", sender: nil)
@@ -103,8 +99,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         if (segue.identifier == "returnSearchWordViewController") {
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }else if (segue.identifier == "fromSearchResultToConfigureWord") {
-            let cwVC: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-//            cwVC.selectedword = selectedWord // singleton適用によっては削除
+            let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }
     }
 }

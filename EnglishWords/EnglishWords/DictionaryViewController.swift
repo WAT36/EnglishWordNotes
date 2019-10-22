@@ -58,6 +58,10 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
+        //現選択単語帳リセット（単語設定->辞書に戻るために設定）
+        singleton.saveWordNoteBook(wnb: WordNoteBook())
+        singleton.saveWordNote(wn: WordNote())
+
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
         sidetable.rowHeight=UITableViewAutomaticDimension
@@ -186,9 +190,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         addWordFlag = false
         if (segue.identifier == "fromDictionarytoConfigureWord") {
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-            //現選択単語帳リセット（単語設定->辞書に戻るために設定）
-            singleton.saveWordNoteBook(wnb: WordNoteBook())
-            singleton.saveWordNote(wn: WordNote())
         }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "returnToViewController") {
