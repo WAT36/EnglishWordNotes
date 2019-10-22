@@ -32,8 +32,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     var exJalist: [String] = []
     var addSourceSwitch: Bool = false
     
-    var wordnotebook: WordNoteBook? // singleton適用によっては削除
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -141,11 +139,9 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returnConfigureWordNoteBookViewContoller") {
-            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-//            cwnbVC.wordnotebook = wordnotebook // singleton適用によっては削除
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         } else if (segue.identifier == "toConfigureWordNoteBookViewContoller") {
-            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-//            cwnbVC.wordnotebook = wordnotebook // singleton適用によっては削除
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
     
@@ -154,7 +150,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         let realm = try! Realm()
         let addWord = realm.objects(Word.self).filter("wordName == %@",inputword)
         if(addWord.count == 1){
-//            let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
             let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
             var maxId: Int = -1
             if cardresults.count == 0 {
@@ -164,10 +159,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
         
             try! realm.write {
-//                realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
-//                                            "word": addWord.first!,
-//                                            "wordidx": (maxId + 1),
-//                                            "registereddate": Date()])])
                 realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
                                             "word": addWord.first!,
                                             "wordidx": (maxId + 1),
@@ -202,7 +193,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         
         //現単語帳に登録するための登録番号を取得
         var maxId: Int
-//        let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",wordnotebook!)
         let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
         if cardresults.count == 0 {
             maxId = 0
@@ -212,10 +202,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         
         try! realm.write {
             realm.add([newword])
-//            realm.add([WordNote(value: ["wordnotebook": wordnotebook!,
-//                                        "word": newword,
-//                                        "wordidx": (maxId + 1),
-//                                        "registereddate": Date()])])
             realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
                                         "word": newword,
                                         "wordidx": (maxId + 1),
@@ -229,7 +215,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             //出典に単語帳名を追加する場合
             
             //追加する出典（単語帳名）
-//            let wnbn = wordnotebook?.wordNoteBookName
             let wnbn = singleton.getWordNoteBook().wordNoteBookName
             source = Source(value: ["sourceName" : wnbn,
                                     "createdDate": Date()])
@@ -290,7 +275,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     func checkRegisteredWordinWordNote(wordname: String) -> Bool{
         //Realm
         let realm = try! Realm()
-//        let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookName = %@",wordnotebook?.wordNoteBookName).filter("word.wordName = %@",wordname) //singleton適用によっては削除
         let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookName = %@",singleton.getWordNoteBook().wordNoteBookName).filter("word.wordName = %@",wordname)
         if results.count > 0 {
             return true
