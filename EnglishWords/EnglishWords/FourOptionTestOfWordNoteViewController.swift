@@ -97,7 +97,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
             let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-            ctwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
+//            ctwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
         }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
             let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
 //            cwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除

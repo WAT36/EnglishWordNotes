@@ -25,8 +25,6 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順"]
     var selectedorderlist: String?
     
-    var wordnotebook: WordNoteBook? //singleton適用によっては削除
-    
     //検索結果の単語リスト
     var wordNoteList: [WordNote] = []
     
@@ -104,11 +102,9 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returnToConfigureWordNoteViewController") {
-            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-//            cwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if(segue.identifier == "toTestFromConfigureTestOfWordNoteBookViewController"){
             let twnbVC: TestOfWordNoteBookViewController = (segue.destination as? TestOfWordNoteBookViewController)!
-            twnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
             twnbVC.wordNoteList = wordNoteList
         }else if(segue.identifier == "toFourOptionTestFromConfigureTestOfWordNoteBookViewController"){
             let realm: Realm = try! Realm()
@@ -118,7 +114,6 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
                 aa.showErrorAlert(vc: self, m: "単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります")
             }else{
                 let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
-                fotwnbVC.wordnotebook = wordnotebook // singleton適用によっては削除
                 fotwnbVC.wordNoteList = wordNoteList
             }
         }
@@ -129,7 +124,6 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
         
         //データベース内に保存してあるWordnoteを取得し、検索条件のリストで絞る
         let realm: Realm = try! Realm()
-//        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",wordnotebook?.wordNoteBookId)
         var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId = %@",singleton.getWordNoteBook().wordNoteBookId)
 
         //入力されたレベルの間の単語のみ抽出（入力なければ無視）
