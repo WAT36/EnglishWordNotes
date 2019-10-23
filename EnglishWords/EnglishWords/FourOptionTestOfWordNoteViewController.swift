@@ -24,7 +24,6 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     let singleton :Singleton = Singleton.sharedInstance
     var nowWord: Word?
     var wordIdx: Int = 0
-    var wordnotebook: WordNoteBook? // singleton適用によっては削除
     var nowWordDataList: [WordData] = []
 
     //検索結果の単語リスト(テスト設定画面で取得)
@@ -54,7 +53,6 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
             nowWord = wordNoteList[wordIdx].word
             
             word.text = wordNoteList[wordIdx].word?.wordName
-//            wordNote.text = wordnotebook?.wordNoteBookName
             wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
@@ -96,11 +94,9 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
-            let ctwnbVC: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-//            ctwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
+            let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
         }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
-            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-//            cwnbVC.wordnotebook = wordnotebook //singleton適用によっては削除
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
     
@@ -179,7 +175,6 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
             nowWord = wordNoteList[wordIdx].word
             
             word.text = wordNoteList[wordIdx].word?.wordName
-//            wordNote.text = wordnotebook?.wordNoteBookName
             wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
             rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
