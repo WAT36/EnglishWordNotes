@@ -55,6 +55,10 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }
     }
     
+    //ボタンタップ時の動作
+    @IBAction func ButtonTouchDown(_ sender: Any) {
+        performSegue(withIdentifier: "returnToTop",sender: nil)
+    }
     
     //各セルの要素を設定する
     func tableView(_ table: UITableView,
@@ -120,7 +124,11 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == "toAddWordViewController") {
+        if(segue.identifier == "returnToTop"){
+            //現選択単語帳の情報を削除
+            singleton.allReset()
+            let _: ViewController = (segue.destination as? ViewController)!
+        }else if(segue.identifier == "toAddWordViewController") {
             let _: AddWordViewController = (segue.destination as? AddWordViewController)!
         }else if (segue.identifier == "toDictionaryViewController"){
             let addDVC: DictionaryViewController = (segue.destination as? DictionaryViewController)!
