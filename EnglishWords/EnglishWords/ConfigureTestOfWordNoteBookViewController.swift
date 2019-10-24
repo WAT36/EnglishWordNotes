@@ -22,7 +22,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
 
-    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順"]
+    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順","回答数順"]
     var selectedorderlist: String?
     
     //検索結果の単語リスト
@@ -148,6 +148,8 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             results = results.sorted(byKeyPath: "word.level", ascending: isAsc)
         case orderlist[4]:
             results = results.sorted(byKeyPath: "word.accuracyRate", ascending: isAsc)
+        case orderlist[5]:
+            results = results.sorted(byKeyPath: "word.numOfAnswer", ascending: isAsc)
         default:
             print()
         }
