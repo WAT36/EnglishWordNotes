@@ -18,8 +18,6 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     @IBOutlet var wordNum: UILabel!
 
     var wordlist: [WordNote] = []
-    var querykeylist: [String] = []
-    var orderlist: [Bool] = []
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
@@ -29,11 +27,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         super.viewDidLoad()
         //データベース内に保存してあるWordNoteを全て取得
         let realm: Realm = try! Realm()
-        var results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
-
-        for i in 0..<querykeylist.count{
-            results = results.sorted(byKeyPath: querykeylist[i], ascending: orderlist[i])
-        }
+        let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: singleton.getWordNoteSortBy(), ascending: singleton.getWordNoteSortAscend())
         
         wordlist = Array(results)
 
@@ -354,7 +348,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
                          update: true)
         }
         
-    let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: "wordidx", ascending: true)
+        let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: singleton.getWordNoteSortBy(), ascending: true)
 
         let wnlist: [WordNote] = Array(wnresults)
         

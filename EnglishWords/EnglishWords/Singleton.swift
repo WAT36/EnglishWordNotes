@@ -19,6 +19,9 @@ class Singleton: NSObject {
         nowdata.wordNote = WordNote()
         nowdata.wordData = WordData()
         nowdata.word = Word()
+        
+        nowdata.wordNoteSortBy = "word.wordName"
+        nowdata.wordNoteSortAscend = true
     }
     
     func saveWordNoteBook(wnb:WordNoteBook){
@@ -51,5 +54,21 @@ class Singleton: NSObject {
     
     func getWordData() -> WordData{
         return nowdata.wordData
+    }
+    
+    func saveWordNoteSortBy(wnsb:String){
+        nowdata.wordNoteSortBy = wnsb
+    }
+    
+    func getWordNoteSortBy() -> String{
+        return nowdata.wordNoteSortBy
+    }
+    
+    func saveWordNoteSortAscend(wnsa:Bool){
+        nowdata.wordNoteSortAscend = wnsa
+    }
+    
+    func getWordNoteSortAscend() -> Bool{
+        return nowdata.wordNoteSortAscend
     }
 }

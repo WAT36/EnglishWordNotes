@@ -15,8 +15,7 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     @IBOutlet var wordOrderby: UIPickerView!
     @IBOutlet var wordNameSegmentedControl: UISegmentedControl!
 
-    var querykeylist: [String] = []
-    var orderlist: [Bool] = []
+    let singleton :Singleton = Singleton.sharedInstance
 
     let sortByList: [String] = ["名前順","登録順","レベル順","正解率順"]
     let sortAttributeByList: [String] = ["word.wordName","wordidx","word.level","word.accuracyRate"]
@@ -33,7 +32,9 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
         wordNameSegmentedControl.selectedSegmentIndex = 1
         // ボタン選択時にボタンを選択状態にするかどうかの設定
         wordNameSegmentedControl.isMomentary = false
-
+        
+        // 現並び順の設定
+        selectedSortBy = singleton.getWordNoteSortBy()
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +73,8 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 1){
-            makeQuery(segmentedcontrol: wordNameSegmentedControl, attribute: selectedSortBy)
+            singleton.saveWordNoteSortBy(wnsb: selectedSortBy)
+            singleton.saveWordNoteSortAscend(wnsa: (wordNameSegmentedControl.selectedSegmentIndex == 0))
         }
         performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
     }
@@ -80,25 +82,7 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "returnToConfigureWordNoteViewController") {
-            let cwnbVC: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            cwnbVC.querykeylist = querykeylist
-            cwnbVC.orderlist = orderlist
+            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
-    
-    //指定された条件をもとにRealmへの検索条件を作成するメソッド
-    func makeQuery(segmentedcontrol: UISegmentedControl,attribute: String){
-        //ソート条件を作る
-            switch segmentedcontrol.selectedSegmentIndex {
-            case 0: //昇順
-                querykeylist.append(attribute)
-                orderlist.append(true)
-            case 1: //降順
-                querykeylist.append(attribute)
-                orderlist.append(false)
-            default:
-                break
-        }
-    }
-    
 }
