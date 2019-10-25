@@ -110,6 +110,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordNote") {
+            //現在選択している単語の情報を削除
+            singleton.saveWordNote(wn: WordNote())
+            singleton.saveWord(w: Word())
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!

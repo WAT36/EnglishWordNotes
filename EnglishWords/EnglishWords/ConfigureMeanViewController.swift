@@ -193,6 +193,8 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureWordViewController") {
+            //現在選択している訳文の情報を削除
+            singleton.saveWordData(wd: WordData())
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }else if(segue.identifier == "toAddSourceViewController"){
             let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
