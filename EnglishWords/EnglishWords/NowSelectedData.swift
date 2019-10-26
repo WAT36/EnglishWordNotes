@@ -18,6 +18,8 @@ class NowSelectedDataManager {
     var wordNoteSortBy: String      //単語帳ソート条件
     var wordNoteSortAscend: Bool    //単語帳ソート条件（昇降順）
 
+    var isAddingNewWordData: Bool   //新しい訳文を追加する状態か（訳文設定画面で利用する）
+    
     init(){
         self.wordNoteBook = WordNoteBook()
         self.wordNote = WordNote()
@@ -25,5 +27,6 @@ class NowSelectedDataManager {
         self.word = Word()
         self.wordNoteSortBy = "word.wordName"   //デフォルトのソート条件
         self.wordNoteSortAscend = true          //デフォルトのソート条件
+        self.isAddingNewWordData = false
     }
 }

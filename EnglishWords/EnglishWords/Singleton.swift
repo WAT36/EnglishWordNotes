@@ -22,6 +22,8 @@ class Singleton: NSObject {
         
         nowdata.wordNoteSortBy = "word.wordName"
         nowdata.wordNoteSortAscend = true
+        
+        nowdata.isAddingNewWordData = false
     }
     
     func saveWordNoteBook(wnb:WordNoteBook){
@@ -70,5 +72,13 @@ class Singleton: NSObject {
     
     func getWordNoteSortAscend() -> Bool{
         return nowdata.wordNoteSortAscend
+    }
+    
+    func saveIsAddingNewWordData(ianwd:Bool){
+        nowdata.isAddingNewWordData = ianwd
+    }
+    
+    func getIsAddingNewWordData() -> Bool{
+        return nowdata.isAddingNewWordData
     }
 }

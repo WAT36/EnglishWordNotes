@@ -17,9 +17,6 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
 
-    //訳文設定画面のパラメータ保持用変数
-    var newMeanFlag: Bool?
-    
     var sourcelist: [Source] = []
     var selectedsource: Source?
     
@@ -129,8 +126,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "returnToConfigureMeanViewController") {
-            let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
-            configureMeanVC.newMeanFlag = newMeanFlag
+            let _: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
         }
     }
 }

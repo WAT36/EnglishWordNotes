@@ -14,7 +14,6 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedpartofspeech: PartsofSpeech?
-    var newMeanFlag: Bool?
     var selectedsource: Source?
     
     @IBOutlet var partofspeeches: UIPickerView!
@@ -46,7 +45,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         selectedpartofspeech = partsofspeechlist[0]
         
         //テキストビューの初期値に登録されてある意味
-        if !newMeanFlag! {
+        if !singleton.getIsAddingNewWordData() {
             textView.text = singleton.getWordData().mean
         }
         
@@ -168,7 +167,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                 aa.showErrorAlert(vc: self, m: "訳文が入力されていません")
             }else{
                 let realm: Realm = try! Realm()
-                if newMeanFlag! {
+                if singleton.getIsAddingNewWordData() {
                     try! realm.write {
                         let newWordData = WordData(value: ["word" : singleton.getWordData().word!,
                                                            "partofspeech" : selectedpartofspeech!,
@@ -195,10 +194,11 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         if (segue.identifier == "returnToConfigureWordViewController") {
             //現在選択している訳文の情報を削除
             singleton.saveWordData(wd: WordData())
+            //訳文新規追加かを示すsingleton中のフラグをリセット
+            singleton.saveIsAddingNewWordData(ianwd: false)
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }else if(segue.identifier == "toAddSourceViewController"){
-            let addSourceVC: AddSourceViewController = (segue.destination as? AddSourceViewController)!
-            addSourceVC.newMeanFlag = newMeanFlag
+            let _: AddSourceViewController = (segue.destination as? AddSourceViewController)!
         }
     }
 }

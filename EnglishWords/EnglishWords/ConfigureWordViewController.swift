@@ -117,11 +117,11 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
         }else if (segue.identifier == "returnToDictionary"){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }else if (segue.identifier == "toConfigureMeanViewController"){
-            let configureMeanVC: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!            
+            let _: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!            
             if singleton.getWordData().partofspeech != nil {
-                configureMeanVC.newMeanFlag = false
+                singleton.saveIsAddingNewWordData(ianwd: false)
             }else{
-                configureMeanVC.newMeanFlag = true
+                singleton.saveIsAddingNewWordData(ianwd: true)
             }
         }
     }
