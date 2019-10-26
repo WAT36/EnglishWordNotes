@@ -17,10 +17,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //登録語数
     @IBOutlet var wordNum: UILabel!
-    
-    //単語帳設定画面から来たことを示すフラグ
-    var addWordFlag: Bool = false
-    
+        
     var wordlist: [Word] = []
     
     let aa = AlertAction()
@@ -56,10 +53,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        //現選択単語帳リセット（単語設定->辞書に戻るために設定）
-        singleton.saveWordNoteBook(wnb: WordNoteBook())
-        singleton.saveWordNote(wn: WordNote())
-
         //sidetableのラベルを折り返す設定
         sidetable.estimatedRowHeight=120
         sidetable.rowHeight=UITableViewAutomaticDimension
@@ -76,7 +69,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            if(addWordFlag){
+            if(singleton.getAddWordFromDictionary()){
+                singleton.saveAddWordFromDictionary(awfd: false)
                 performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
             }else{
                 performSegue(withIdentifier: "returnToViewController",sender: nil)
@@ -145,7 +139,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if table.tag == 0 {
-            if(addWordFlag){
+            if(singleton.getAddWordFromDictionary()){
                 //単語帳設定画面から遷移して単語を選択した時の動作
                 //選択したセルの単語を記録
                 let selectedWord = wordlist[indexPath.row]
@@ -186,11 +180,15 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        addWordFlag = false
         if (segue.identifier == "fromDictionarytoConfigureWord") {
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
+            //現選択単語帳リセット（単語設定->辞書に戻るために設定）
+            singleton.saveWordNoteBook(wnb: WordNoteBook())
+            singleton.saveWordNote(wn: WordNote())
         }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
+            //フラグリセットして単語帳設定画面へ戻る
+            singleton.saveAddWordFromDictionary(awfd: false)
         }else if (segue.identifier == "returnToViewController") {
             let _: ViewController = (segue.destination as? ViewController)!
             //トップ画面に戻る->singleton全要素リセット

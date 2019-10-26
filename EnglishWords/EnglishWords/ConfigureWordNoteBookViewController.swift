@@ -131,8 +131,8 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         }else if(segue.identifier == "toAddWordViewController") {
             let _: AddWordViewController = (segue.destination as? AddWordViewController)!
         }else if (segue.identifier == "toDictionaryViewController"){
-            let addDVC: DictionaryViewController = (segue.destination as? DictionaryViewController)!
-            addDVC.addWordFlag = true
+            let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
+            singleton.saveAddWordFromDictionary(awfd: true)
         }else if (segue.identifier == "toConfigureWordViewController"){
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }else if (segue.identifier == "toAddWordFromWebViewController"){
