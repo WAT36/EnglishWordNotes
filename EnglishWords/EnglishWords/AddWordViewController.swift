@@ -22,8 +22,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     var partsofspeechlist: [PartsofSpeech] = []
     var selectedPartsOfSpeech: PartsofSpeech?
     
-    var maxId:Int = -1
-    
     let notSelectedPartOfSpeech: String = "-品詞を選択してください-"
     
     override func viewDidLoad() {
@@ -98,6 +96,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                 let realm = try! Realm()
                 let results = realm.objects(Word.self).filter("wordName = %@",wordtextField.text!)
                 let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
+                var maxId:Int = -1
                 if cardresults.count == 0 {
                     maxId = 0
                 }else{
@@ -108,6 +107,23 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     //既に同じ英単語が辞書に登録されているためエラー出させる
                     aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
                 }else{
+                    //Realm、単語を登録
+                    let realm = try! Realm()
+                    
+                    let newword = Word(value: ["wordName": wordtextField.text!,
+                                               "createdDate": Date()])
+                    let newworddata = WordData(value: ["word": newword,
+                                                       "partofspeech": selectedPartsOfSpeech!,
+                                                       "mean": meantextView.text!,
+                                                       "example": "例文(未実装)"])
+                    try! realm.write {
+                        realm.add([newword])
+                        realm.add([newworddata])
+                        realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
+                                                    "word": newword,
+                                                    "wordidx": maxId,
+                                                    "registereddate": Date()])])
+                    }
                     performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
                 }
             }
@@ -120,23 +136,6 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }else if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-            //Realm、単語を登録
-            let realm = try! Realm()
-
-            let newword = Word(value: ["wordName": wordtextField.text!,
-                                        "createdDate": Date()])
-            let newworddata = WordData(value: ["word": newword,
-                                                "partofspeech": selectedPartsOfSpeech!,
-                                                "mean": meantextView.text!,
-                                                "example": "例文(未実装)"])
-            try! realm.write {
-                    realm.add([newword])
-                    realm.add([newworddata])
-                    realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
-                                                "word": newword,
-                                                "wordidx": maxId,
-                                                "registereddate": Date()])])
-            }
         }
     }
 }

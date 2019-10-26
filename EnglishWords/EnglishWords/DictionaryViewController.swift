@@ -20,8 +20,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //単語帳設定画面から来たことを示すフラグ
     var addWordFlag: Bool = false
-    //単語帳設定画面からきた場合どの単語帳かも記録
-    var maxId: Int = -1
     
     var wordlist: [Word] = []
     
@@ -159,6 +157,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                     aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
                 }else{
                     let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
+                    var maxId: Int = -1
                     if cardresults.count == 0 {
                         maxId = 0
                     }else{

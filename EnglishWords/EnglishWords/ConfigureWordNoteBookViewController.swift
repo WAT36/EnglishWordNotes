@@ -25,7 +25,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //データベース内に保存してあるWordNoteを全て取得
+        //データベース内に保存してある、現在の単語帳のWordNoteを全て取得
         let realm: Realm = try! Realm()
         let results = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: singleton.getWordNoteSortBy(), ascending: singleton.getWordNoteSortAscend())
         
