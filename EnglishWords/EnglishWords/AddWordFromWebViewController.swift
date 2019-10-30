@@ -163,6 +163,20 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                             "word": addWord.first!,
                                             "wordidx": (maxId + 1),
                                             "registereddate": Date()])])
+                
+                //「出典に単語帳名を追加する」スイッチがついていたら単語帳名を出典に追加させる
+                if(uiswitch.isOn){
+                    //出典のデータ
+                    let source = Source(value: ["sourceName": singleton.getWordNoteBook().wordNoteBookName,
+                                                "createdDate": Date()])
+                    //単語のWordData取得
+                    var results: [WordData] = Array(realm.objects(WordData.self).filter("word.wordName == %@",inputword))
+                    //WordData一つ一つに出典追加
+                    //TODO 一括更新する方法は無いか？
+                    for i in 0..<results.count{
+                        results[i].source.append(source)
+                    }
+                }
             }
         }else{
             aa.showErrorAlert(vc: self, m: "入力された単語は辞書に無いか、複数登録されています")
