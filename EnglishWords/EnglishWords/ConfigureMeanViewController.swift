@@ -19,8 +19,8 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     @IBOutlet var partofspeeches: UIPickerView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var sourcetable:UITableView!
-    @IBOutlet var exampleEn:UILabel!
-    @IBOutlet var exampleJa:UILabel!
+    @IBOutlet var exampleEn:UITextView!
+    @IBOutlet var exampleJa:UITextView!
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
@@ -53,9 +53,13 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         textView.layer.borderColor = UIColor.black.cgColor  //色
         textView.layer.borderWidth = 1.0                    //幅
         
-        //例文設定
+        //例文設定・テキストビューの枠線などの設定
         exampleEn.text = singleton.getWordData().example_q
         exampleJa.text = singleton.getWordData().example_a
+        exampleEn.layer.borderColor = UIColor.black.cgColor  //色
+        exampleEn.layer.borderWidth = 1.0                    //幅
+        exampleJa.layer.borderColor = UIColor.black.cgColor  //色
+        exampleJa.layer.borderWidth = 1.0                    //幅
     }
     
     override func didReceiveMemoryWarning() {
@@ -171,7 +175,9 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                     try! realm.write {
                         let newWordData = WordData(value: ["word" : singleton.getWordData().word!,
                                                            "partofspeech" : selectedpartofspeech!,
-                                                           "mean" : textView.text!])
+                                                           "mean" : textView.text!.trimmingCharacters(in: .whitespaces),
+                                                           "example_q" : exampleEn.text!.trimmingCharacters(in: .whitespaces),
+                                                           "example_a" : exampleJa.text!.trimmingCharacters(in: .whitespaces)])
                         realm.add(newWordData)
                         performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                     }
@@ -181,7 +187,9 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                         //上書き更新
                         let toupdatemean = realm.objects(WordData.self).filter("word == %@",singleton.getWordData().word as Any).filter("meanidx == %@",singleton.getWordData().meanidx as Any).first
                         toupdatemean!.partofspeech = selectedpartofspeech
-                        toupdatemean!.mean = textView.text!
+                        toupdatemean!.mean = textView.text!.trimmingCharacters(in: .whitespaces)
+                        toupdatemean!.example_q = exampleEn.text!.trimmingCharacters(in: .whitespaces)
+                        toupdatemean!.example_a = exampleJa.text!.trimmingCharacters(in: .whitespaces)
                     }
                     performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
                 }
