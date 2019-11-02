@@ -115,7 +115,8 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     let newworddata = WordData(value: ["word": newword,
                                                        "partofspeech": selectedPartsOfSpeech!,
                                                        "mean": meantextView.text!,
-                                                       "example": "例文(未実装)"])
+                                                       "example_q": "",
+                                                       "example_a": ""])
                     try! realm.write {
                         realm.add([newword])
                         realm.add([newworddata])
