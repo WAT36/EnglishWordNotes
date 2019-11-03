@@ -21,6 +21,8 @@ class NowSelectedDataManager {
     var isAddingNewWordData: Bool   //新しい訳文を追加する状態か（訳文設定画面で利用する）
     var addWordFromDictionary: Bool //単語の追加を辞書から行うかを示すフラグ（単語追加で利用する）
     
+    var nowTestingWord: Word        //現在テストに出題している単語
+    
     init(){
         self.wordNoteBook = WordNoteBook()
         self.wordNote = WordNote()
@@ -30,5 +32,6 @@ class NowSelectedDataManager {
         self.wordNoteSortAscend = true          //デフォルトのソート条件
         self.isAddingNewWordData = false
         self.addWordFromDictionary = false
+        self.nowTestingWord = Word()
     }
 }

@@ -23,7 +23,6 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    var nowWord: Word?
     var wordIdx: Int = 0
     var nowWordDataList: [WordData] = []
     
@@ -46,16 +45,16 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             aa.showErrorAlert(vc: self, m: "検索結果がありません")
         }else{
             wordIdx = 0
-            nowWord = wordNoteList[wordIdx].word
+            singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)
 
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
-            rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
+            rate.text = "(" + (singleton.getNowTestingWord().numOfCorrect.description) + "/" + (singleton.getNowTestingWord().numOfAnswer.description) + ")"
 
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
-            let results = realm.objects(WordData.self).filter("word.wordName == %@",nowWord?.wordName)
+            let results = realm.objects(WordData.self).filter("word.wordName == %@",singleton.getNowTestingWord().wordName)
             nowWordDataList = Array(results)
         }
     }
@@ -88,6 +87,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        singleton.saveNowTestingWord(ntw: Word()) //現出題単語リセット
         if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
             let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
         }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
@@ -145,15 +145,15 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         
         //正答数と回答数を記録（Wordを取得して更新）
         let realm = try! Realm()
-        let results = realm.objects(Word.self).filter("wordName == %@",nowWord?.wordName).first
-        
+        let results = realm.objects(Word.self).filter("wordName == %@",singleton.getNowTestingWord().wordName).first
+
         try! realm.write {
-            results?.numOfAnswer = (nowWord?.numOfAnswer)! + 1
+            results?.numOfAnswer = (singleton.getNowTestingWord().numOfAnswer) + 1
             if(nowWordDataList.count <= numOfClear.count){
                 //訳文を全部正答したなら正答数も+1
-                results?.numOfCorrect = (nowWord?.numOfCorrect)! + 1
+                results?.numOfCorrect = (singleton.getNowTestingWord().numOfCorrect) + 1
             }
-            results?.accuracyRate = Double((nowWord?.numOfCorrect)! + 1) / Double((nowWord?.numOfAnswer)! + 1)
+            results?.accuracyRate = Double((singleton.getNowTestingWord().numOfCorrect) + 1) / Double((singleton.getNowTestingWord().numOfAnswer) + 1)
         }
         
         //正答した訳文のインデックスをクリア
@@ -164,16 +164,16 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
             aa.testEndDispAlert(vc: self, identifier: "returntoConfigureWordNoteBookViewController")
         }else{
             wordIdx += 1
-            nowWord = wordNoteList[wordIdx].word
-            
+            singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)
+
             word.text = wordNoteList[wordIdx].word?.wordName
             wordNote.text = singleton.getWordNoteBook().wordNoteBookName
             count.text = (wordIdx + 1).description + "/" + wordNoteList.count.description
-            rate.text = "(" + (nowWord?.numOfCorrect.description)! + "/" + (nowWord?.numOfAnswer.description)! + ")"
-            
+            rate.text = "(" + (singleton.getNowTestingWord().numOfCorrect.description) + "/" + (singleton.getNowTestingWord().numOfAnswer.description) + ")"
+
             //選択したWordからデータベース内に保存してあるWordDataを全て取得
             let realm: Realm = try! Realm()
-            let results = realm.objects(WordData.self).filter("word.wordName == %@",nowWord?.wordName)
+            let results = realm.objects(WordData.self).filter("word.wordName == %@",singleton.getNowTestingWord().wordName)
             nowWordDataList = Array(results)
             
             //テーブル更新

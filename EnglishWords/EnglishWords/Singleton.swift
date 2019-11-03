@@ -25,6 +25,8 @@ class Singleton: NSObject {
         
         nowdata.isAddingNewWordData = false
         nowdata.addWordFromDictionary = false
+        
+        nowdata.nowTestingWord = Word()
     }
     
     func saveWordNoteBook(wnb:WordNoteBook){
@@ -89,5 +91,13 @@ class Singleton: NSObject {
     
     func getAddWordFromDictionary() -> Bool{
         return nowdata.addWordFromDictionary
+    }
+    
+    func saveNowTestingWord(ntw:Word){
+        nowdata.nowTestingWord = ntw
+    }
+    
+    func getNowTestingWord() -> Word{
+        return nowdata.nowTestingWord
     }
 }
