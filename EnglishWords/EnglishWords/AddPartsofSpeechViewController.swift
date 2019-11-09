@@ -15,6 +15,8 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField!
     @IBOutlet var table:UITableView!
+
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
     
     let aa = AlertAction()
     
@@ -81,31 +83,33 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
             }else if(self.checkRegisteredPartOfSpeech(partsofspeechname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
                 aa.showErrorAlert(vc: self, m: "既に同じ品詞名が登録されています")
             }else{
-                performSegue(withIdentifier: "AddPartsofSpeechandToViewController",sender: nil)
+                
+                //Realm
+                let realm = try! Realm()
+                let results = realm.objects(PartsofSpeech.self)
+                var maxId: Int
+                if results.count == 0 {
+                    maxId = results.count
+                }else{
+                    maxId = results.value(forKeyPath: "@max.partsOfSpeechId")! as! Int
+                }
+                try! realm.write {
+                    realm.add([PartsofSpeech(value: ["partsOfSpeechId": (maxId + 1),
+                                                     "partsOfSpeechName": textField.text!,
+                                                     "createdDate": Date()])])
+                }
+                
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "addPartsOfSpeech.top") as! String,sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "ReturnToViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "addPartsOfSpeech.top") as! String,sender: nil)
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AddPartsofSpeechandToViewController") {
-            //Realm
-            let realm = try! Realm()
-            let results = realm.objects(PartsofSpeech.self)
-            var maxId: Int
-            if results.count == 0 {
-                maxId = results.count
-            }else{
-                maxId = results.value(forKeyPath: "@max.partsOfSpeechId")! as! Int
-            }
-            try! realm.write {
-                realm.add([PartsofSpeech(value: ["partsOfSpeechId": (maxId + 1),
-                                                "partsOfSpeechName": textField.text!,
-                                                "createdDate": Date()])])
-            }
-            
+        if (segue.identifier == infoList!.value(forKeyPath: "addPartsOfSpeech.top") as? String) {
+            let _: ViewController = (segue.destination as? ViewController)!
         }
     }
     

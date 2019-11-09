@@ -1282,7 +1282,6 @@
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="1aS-hT-oMF" eventType="touchDown" id="bSX-ct-wlq"/>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddPartsofSpeechandToViewController" id="Oip-sD-T2K"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJS-Xj-iSR">
@@ -1292,7 +1291,6 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="1aS-hT-oMF" eventType="touchDown" id="J6C-Ak-OcR"/>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="ReturnToViewController" id="wlc-XI-6N7"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1g5-Pf-Tzd">
@@ -1352,6 +1350,7 @@
                         <outlet property="label" destination="wjo-Gp-bF3" id="tVG-Mp-pKJ"/>
                         <outlet property="table" destination="fr6-dR-XXG" id="YQA-KA-vKg"/>
                         <outlet property="textField" destination="1g5-Pf-Tzd" id="xQa-T0-VZB"/>
+                        <segue destination="7cm-EY-hsh" kind="presentation" identifier="fromAddPartsofSpeechtoView" id="NkQ-gv-W7v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPl-kT-Lbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1722,7 +1721,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="bcZ-mv-AXS"/>
-        <segue reference="Un6-Gu-eJk"/>
+        <segue reference="NkQ-gv-W7v"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>
         <segue reference="AHA-D8-YQ2"/>
