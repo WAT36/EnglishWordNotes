@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var table:UITableView!
     @IBOutlet var sidetable:UITableView!
     
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+    
     var booknamelist: [WordNoteBook] = []
     let singleton :Singleton = Singleton.sharedInstance
     
@@ -82,30 +84,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //選択したセルの単語帳を記録
             singleton.saveWordNoteBook(wnb: booknamelist[indexPath.row])
             // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
-            performSegue(withIdentifier: "toConfigureWordNoteBookViewController", sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "top.configureWordNoteBook") as! String, sender: nil)
         }else{
             if sidebarlist[indexPath.row] == "単語帳追加" {
                 // AddWordNoteBookViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: "toSubViewController",sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "top.addWordNoteBook") as! String,sender: nil)
             }else if sidebarlist[indexPath.row] == "品詞追加" {
-                // AddPronounceViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: "toAddPartsofSpeechViewController",sender: nil)
+                // AddPartsofSpeechViewController へ遷移するために Segue を呼び出す
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "top.addPartOfSpeech") as! String,sender: nil)
             }else if sidebarlist[indexPath.row] == "マスター英単語帳" {
                 // DictionaryViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: "toDictionaryViewController",sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "top.dictionary") as! String,sender: nil)
             }
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == "toSubViewController") {
+        if (segue.identifier == infoList!.value(forKeyPath: "top.addWordNoteBook") as? String) {
             let _: AddWordNoteBookViewController = (segue.destination as? AddWordNoteBookViewController)!
-        }else if (segue.identifier == "toConfigureWordNoteBookViewController"){
+        }else if (segue.identifier == infoList!.value(forKeyPath: "top.configureWordNoteBook") as? String){
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-        }else if (segue.identifier == "toAddPartsofSpeechViewController"){
+        }else if (segue.identifier == infoList!.value(forKeyPath: "top.addPartOfSpeech") as? String){
             let _: AddPartsofSpeechViewController = (segue.destination as? AddPartsofSpeechViewController)!
-        }else if (segue.identifier == "toDictionaryViewController"){
+        }else if (segue.identifier == infoList!.value(forKeyPath: "top.dictionary") as? String){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
         }
     }

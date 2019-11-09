@@ -113,6 +113,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         partofspeech.numberOfLines = 0
         let mean = cell.viewWithTag(2) as! UILabel
         mean.numberOfLines = 0
+        mean.lineBreakMode = .byCharWrapping
         
         if(numOfClear.contains(indexPath.row) || oneworddata.mean.contains((answerMeanTextField.text)!)){
             partofspeech.text = oneworddata.partofspeech?.partsOfSpeechName

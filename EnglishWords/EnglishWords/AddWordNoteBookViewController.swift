@@ -14,6 +14,9 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField!
+
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+    
     let aa = AlertAction()
     
     override func viewDidLoad() {
@@ -38,10 +41,29 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
             }else if(self.checkRegisteredWordNoteBook(wordnotebookname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
                 aa.showErrorAlert(vc:self,m:"既に同じ名前の単語帳が登録されています")
             }else{
-                performSegue(withIdentifier: "AddBookandToViewController",sender: nil)
+                
+                //Realm
+                //現在ある最大の単語帳IDを取得
+                let realm = try! Realm()
+                let results = realm.objects(WordNoteBook.self)
+                var maxId: Int
+                if results.count > 0 {
+                    maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
+                }else{
+                    maxId = -1
+                }
+                
+                try! realm.write {
+                    //単語帳追加(単語帳IDは現最大ID + 1)
+                    realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
+                                                    "wordNoteBookName": textField.text!,
+                                                    "createdDate": Date()])])
+                }
+                
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordNoteBook.top") as! String,sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "ReturnToViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordNoteBook.top") as! String,sender: nil)
         }
     }
     
@@ -51,25 +73,8 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AddBookandToViewController") {
-            //Realm
-            //現在ある最大の単語帳IDを取得
-            let realm = try! Realm()
-            let results = realm.objects(WordNoteBook.self)
-            var maxId: Int
-            if results.count > 0 {
-                maxId = results.value(forKeyPath: "@max.wordNoteBookId")! as! Int
-            }else{
-                maxId = -1
-            }
-            
-            try! realm.write {
-                //単語帳追加(単語帳IDは現最大ID + 1)
-                realm.add([WordNoteBook(value: ["wordNoteBookId": (maxId + 1),
-                                                "wordNoteBookName": textField.text!,
-                                                "createdDate": Date()])])
-            }
-            
+        if (segue.identifier == infoList!.value(forKeyPath: "addWordNoteBook.top") as? String) {
+            let _: ViewController = (segue.destination as? ViewController)!
         }
     }
     

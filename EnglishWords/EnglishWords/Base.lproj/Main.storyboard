@@ -710,9 +710,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mean" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="TVw-oO-xar">
-                                                    <rect key="frame" x="0.0" y="22" width="320" height="98"/>
+                                                    <rect key="frame" x="0.0" y="17" width="320" height="103"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1248,10 +1248,10 @@
                     <connections>
                         <outlet property="sidetable" destination="I9S-aB-Ifi" id="1mz-Ko-sLf"/>
                         <outlet property="table" destination="vuH-EV-YNI" id="ld8-Ww-Onp"/>
-                        <segue destination="iX5-rN-go1" kind="presentation" identifier="toSubViewController" id="enh-DX-ynW"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="toConfigureWordNoteBookViewController" id="Ob6-q9-ixW"/>
-                        <segue destination="1aS-hT-oMF" kind="presentation" identifier="toAddPartsofSpeechViewController" id="jqu-ej-W2j"/>
-                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="hrg-rN-jGs"/>
+                        <segue destination="iX5-rN-go1" kind="presentation" identifier="fromViewtoAddWordNoteBook" id="enh-DX-ynW"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromViewtoConfigureWordNoteBook" id="Ob6-q9-ixW"/>
+                        <segue destination="1aS-hT-oMF" kind="presentation" identifier="fromViewtoAddPartsofSpeech" id="jqu-ej-W2j"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="fromViewtoDictionary" id="hrg-rN-jGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msf-kd-HGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1373,7 +1373,6 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="iX5-rN-go1" eventType="touchDown" id="pbE-ia-fHl"/>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="ReturnToViewController" id="CQZ-zJ-6zW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-5i-mbw">
@@ -1383,7 +1382,6 @@
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="iX5-rN-go1" eventType="touchDown" id="QvX-w6-fxx"/>
-                                    <segue destination="7cm-EY-hsh" kind="presentation" identifier="AddBookandToViewController" id="M7v-xB-PG4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZL-z1-37Z">
@@ -1416,6 +1414,7 @@
                     <connections>
                         <outlet property="label" destination="dZL-z1-37Z" id="L1W-Q9-s6s"/>
                         <outlet property="textField" destination="1b2-R0-HBQ" id="7HS-r2-LWu"/>
+                        <segue destination="7cm-EY-hsh" kind="presentation" identifier="fromAddWordNoteBooktoView" id="Un6-Gu-eJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ki0-8i-Er2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1721,13 +1720,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uV5-z4-GX6"/>
         <segue reference="oWM-tG-c4i"/>
-        <segue reference="rjS-2a-6nI"/>
-        <segue reference="3yz-3I-AGz"/>
+        <segue reference="bcZ-mv-AXS"/>
+        <segue reference="Un6-Gu-eJk"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>
-        <segue reference="oOJ-iW-al9"/>
-        <segue reference="D8I-QV-sop"/>
+        <segue reference="AHA-D8-YQ2"/>
+        <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>

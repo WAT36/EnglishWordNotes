@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */; };
+		240099032376801700170247 /* Constant.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240099022376801700170247 /* Constant.plist */; };
 		243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */; };
 		243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */; };
 		243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		1B5169F914E65C70345504BD /* Pods-EnglishWordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		240099022376801700170247 /* Constant.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Constant.plist; sourceTree = "<group>"; };
 		243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordFromWebViewController.swift; sourceTree = "<group>"; };
 		243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWordNoteBookViewController.swift; sourceTree = "<group>"; };
 		243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPartsofSpeechViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				2493D964235225D200651150 /* AlertAction.swift */,
 				2493D9662357581700651150 /* NowSelectedData.swift */,
 				2493D96823575CB400651150 /* Singleton.swift */,
+				240099022376801700170247 /* Constant.plist */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			files = (
 				24F2B4F1214E7C2B009AA57C /* LaunchScreen.storyboard in Resources */,
 				24F2B4EE214E7C2B009AA57C /* Assets.xcassets in Resources */,
+				240099032376801700170247 /* Constant.plist in Resources */,
 				24F2B4EC214E7C29009AA57C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
