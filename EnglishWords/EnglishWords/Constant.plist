@@ -4,6 +4,8 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>addWord.configureWordNoteBook</key>
+	<string>fromAddWordtoConfigureWordNoteBook</string>
 	<key>configureWordNoteBook.optionConfigureWordNote</key>
 	<string>fromConfigureWordNoteBooktoOptionConfigureWordNote</string>
 	<key>configureWordNoteBook.configureTestOfWordNoteBook</key>

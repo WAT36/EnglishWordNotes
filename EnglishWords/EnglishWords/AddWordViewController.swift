@@ -16,6 +16,8 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     @IBOutlet weak var meantextView: UITextView!
     @IBOutlet var pickerView: UIPickerView!
     
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
 
@@ -82,7 +84,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     @IBAction func buttonTapped(sender : UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: "ReturnConfigureWordNoteBookViewContoller",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "addWord.configureWordNoteBook") as! String,sender: nil)
         }else if(sender.tag == 1){
             if wordtextField.text!.isEmpty {
                 aa.showErrorAlert(vc: self, m: "単語名が入力されていません")
@@ -125,7 +127,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                                                     "wordidx": maxId,
                                                     "registereddate": Date()])])
                     }
-                    performSegue(withIdentifier: "ToConfigureWordNoteBookViewContoller",sender: nil)
+                    performSegue(withIdentifier: infoList!.value(forKeyPath: "addWord.configureWordNoteBook") as! String,sender: nil)
                 }
             }
         }
@@ -133,9 +135,7 @@ class AddWordViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ReturnConfigureWordNoteBookViewContoller"){
-            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-        }else if (segue.identifier == "ToConfigureWordNoteBookViewContoller") {
+        if (segue.identifier == infoList!.value(forKeyPath: "addWord.configureWordNoteBook") as? String){
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }

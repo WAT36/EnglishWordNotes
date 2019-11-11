@@ -25,7 +25,6 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="stC-xV-xaY" eventType="touchDown" id="FLV-mo-Y3A"/>
-                                    <segue destination="IGz-Sb-hXN" kind="presentation" identifier="ReturnConfigureWordNoteBookViewContoller" id="HwR-Cb-UNe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7M-V6-ksM">
@@ -35,7 +34,6 @@
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="stC-xV-xaY" eventType="touchDown" id="Gcj-SS-NZu"/>
-                                    <segue destination="IGz-Sb-hXN" kind="presentation" identifier="ToConfigureWordNoteBookViewContoller" id="DEy-PW-Kfb"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2n5-Y6-o82">
@@ -79,6 +77,7 @@
                         <outlet property="meantextView" destination="Cot-za-UBC" id="Jpk-bE-Wht"/>
                         <outlet property="pickerView" destination="Tgf-5h-xxr" id="3m8-kn-OL0"/>
                         <outlet property="wordtextField" destination="2n5-Y6-o82" id="Xe6-HK-hLx"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromAddWordtoConfigureWordNoteBook" id="61E-Eu-opc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuL-ik-NTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1719,13 +1718,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hLO-RR-kq0"/>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="rjS-2a-6nI"/>
         <segue reference="3yz-3I-AGz"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="1XP-Pt-sgj"/>
-        <segue reference="AHA-D8-YQ2"/>
+        <segue reference="61E-Eu-opc"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>
