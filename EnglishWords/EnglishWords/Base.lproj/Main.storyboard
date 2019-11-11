@@ -862,13 +862,13 @@
                         <outlet property="table" destination="dhF-nz-wcd" id="rXM-Pm-Pv6"/>
                         <outlet property="wordNote" destination="7Te-H9-S6P" id="Ibr-xH-EcT"/>
                         <outlet property="wordNum" destination="qq4-QT-WGo" id="UaC-bW-JgK"/>
-                        <segue destination="stC-xV-xaY" kind="presentation" identifier="toAddWordViewController" id="6Zt-hW-hrY"/>
-                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="toDictionaryViewController" id="rjS-2a-6nI"/>
-                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="toConfigureWordViewController" id="1XP-Pt-sgj"/>
-                        <segue destination="8L6-2p-9K2" kind="presentation" identifier="toAddWordFromWebViewController" id="DSP-2a-0cZ"/>
-                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="toConfigureTestFromConfigureWordNoteViewController" id="D8I-QV-sop"/>
-                        <segue destination="hVC-x9-SnW" kind="presentation" identifier="toOption" id="hLO-RR-kq0"/>
-                        <segue destination="7cm-EY-hsh" kind="presentation" identifier="returnToTop" id="3yz-3I-AGz"/>
+                        <segue destination="stC-xV-xaY" kind="presentation" identifier="fromConfigureWordNoteBooktoAddWord" id="6Zt-hW-hrY"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="fromConfigureWordNoteBooktoDictionary" id="rjS-2a-6nI"/>
+                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromConfigureWordNoteBooktoConfigureWord" id="1XP-Pt-sgj"/>
+                        <segue destination="8L6-2p-9K2" kind="presentation" identifier="fromConfigureWordNoteBooktoAddWordFromWeb" id="DSP-2a-0cZ"/>
+                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="fromConfigureWordNoteBooktoConfigureTestOfWordNoteBook" id="D8I-QV-sop"/>
+                        <segue destination="hVC-x9-SnW" kind="presentation" identifier="fromConfigureWordNoteBooktoOptionConfigureWordNote" id="hLO-RR-kq0"/>
+                        <segue destination="7cm-EY-hsh" kind="presentation" identifier="fromConfigureWordNoteBooktoView" id="3yz-3I-AGz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0A-mO-z6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1719,12 +1719,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hLO-RR-kq0"/>
         <segue reference="oWM-tG-c4i"/>
-        <segue reference="bcZ-mv-AXS"/>
-        <segue reference="NkQ-gv-W7v"/>
+        <segue reference="rjS-2a-6nI"/>
+        <segue reference="3yz-3I-AGz"/>
         <segue reference="6AF-Ab-5Rw"/>
-        <segue reference="A0O-Qc-l2F"/>
+        <segue reference="1XP-Pt-sgj"/>
         <segue reference="AHA-D8-YQ2"/>
-        <segue reference="e7O-GL-CqK"/>
+        <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>

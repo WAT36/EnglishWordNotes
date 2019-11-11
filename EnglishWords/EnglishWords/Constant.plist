@@ -4,6 +4,20 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>configureWordNoteBook.optionConfigureWordNote</key>
+	<string>fromConfigureWordNoteBooktoOptionConfigureWordNote</string>
+	<key>configureWordNoteBook.configureTestOfWordNoteBook</key>
+	<string>fromConfigureWordNoteBooktoConfigureTestOfWordNoteBook</string>
+	<key>configureWordNoteBook.addWordFromWeb</key>
+	<string>fromConfigureWordNoteBooktoAddWordFromWeb</string>
+	<key>configureWordNoteBook.addWord</key>
+	<string>fromConfigureWordNoteBooktoAddWord</string>
+	<key>configureWordNoteBook.configureWord</key>
+	<string>fromConfigureWordNoteBooktoConfigureWord</string>
+	<key>configureWordNoteBook.dictionary</key>
+	<string>fromConfigureWordNoteBooktoDictionary</string>
+	<key>configureWordNoteBook.top</key>
+	<string>fromConfigureWordNoteBooktoView</string>
 	<key>addPartsOfSpeech.top</key>
 	<string>fromAddPartsofSpeechtoView</string>
 	<key>addWordNoteBook.top</key>
