@@ -4,6 +4,14 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>dictionary.searchWord</key>
+	<string>fromDictionarytoSearchWord</string>
+	<key>dictionary.configureWord</key>
+	<string>fromDictionarytoConfigureWord</string>
+	<key>dictionary.configureWordNoteBook</key>
+	<string>fromDictionarytoConfigureWordNoteBook</string>
+	<key>dictionary.top</key>
+	<string>fromDictionarytoView</string>
 	<key>addWord.configureWordNoteBook</key>
 	<string>fromAddWordtoConfigureWordNoteBook</string>
 	<key>configureWordNoteBook.optionConfigureWordNote</key>

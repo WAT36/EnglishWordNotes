@@ -20,6 +20,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         
     var wordlist: [Word] = []
     
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
 
@@ -71,12 +73,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         if(sender.tag == 0){
             if(singleton.getAddWordFromDictionary()){
                 singleton.saveAddWordFromDictionary(awfd: false)
-                performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "dictionary.configureWordNoteBook") as! String,sender: nil)
             }else{
-                performSegue(withIdentifier: "returnToViewController",sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "dictionary.top") as! String,sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: "toSearchWordViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "dictionary.searchWord") as! String,sender: nil)
         }
     }
     
@@ -164,13 +166,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                                                     "wordidx": (maxId + 1),
                                                     "registereddate": Date()])])
                     }
-                    performSegue(withIdentifier: "returnToConfigureWordNoteViewController",sender: nil)
+                    performSegue(withIdentifier: infoList!.value(forKeyPath: "dictionary.configureWordNoteBook") as! String,sender: nil)
                 }
             }else{
                 //選択したセルの単語を記録
                 singleton.saveWord(w: wordlist[indexPath.row])
                 // ConfigureWordViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: "fromDictionarytoConfigureWord", sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "dictionary.configureWord") as! String, sender: nil)
             }
         }else{
             //テーブルを指定したアルファベットの単語までスクロール
@@ -180,20 +182,20 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == "fromDictionarytoConfigureWord") {
+        if (segue.identifier == infoList!.value(forKeyPath: "dictionary.configureWord") as! String) {
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
             //現選択単語帳リセット（単語設定->辞書に戻るために設定）
             singleton.saveWordNoteBook(wnb: WordNoteBook())
             singleton.saveWordNote(wn: WordNote())
-        }else if (segue.identifier == "returnToConfigureWordNoteViewController") {
+        }else if (segue.identifier == infoList!.value(forKeyPath: "dictionary.configureWordNoteBook") as! String) {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
             //フラグリセットして単語帳設定画面へ戻る
             singleton.saveAddWordFromDictionary(awfd: false)
-        }else if (segue.identifier == "returnToViewController") {
+        }else if (segue.identifier == infoList!.value(forKeyPath: "dictionary.top") as! String) {
             let _: ViewController = (segue.destination as? ViewController)!
             //トップ画面に戻る->singleton全要素リセット
             singleton.allReset()
-        }else if (segue.identifier == "toSearchWordViewController") {
+        }else if (segue.identifier == infoList!.value(forKeyPath: "dictionary.searchWord") as! String) {
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
         }
     }
