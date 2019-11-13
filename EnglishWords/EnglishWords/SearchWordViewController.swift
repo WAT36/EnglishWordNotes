@@ -12,10 +12,8 @@ import UIKit
 class SearchWordViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var wordNameTextField: UITextField!
-    @IBOutlet var wordSearchCondSegmentedControl: UISegmentedControl!
     @IBOutlet var levelTextField: UITextField!
     @IBOutlet var meanTextField: UITextField!
-    @IBOutlet var meanSearchCondSegmentedControl: UISegmentedControl!
 
     let aa = AlertAction()
     
@@ -24,13 +22,6 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // ボタンを選択中にする場所を指定
-        wordSearchCondSegmentedControl.selectedSegmentIndex = 0
-        meanSearchCondSegmentedControl.selectedSegmentIndex = 0
-        // ボタン選択時にボタンを選択状態にするかどうかの設定
-        wordSearchCondSegmentedControl.isMomentary = false
-        meanSearchCondSegmentedControl.isMomentary = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,15 +37,15 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
         if(sender.tag == 0){
             performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
         }else if(sender.tag == 1){
-            if(wordSearchCondSegmentedControl.selectedSegmentIndex == -1){
-                aa.showErrorAlert(vc: self, m: "単語の検索条件を指定してください")
+            if((wordNameTextField.text?.isEmpty)! && (meanTextField.text?.isEmpty)!){
+                aa.showErrorAlert(vc: self, m: "検索条件として単語名または訳文を入力してください")
             }else{
                 //単語の検索条件作成
-                makeQuery(textfield: wordNameTextField,segmentedcontrol: wordSearchCondSegmentedControl,attribute: "word.wordName")
-                //レベルの検索条件作成
-                makeQuery(textfield: levelTextField,attribute: "word.level")
+                makeQuery(textfield: wordNameTextField,attribute: "word.wordName")
                 //訳文の検索条件作成
-                makeQuery(textfield: meanTextField,segmentedcontrol: meanSearchCondSegmentedControl,attribute: "mean")
+                makeQuery(textfield: meanTextField,attribute: "mean")
+                //レベルの検索条件作成
+                makeLevelQuery(textfield: levelTextField,attribute: "word.level")
                 performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
             }
         }
@@ -71,35 +62,19 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     }
     
     //指定された条件をもとにRealmへの検索条件を作成するメソッド
-    func makeQuery(textfield: UITextField,segmentedcontrol: UISegmentedControl,attribute: String){
+    func makeQuery(textfield: UITextField,attribute: String){
         //単語名検索の欄に何か入力されている場合、それに則り検索条件を作る
         if(!(textfield.text?.isEmpty)!){
             var wordquery = attribute + " "
-            switch segmentedcontrol.selectedSegmentIndex {
-            case 0: //前方一致
-                wordquery.append("BEGINSWITH '")
-                wordquery.append(textfield.text!)
-                wordquery.append("'")
-            case 1: //後方一致
-                wordquery.append("ENDSWITH '")
-                wordquery.append(textfield.text!)
-                wordquery.append("'")
-            case 2: //完全一致
-                wordquery.append("= '")
-                wordquery.append(textfield.text!)
-                wordquery.append("'")
-            default:
-                //（基本ないが、何も選択されてない場合）→とりあえず完全一致にする
-                wordquery.append("= '")
-                wordquery.append(textfield.text!)
-                wordquery.append("'")
-            }
+            wordquery.append("LIKE '")
+            wordquery.append(textfield.text!)
+            wordquery.append("'")
             querylist.append(wordquery)
         }
     }
     
-    //指定された条件をもとにRealmへの検索条件を作成するメソッド
-    func makeQuery(textfield: UITextField,attribute: String){
+    //指定されたレベルの条件をもとにRealmへの検索条件を作成するメソッド
+    func makeLevelQuery(textfield: UITextField,attribute: String){
         //レベル検索の欄に何か入力されている場合、それに則り検索条件を作る
         if(!(textfield.text?.isEmpty)!){
             let query = attribute + " = " + textfield.text!

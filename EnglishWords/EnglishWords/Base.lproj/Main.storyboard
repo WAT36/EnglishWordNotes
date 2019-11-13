@@ -1646,32 +1646,14 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QRy-mz-a5e">
-                                        <rect key="frame" x="8" y="246" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="114" width="304" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWg-mZ-vLd">
-                                        <rect key="frame" x="8" y="76" width="304" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="前方一致"/>
-                                            <segment title="後方一致"/>
-                                            <segment title="完全一致"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="co6-JA-OWi">
-                                        <rect key="frame" x="8" y="284" width="304" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="前方一致"/>
-                                            <segment title="後方一致"/>
-                                            <segment title="完全一致"/>
-                                        </segments>
-                                    </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hJq-Da-FgZ">
-                                        <rect key="frame" x="8" y="170" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="225" width="304" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1685,14 +1667,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="レベル指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH3-5c-Jy0">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="187" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="訳文指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-Vh-QpT">
-                                        <rect key="frame" x="0.0" y="208" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="76" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -1700,16 +1682,21 @@
                                     </label>
                                 </subviews>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="※単語名・訳文検索ではワイルドカード(?・＊)が利用できます" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toW-bL-RnV">
+                                <rect key="frame" x="1" y="227" width="320" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4RE-ce-3My"/>
                     </view>
                     <connections>
                         <outlet property="levelTextField" destination="hJq-Da-FgZ" id="bIt-m5-U5S"/>
-                        <outlet property="meanSearchCondSegmentedControl" destination="co6-JA-OWi" id="eB3-Rk-zVN"/>
                         <outlet property="meanTextField" destination="QRy-mz-a5e" id="G8o-EB-nte"/>
                         <outlet property="wordNameTextField" destination="nQA-DA-ulN" id="wxx-PE-0bb"/>
-                        <outlet property="wordSearchCondSegmentedControl" destination="IWg-mZ-vLd" id="qUc-jD-gc5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi5-Oc-ExG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1719,11 +1706,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mnH-Mq-rlh"/>
-        <segue reference="rjS-2a-6nI"/>
+        <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="LRx-52-lzK"/>
-        <segue reference="FhJ-ul-TLu"/>
+        <segue reference="SL8-xy-8Jl"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>
