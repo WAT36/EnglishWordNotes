@@ -18,6 +18,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var table:UITableView!
     
     var worddatalist: [WordData] = []
+    
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+
     let singleton :Singleton = Singleton.sharedInstance
 
     override func viewDidLoad() {
@@ -87,9 +90,9 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func ButtonTouchDown(_ sender: Any) {
         if(singleton.getWordNote().wordidx != -1){
-            performSegue(withIdentifier: "returnToConfigureWordNote",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWord.configureWordNoteBook") as! String,sender: nil)
         }else if(singleton.getWord().wordName != " "){
-            performSegue(withIdentifier: "returnToDictionary",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWord.Dictionary") as! String,sender: nil)
         }
     }
     
@@ -103,20 +106,20 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             singleton.saveWordData(wd: WordData(value: ["word": singleton.getWord()]))
         }
         // ConfigureWordViewController へ遷移するために Segue を呼び出す
-        performSegue(withIdentifier: "toConfigureMeanViewController", sender: nil)
+        performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWord.configureMean") as! String, sender: nil)
 
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "returnToConfigureWordNote") {
+        if (segue.identifier == (infoList!.value(forKeyPath: "configureWord.configureWordNoteBook") as! String)) {
             //現在選択している単語の情報を削除
             singleton.saveWordNote(wn: WordNote())
             singleton.saveWord(w: Word())
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-        }else if (segue.identifier == "returnToDictionary"){
+        }else if (segue.identifier == (infoList!.value(forKeyPath: "configureWord.Dictionary") as! String)){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
-        }else if (segue.identifier == "toConfigureMeanViewController"){
+        }else if (segue.identifier == (infoList!.value(forKeyPath: "configureWord.configureMean") as! String)){
             let _: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!            
             if singleton.getWordData().partofspeech != nil {
                 singleton.saveIsAddingNewWordData(ianwd: false)

@@ -4,6 +4,12 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>configureWord.configureMean</key>
+	<string>fromConfigureWordtoConfigureMean</string>
+	<key>configureWord.Dictionary</key>
+	<string>fromConfigureWordtoDictionary</string>
+	<key>configureWord.configureWordNoteBook</key>
+	<string>fromConfigureWordtoConfigureWordNoteBook</string>
 	<key>dictionary.searchWord</key>
 	<string>fromDictionarytoSearchWord</string>
 	<key>dictionary.configureWord</key>

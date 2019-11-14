@@ -983,9 +983,9 @@
                         <outlet property="pronounce" destination="nqn-zU-A1Z" id="Nck-so-S7G"/>
                         <outlet property="table" destination="3l8-BX-He3" id="Rz4-Yu-QP8"/>
                         <outlet property="wordnamelabel" destination="oYL-g3-aHa" id="DSF-1R-CL6"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNote" id="ajh-jD-Zox"/>
-                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="returnToDictionary" id="man-Lu-bxS"/>
-                        <segue destination="xrM-36-gSR" kind="presentation" identifier="toConfigureMeanViewController" id="Krk-sv-uPU"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromConfigureWordtoConfigureWordNoteBook" id="ajh-jD-Zox"/>
+                        <segue destination="DcU-qC-SDl" kind="presentation" identifier="fromConfigureWordtoDictionary" id="man-Lu-bxS"/>
+                        <segue destination="xrM-36-gSR" kind="presentation" identifier="fromConfigureWordtoConfigureMean" id="Krk-sv-uPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6V5-d8-OsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1706,11 +1706,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mnH-Mq-rlh"/>
-        <segue reference="bcZ-mv-AXS"/>
+        <segue reference="man-Lu-bxS"/>
         <segue reference="Ixl-7z-if7"/>
-        <segue reference="6AF-Ab-5Rw"/>
+        <segue reference="Krk-sv-uPU"/>
         <segue reference="LRx-52-lzK"/>
-        <segue reference="SL8-xy-8Jl"/>
+        <segue reference="ajh-jD-Zox"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>
