@@ -1007,7 +1007,7 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="xrM-36-gSR" eventType="touchDown" id="ZbJ-4Y-bz5"/>
-                                    <segue destination="2zv-yB-cMJ" kind="presentation" identifier="returnToConfigureWordViewController" id="A0O-Qc-l2F"/>
+                                    <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromConfigureMeantoConfigureWord" id="A0O-Qc-l2F"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="訳文設定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo2-qw-W7j">
@@ -1092,7 +1092,7 @@
                         <outlet property="partofspeeches" destination="DMy-cc-4Pn" id="x8F-5b-Fxb"/>
                         <outlet property="sourcetable" destination="DQf-7a-1OO" id="n4o-PD-bVs"/>
                         <outlet property="textView" destination="N5f-sc-VUF" id="fIa-cy-TJg"/>
-                        <segue destination="mkN-br-moC" kind="presentation" identifier="toAddSourceViewController" id="uV5-z4-GX6"/>
+                        <segue destination="mkN-br-moC" kind="presentation" identifier="fromConfigureMeantoAddSource" id="uV5-z4-GX6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFY-mx-O0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1709,7 +1709,7 @@
         <segue reference="man-Lu-bxS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="Krk-sv-uPU"/>
-        <segue reference="LRx-52-lzK"/>
+        <segue reference="A0O-Qc-l2F"/>
         <segue reference="ajh-jD-Zox"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>

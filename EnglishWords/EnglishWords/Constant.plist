@@ -4,6 +4,10 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>configureMean.AddSource</key>
+	<string>fromConfigureMeantoAddSource</string>
+	<key>configureMean.configureWord</key>
+	<string>fromConfigureMeantoConfigureWord</string>
 	<key>configureWord.configureMean</key>
 	<string>fromConfigureWordtoConfigureMean</string>
 	<key>configureWord.Dictionary</key>

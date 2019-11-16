@@ -24,6 +24,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
     let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
     
     override func viewDidLoad() {
@@ -131,7 +132,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
             //出典のセルを選択してもとりあえず今は何もしないでおく
         }else{
             // AddSourceViewController へ遷移するために Segue を呼び出す
-            performSegue(withIdentifier: "toAddSourceViewController", sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureMean.AddSource") as! String, sender: nil)
         }
     }
     
@@ -161,7 +162,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     @IBAction func buttonTapped(sender : AnyObject) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureMean.configureWord") as! String,sender: nil)
         }else if(sender.tag == 1){
             if(singleton.getWord().wordName == " "){
                 aa.showErrorAlert(vc: self, m: "単語データがありません")
@@ -179,7 +180,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                                                            "example_q" : exampleEn.text!.trimmingCharacters(in: .whitespaces),
                                                            "example_a" : exampleJa.text!.trimmingCharacters(in: .whitespaces)])
                         realm.add(newWordData)
-                        performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+                        performSegue(withIdentifier: infoList!.value(forKeyPath: "configureMean.configureWord") as! String,sender: nil)
                     }
                 }else{
                     //編集した意味でWordDataを更新
@@ -191,7 +192,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
                         toupdatemean!.example_q = exampleEn.text!.trimmingCharacters(in: .whitespaces)
                         toupdatemean!.example_a = exampleJa.text!.trimmingCharacters(in: .whitespaces)
                     }
-                    performSegue(withIdentifier: "returnToConfigureWordViewController",sender: nil)
+                    performSegue(withIdentifier: infoList!.value(forKeyPath: "configureMean.configureWord") as! String,sender: nil)
                 }
             }
         }
@@ -199,13 +200,13 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "returnToConfigureWordViewController") {
+        if (segue.identifier == (infoList!.value(forKeyPath: "configureMean.configureWord") as! String)) {
             //現在選択している訳文の情報を削除
             singleton.saveWordData(wd: WordData())
             //訳文新規追加かを示すsingleton中のフラグをリセット
             singleton.saveIsAddingNewWordData(ianwd: false)
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-        }else if(segue.identifier == "toAddSourceViewController"){
+        }else if(segue.identifier == (infoList!.value(forKeyPath: "configureMean.AddSource") as! String)){
             let _: AddSourceViewController = (segue.destination as? AddSourceViewController)!
         }
     }
