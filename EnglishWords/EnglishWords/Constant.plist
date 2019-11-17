@@ -4,6 +4,8 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>addWordFromWeb.configureWordNoteBook</key>
+	<string>fromAddWordFromWebtoConfigureWordNoteBook</string>
 	<key>configureMean.AddSource</key>
 	<string>fromConfigureMeantoAddSource</string>
 	<key>configureMean.configureWord</key>
