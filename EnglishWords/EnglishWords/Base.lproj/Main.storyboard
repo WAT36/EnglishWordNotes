@@ -324,7 +324,7 @@
                     <connections>
                         <outlet property="sources" destination="i7T-Mv-lJF" id="BED-xf-3B0"/>
                         <outlet property="sourcetext" destination="9N0-QM-OeN" id="rwI-ep-IZL"/>
-                        <segue destination="xrM-36-gSR" kind="presentation" identifier="returnToConfigureMeanViewController" id="6AF-Ab-5Rw"/>
+                        <segue destination="xrM-36-gSR" kind="presentation" identifier="fromAddSourcetoConfigureMean" id="6AF-Ab-5Rw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqr-CQ-ZXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1707,7 +1707,7 @@
         <segue reference="mnH-Mq-rlh"/>
         <segue reference="man-Lu-bxS"/>
         <segue reference="Ixl-7z-if7"/>
-        <segue reference="Krk-sv-uPU"/>
+        <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>
         <segue reference="wQm-B4-2Et"/>
         <segue reference="D8I-QV-sop"/>
