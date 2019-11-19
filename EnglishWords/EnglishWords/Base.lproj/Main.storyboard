@@ -1613,7 +1613,7 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="IwE-Ct-u8j" eventType="touchDown" id="KjQ-2h-LRe"/>
-                                    <segue destination="DcU-qC-SDl" kind="presentation" identifier="returnToDictionaryViewController" id="bcZ-mv-AXS"/>
+                                    <segue destination="DcU-qC-SDl" kind="presentation" identifier="fromSearchWordtoDictionary" id="bcZ-mv-AXS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B5-dD-Sbc">
@@ -1623,7 +1623,7 @@
                                 <state key="normal" title="実行"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="IwE-Ct-u8j" eventType="touchDown" id="ZZn-Vm-7j0"/>
-                                    <segue destination="N0O-M5-ZO4" kind="presentation" identifier="toSearchResultViewController" id="GAa-1y-f0f"/>
+                                    <segue destination="N0O-M5-ZO4" kind="presentation" identifier="fromSearchWordtoSearchResult" id="GAa-1y-f0f"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="単語検索" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92X-SU-aQE">
@@ -1705,7 +1705,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mnH-Mq-rlh"/>
-        <segue reference="man-Lu-bxS"/>
+        <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="A0O-Qc-l2F"/>

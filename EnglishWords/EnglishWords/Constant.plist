@@ -4,6 +4,10 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>searchWord.searchResult</key>
+	<string>fromSearchWordtoSearchResult</string>
+	<key>searchWord.dictionary</key>
+	<string>fromSearchWordtoDictionary</string>
 	<key>addSource.configureMean</key>
 	<string>fromAddSourcetoConfigureMean</string>
 	<key>addWordFromWeb.configureWordNoteBook</key>

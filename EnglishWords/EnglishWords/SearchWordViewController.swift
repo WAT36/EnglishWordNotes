@@ -16,7 +16,8 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var meanTextField: UITextField!
 
     let aa = AlertAction()
-    
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+
     //検索条件のリスト
     var querylist: [String] = []
     
@@ -35,7 +36,7 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: "returnToDictionaryViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "searchWord.dictionary") as! String,sender: nil)
         }else if(sender.tag == 1){
             if((wordNameTextField.text?.isEmpty)! && (meanTextField.text?.isEmpty)!){
                 aa.showErrorAlert(vc: self, m: "検索条件として単語名または訳文を入力してください")
@@ -46,16 +47,16 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
                 makeQuery(textfield: meanTextField,attribute: "mean")
                 //レベルの検索条件作成
                 makeLevelQuery(textfield: levelTextField,attribute: "word.level")
-                performSegue(withIdentifier: "toSearchResultViewController",sender: nil)
+                performSegue(withIdentifier: infoList!.value(forKeyPath: "searchWord.searchResult") as! String,sender: nil)
             }
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == "returnToDictionaryViewController") {
+        if (segue.identifier == infoList!.value(forKeyPath: "searchWord.dictionary") as! String) {
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
-        }else if(segue.identifier == "toSearchResultViewController"){
+        }else if(segue.identifier == infoList!.value(forKeyPath: "searchWord.searchResult") as! String){
             let srVC: SearchResultViewController = (segue.destination as? SearchResultViewController)!
             srVC.querylist = querylist
         }
