@@ -158,7 +158,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }else{
                 maxId = cardresults.value(forKeyPath: "@max.wordidx")! as! Int
             }
-        
             try! realm.write {
                 realm.add([WordNote(value: ["wordnotebook": singleton.getWordNoteBook(),
                                             "word": addWord.first!,
@@ -167,12 +166,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 
                 //「出典に単語帳名を追加する」スイッチがついていたら単語帳名を出典に追加させる
                 if(uiswitch.isOn){
-                    //出典のデータ
-                    let source = Source(value: ["sourceName": singleton.getWordNoteBook().wordNoteBookName,
-                                                "createdDate": Date()])
                     //単語のWordData取得
                     var results: [WordData] = Array(realm.objects(WordData.self).filter("word.wordName == %@",inputword))
                     //WordData一つ一つに出典追加
+                    let source = realm.objects(Source.self).filter("sourceName ==  %@",singleton.getWordNoteBook().wordNoteBookName).first!
                     //TODO 一括更新する方法は無いか？
                     for i in 0..<results.count{
                         results[i].source.append(source)
