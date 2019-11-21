@@ -4,6 +4,10 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>searchResult.configureWord</key>
+	<string>fromSearchResulttoConfigureWord</string>
+	<key>searchResult.searchWord</key>
+	<string>fromSearchResulttoSearchWord</string>
 	<key>searchWord.searchResult</key>
 	<string>fromSearchWordtoSearchResult</string>
 	<key>searchWord.dictionary</key>

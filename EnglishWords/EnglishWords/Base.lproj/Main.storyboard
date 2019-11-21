@@ -1440,7 +1440,7 @@
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="buttonTappedWithSender:" destination="N0O-M5-ZO4" eventType="touchDown" id="Mvu-eY-kYk"/>
-                                    <segue destination="IwE-Ct-u8j" kind="presentation" identifier="returnSearchWordViewController" id="oWM-tG-c4i"/>
+                                    <segue destination="IwE-Ct-u8j" kind="presentation" identifier="fromSearchResulttoSearchWord" id="oWM-tG-c4i"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HEt-ZQ-CCc">
@@ -1477,7 +1477,7 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="HEt-ZQ-CCc" id="G5t-AF-yTn"/>
-                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromSearchResultToConfigureWord" id="JsM-cY-WQy"/>
+                        <segue destination="2zv-yB-cMJ" kind="presentation" identifier="fromSearchResulttoConfigureWord" id="JsM-cY-WQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAd-gI-5F4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1704,11 +1704,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mnH-Mq-rlh"/>
+        <segue reference="oWM-tG-c4i"/>
         <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
-        <segue reference="A0O-Qc-l2F"/>
+        <segue reference="JsM-cY-WQy"/>
         <segue reference="wQm-B4-2Et"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
