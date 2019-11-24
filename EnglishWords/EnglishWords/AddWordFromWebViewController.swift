@@ -345,7 +345,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.meanlist.removeAll()
                 self.exEnlist.removeAll()
                 self.exJalist.removeAll()
-                self.aa.showErrorAlert(vc: self, m: "HTTPエラー")
+                self.aa.showErrorAlert(vc: self, m: "ネットワークエラー")
             }
             
             if let html = response.result.value {
