@@ -97,9 +97,9 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "searchResult.searchWord") as! String) {
+        if (segue.identifier == infoList!.value(forKeyPath: "searchResult.searchWord") as? String) {
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
-        }else if (segue.identifier == infoList!.value(forKeyPath: "searchResult.configureWord") as! String) {
+        }else if (segue.identifier == infoList!.value(forKeyPath: "searchResult.configureWord") as? String) {
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }
     }

@@ -474,9 +474,9 @@
                         <outlet property="testForm" destination="eRM-bA-uHo" id="jRg-AX-1Df"/>
                         <outlet property="testOrderAscDesc" destination="Ypt-sX-WJm" id="OKw-cZ-cTN"/>
                         <outlet property="testOrderby" destination="ZOg-Ei-4Jk" id="EeG-gL-7f6"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="oOJ-iW-al9"/>
-                        <segue destination="gRV-Ux-UlU" kind="presentation" identifier="toTestFromConfigureTestOfWordNoteBookViewController" id="UTA-ih-Hd9"/>
-                        <segue destination="AIr-57-Nyp" kind="presentation" identifier="toFourOptionTestFromConfigureTestOfWordNoteBookViewController" id="rqo-uU-H8Z"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromConfigureTestOfWordNoteBooktoConfigureWordNoteBook" id="oOJ-iW-al9"/>
+                        <segue destination="gRV-Ux-UlU" kind="presentation" identifier="fromConfigureTestOfWordNoteBooktoTestOfWordNoteBook" id="UTA-ih-Hd9"/>
+                        <segue destination="AIr-57-Nyp" kind="presentation" identifier="fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote" id="rqo-uU-H8Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BU-9w-wu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1709,7 +1709,7 @@
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="JsM-cY-WQy"/>
-        <segue reference="wQm-B4-2Et"/>
+        <segue reference="oOJ-iW-al9"/>
         <segue reference="D8I-QV-sop"/>
     </inferredMetricsTieBreakers>
 </document>

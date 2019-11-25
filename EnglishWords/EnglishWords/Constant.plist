@@ -4,6 +4,12 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>configureTestOfWordNoteBook.fourOptionTestOfWordNote</key>
+	<string>fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote</string>
+	<key>configureTestOfWordNoteBook.testOfWordNoteBook</key>
+	<string>fromConfigureTestOfWordNoteBooktoTestOfWordNoteBook</string>
+	<key>configureTestOfWordNoteBook.configureWordNoteBook</key>
+	<string>fromConfigureTestOfWordNoteBooktoConfigureWordNoteBook</string>
 	<key>searchResult.configureWord</key>
 	<string>fromSearchResulttoConfigureWord</string>
 	<key>searchResult.searchWord</key>
