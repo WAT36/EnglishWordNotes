@@ -23,6 +23,8 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+
     var wordIdx: Int = 0
     var nowWordDataList: [WordData] = []
     
@@ -70,7 +72,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: "returntoConfigureTestOfWordNoteBookViewController",sender: nil)
+            performSegue(withIdentifier: infoList!.value(forKeyPath: "testOfWordNoteBook.configureTestOfWordNoteBook") as! String,sender: nil)
         }else if(sender.tag == 1){
             //次の単語へ
             toNextWord()
@@ -162,7 +164,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
-            aa.testEndDispAlert(vc: self, identifier: "returntoConfigureWordNoteBookViewController")
+            aa.testEndDispAlert(vc: self, identifier: infoList!.value(forKeyPath: "testOfWordNoteBook.configureWordNoteBook") as! String)
         }else{
             wordIdx += 1
             singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)

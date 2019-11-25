@@ -4,6 +4,10 @@
 <dict>
 	<key>Segue</key>
 	<dict/>
+	<key>testOfWordNoteBook.configureWordNoteBook</key>
+	<string>fromTestOfWordNoteBooktoConfigureWordNoteBook</string>
+	<key>testOfWordNoteBook.configureTestOfWordNoteBook</key>
+	<string>fromTestOfWordNoteBooktoConfigureTestOfWordNoteBook</string>
 	<key>configureTestOfWordNoteBook.fourOptionTestOfWordNote</key>
 	<string>fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote</string>
 	<key>configureTestOfWordNoteBook.testOfWordNoteBook</key>

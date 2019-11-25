@@ -749,8 +749,8 @@
                         <outlet property="table" destination="PKa-fy-Gfe" id="NDI-tp-iE4"/>
                         <outlet property="word" destination="jwP-T7-kRW" id="80D-xj-UUI"/>
                         <outlet property="wordNote" destination="1cN-YM-F7s" id="Kp7-M7-4L4"/>
-                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="returntoConfigureTestOfWordNoteBookViewController" id="e7O-GL-CqK"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returntoConfigureWordNoteBookViewController" id="Okm-en-fS9"/>
+                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="fromTestOfWordNoteBooktoConfigureTestOfWordNoteBook" id="e7O-GL-CqK"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromTestOfWordNoteBooktoConfigureWordNoteBook" id="Okm-en-fS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZtZ-Xa-UPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1709,7 +1709,7 @@
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="JsM-cY-WQy"/>
-        <segue reference="oOJ-iW-al9"/>
-        <segue reference="D8I-QV-sop"/>
+        <segue reference="Okm-en-fS9"/>
+        <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>
