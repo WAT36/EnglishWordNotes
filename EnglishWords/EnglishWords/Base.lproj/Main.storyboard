@@ -1161,7 +1161,7 @@
                         <outlet property="viewName" destination="5Gn-Rk-7q2" id="wAs-0u-urh"/>
                         <outlet property="wordNameSegmentedControl" destination="qwi-oA-Nha" id="YCS-QT-pkr"/>
                         <outlet property="wordOrderby" destination="ZSS-Ug-1yO" id="cmq-Au-ojV"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returnToConfigureWordNoteViewController" id="AHA-D8-YQ2"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromOptionConfigureWordNotetoConfigureWordNoteBook" id="AHA-D8-YQ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0l8-SJ-q7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1704,12 +1704,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hLO-RR-kq0"/>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="JsM-cY-WQy"/>
-        <segue reference="Okm-en-fS9"/>
+        <segue reference="AHA-D8-YQ2"/>
         <segue reference="e7O-GL-CqK"/>
     </inferredMetricsTieBreakers>
 </document>
