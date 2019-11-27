@@ -604,8 +604,8 @@
                         <outlet property="table" destination="rVa-wG-fwH" id="5RS-hW-cR8"/>
                         <outlet property="word" destination="neM-8Y-WEB" id="Icd-YK-sq6"/>
                         <outlet property="wordNote" destination="kqi-1O-cF9" id="TWI-ij-iYQ"/>
-                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="returntoConfigureTestOfWordNoteBookViewController" id="isr-Vw-a6S"/>
-                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="returntoConfigureWordNoteBookViewController" id="bjT-ZX-jMp"/>
+                        <segue destination="V3r-MM-YQO" kind="presentation" identifier="fromFourOptionTestOfWordNotetoConfigureTestOfWordNoteBook" id="isr-Vw-a6S"/>
+                        <segue destination="IGz-Sb-hXN" kind="presentation" identifier="fromFourOptionTestOfWordNotetoConfigureWordNoteBook" id="bjT-ZX-jMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehf-gj-Q4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1704,13 +1704,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hLO-RR-kq0"/>
         <segue reference="oWM-tG-c4i"/>
         <segue reference="bcZ-mv-AXS"/>
         <segue reference="Ixl-7z-if7"/>
         <segue reference="6AF-Ab-5Rw"/>
         <segue reference="JsM-cY-WQy"/>
-        <segue reference="AHA-D8-YQ2"/>
-        <segue reference="e7O-GL-CqK"/>
+        <segue reference="bjT-ZX-jMp"/>
+        <segue reference="isr-Vw-a6S"/>
     </inferredMetricsTieBreakers>
 </document>
