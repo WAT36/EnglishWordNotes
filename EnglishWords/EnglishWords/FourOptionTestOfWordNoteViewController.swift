@@ -162,7 +162,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
                 //訳文を全部正答したなら正答数も+1
                 results?.numOfCorrect = (singleton.getNowTestingWord().numOfCorrect) + 1
             }
-            results?.accuracyRate = Double((singleton.getNowTestingWord().numOfCorrect) + 1) / Double((singleton.getNowTestingWord().numOfAnswer) + 1)
+            results?.accuracyRate = Double((results?.numOfCorrect)!) / Double((results?.numOfAnswer)!)
         }
 
         //隠しラベル非点灯へ
