@@ -54,9 +54,9 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "searchWord.dictionary") as! String) {
+        if (segue.identifier == infoList!.value(forKeyPath: "searchWord.dictionary") as? String) {
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "searchWord.searchResult") as! String){
+        }else if(segue.identifier == infoList!.value(forKeyPath: "searchWord.searchResult") as? String){
             let srVC: SearchResultViewController = (segue.destination as? SearchResultViewController)!
             srVC.querylist = querylist
         }
