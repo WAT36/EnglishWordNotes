@@ -147,6 +147,8 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
             clearLabel.text = "不正解!!↑次へ"
             clearLabel.textColor = UIColor.black
         }
+        //一回タップしたので他のセルをタップ不可にする（再度回答するのを防ぐ）
+        self.table.allowsSelection = false
     }
     
     //次の単語へ移る
@@ -168,6 +170,9 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         //隠しラベル非点灯へ
         clearLabel.text = ""
         clearLabel.textColor = UIColor.white
+        
+        //セルのタップを可能にする
+        self.table.allowsSelection = true
         
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
