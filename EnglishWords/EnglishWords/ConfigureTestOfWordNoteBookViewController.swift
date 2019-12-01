@@ -86,16 +86,22 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
         if(sender.tag == 0){
             performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.configureWordNoteBook") as! String,sender: nil)
         }else if(sender.tag == 1){
-            //条件をもとにテストに出す英単語を取得
-            makeTest()
+
+            //入力エラーチェック(数値に変換可能かチェック)
+            if(canMakeTest(minLevel.text!) && canMakeTest(maxLevel.text!) && canMakeTest(questionNum.text!)){
+                //条件をもとにテストに出す英単語を取得
+                makeTest()
             
-            if(wordNoteList.count == 0){
-                //検索結果無し、エラーアラート出して戻させる
-                aa.showErrorAlert(vc: self, m: "検索結果がありません")
-            }else if(testForm.selectedSegmentIndex == 0){
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.fourOptionTestOfWordNote") as! String, sender: nil)
-            }else if(testForm.selectedSegmentIndex == 1){
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.testOfWordNoteBook") as! String, sender: nil)
+                if(wordNoteList.count == 0){
+                    //検索結果無し、エラーアラート出して戻させる
+                    aa.showErrorAlert(vc: self, m: "検索結果がありません")
+                }else if(testForm.selectedSegmentIndex == 0){
+                    performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.fourOptionTestOfWordNote") as! String, sender: nil)
+                }else if(testForm.selectedSegmentIndex == 1){
+                    performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.testOfWordNoteBook") as! String, sender: nil)
+                }
+            }else{
+                aa.showErrorAlert(vc: self, m: "レベル・個数には半角数字を入力してください")
             }
         }
     }
@@ -164,5 +170,26 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
                 wordNoteList = wordNoteList.prefix(questionNum!).map{$0}
             }
         }
+    }
+    
+    // テスト作成が行えるかを判定（レベル・個数が空欄または半角かつ数字のみか）
+    func canMakeTest(_ str: String) -> Bool{
+        return str.isEmpty || (isNumber(str) && str.isAlphanumeric())
+    }
+    
+    // 文字列が数値に変換可能かを調べる。
+    func isNumber(_ str:String) -> Bool {
+        //文字列が数値のみで出来ているか
+        let predicate = NSPredicate(format: "SELF MATCHES '\\\\d+'")
+        //文字列が半角文字になっているかも合わせて変換可能かを判定する
+        return predicate.evaluate(with: str) && str.isAlphanumeric()
+    }
+
+}
+
+extension String {
+    // 半角数字の判定
+    func isAlphanumeric() -> Bool {
+        return self.range(of: "[^0-9]+", options: .regularExpression) == nil && self != ""
     }
 }
