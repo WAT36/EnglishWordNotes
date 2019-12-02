@@ -40,6 +40,8 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
         }else if(sender.tag == 1){
             if((wordNameTextField.text?.isEmpty)! && (meanTextField.text?.isEmpty)!){
                 aa.showErrorAlert(vc: self, m: "検索条件として単語名または訳文を入力してください")
+            }else if(!canSearchWord(levelTextField.text!)){
+                aa.showErrorAlert(vc: self, m: "レベルには半角数字を入力してください")
             }else{
                 //単語の検索条件作成
                 makeQuery(textfield: wordNameTextField,attribute: "word.wordName")
@@ -81,5 +83,18 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
             let query = attribute + " = " + textfield.text!
             querylist.append(query)
         }
+    }
+    
+    // 単語検索が行えるかを判定（レベルが空欄または半角かつ数字のみか）
+    func canSearchWord(_ str: String) -> Bool{
+        return str.isEmpty || (isNumber(str) && str.isAlphanumeric())
+    }
+    
+    // 文字列が数値に変換可能かを調べる。
+    func isNumber(_ str:String) -> Bool {
+        //文字列が数値のみで出来ているか
+        let predicate = NSPredicate(format: "SELF MATCHES '\\\\d+'")
+        //文字列が半角文字になっているかも合わせて変換可能かを判定する
+        return predicate.evaluate(with: str) && str.isAlphanumeric()
     }
 }
