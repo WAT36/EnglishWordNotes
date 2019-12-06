@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Menu</key>
+	<dict>
+		<key>top</key>
+		<array>
+			<string>単語帳追加</string>
+			<string>品詞追加</string>
+			<string>マスター英単語帳</string>
+			<string>オプション(工事中)</string>
+		</array>
+	</dict>
 	<key>Segue</key>
 	<dict/>
 	<key>fourOptionTestOfWordNote.configureTestOfWordNoteBook</key>

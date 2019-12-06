@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var booknamelist: [WordNoteBook] = []
     let singleton :Singleton = Singleton.sharedInstance
     
-    let sidebarlist = ["単語帳追加","品詞追加","マスター英単語帳","オプション"]
+    let sidebarlist = Singleton.sharedInstance.getMenu(key: "Menu.top")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +86,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // ConfigureWordNoteBookViewController へ遷移するために Segue を呼び出す
             performSegue(withIdentifier: infoList!.value(forKeyPath: "top.configureWordNoteBook") as! String, sender: nil)
         }else{
-            if sidebarlist[indexPath.row] == "単語帳追加" {
-                // AddWordNoteBookViewController へ遷移するために Segue を呼び出す
+            if indexPath.row == 0 {
+                // (単語帳追加)AddWordNoteBookViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: infoList!.value(forKeyPath: "top.addWordNoteBook") as! String,sender: nil)
-            }else if sidebarlist[indexPath.row] == "品詞追加" {
-                // AddPartsofSpeechViewController へ遷移するために Segue を呼び出す
+            }else if indexPath.row == 1 {
+                // (品詞追加)AddPartsofSpeechViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: infoList!.value(forKeyPath: "top.addPartOfSpeech") as! String,sender: nil)
-            }else if sidebarlist[indexPath.row] == "マスター英単語帳" {
-                // DictionaryViewController へ遷移するために Segue を呼び出す
+            }else if indexPath.row == 2 {
+                // (マスター英単語帳)DictionaryViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: infoList!.value(forKeyPath: "top.dictionary") as! String,sender: nil)
             }
         }
