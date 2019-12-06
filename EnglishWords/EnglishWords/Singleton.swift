@@ -11,6 +11,8 @@ import Foundation
 class Singleton: NSObject {
     var nowdata = NowSelectedDataManager()
     
+    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
+    
     static let sharedInstance: Singleton = Singleton()
     private override init() {}
     
@@ -27,6 +29,10 @@ class Singleton: NSObject {
         nowdata.addWordFromDictionary = false
         
         nowdata.nowTestingWord = Word()
+    }
+    
+    func getMenu(key:String) -> [String]{
+        return infoList!.value(forKeyPath: key) as! [String]
     }
     
     func saveWordNoteBook(wnb:WordNoteBook){
