@@ -13,7 +13,16 @@
 		</array>
 	</dict>
 	<key>Segue</key>
-	<dict/>
+	<dict>
+		<key>top.configureWordNoteBook</key>
+		<string>fromViewtoConfigureWordNoteBook</string>
+		<key>top.dictionary</key>
+		<string>fromViewtoDictionary</string>
+		<key>top.addWordNoteBook</key>
+		<string>fromViewtoAddWordNoteBook</string>
+		<key>top.addPartOfSpeech</key>
+		<string>fromViewtoAddPartsofSpeech</string>
+	</dict>
 	<key>fourOptionTestOfWordNote.configureTestOfWordNoteBook</key>
 	<string>fromFourOptionTestOfWordNotetoConfigureTestOfWordNoteBook</string>
 	<key>fourOptionTestOfWordNote.configureWordNoteBook</key>
@@ -80,13 +89,5 @@
 	<string>fromAddPartsofSpeechtoView</string>
 	<key>addWordNoteBook.top</key>
 	<string>fromAddWordNoteBooktoView</string>
-	<key>top.addPartOfSpeech</key>
-	<string>fromViewtoAddPartsofSpeech</string>
-	<key>top.addWordNoteBook</key>
-	<string>fromViewtoAddWordNoteBook</string>
-	<key>top.dictionary</key>
-	<string>fromViewtoDictionary</string>
-	<key>top.configureWordNoteBook</key>
-	<string>fromViewtoConfigureWordNoteBook</string>
 </dict>
 </plist>
