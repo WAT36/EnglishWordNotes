@@ -21,7 +21,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション","名称変更"]
+    let sidebarlist = Singleton.sharedInstance.getMenu(key: "Menu.configureWordNoteBook")
     
     override func viewDidLoad() {
         super.viewDidLoad()

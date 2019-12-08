@@ -11,6 +11,14 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>configureWordNoteBook</key>
+		<array>
+			<string>単語追加</string>
+			<string>確認テスト</string>
+			<string>エクスポート(工事中)</string>
+			<string>オプション</string>
+			<string>名称変更</string>
+		</array>
 		<key>top</key>
 		<array>
 			<string>単語帳追加</string>
