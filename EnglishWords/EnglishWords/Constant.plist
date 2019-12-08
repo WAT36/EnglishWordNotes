@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Message</key>
+	<dict>
+		<key>addWordNoteBook.already</key>
+		<string>既に同じ名前の単語帳が登録されています</string>
+		<key>addWordNoteBook.noInput</key>
+		<string>単語帳名が入力されていません</string>
+	</dict>
 	<key>Menu</key>
 	<dict>
 		<key>top</key>

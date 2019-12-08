@@ -36,9 +36,9 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     @IBAction func buttonTapped(sender : UIButton) {
         if (sender.tag == 0){
             if textField.text!.isEmpty {
-                aa.showErrorAlert(vc:self,m: "単語帳名が入力されていません")
+                aa.showErrorAlert(vc:self,m: singleton.getStringValue(key: "Message.addWordNoteBook.noInput"))
             }else if(self.checkRegisteredWordNoteBook(wordnotebookname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
-                aa.showErrorAlert(vc:self,m:"既に同じ名前の単語帳が登録されています")
+                aa.showErrorAlert(vc:self,m: singleton.getStringValue(key: "Message.addWordNoteBook.already"))
             }else{
                 
                 //Realm
@@ -59,10 +59,10 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
                                                     "createdDate": Date()])])
                 }
                 
-                performSegue(withIdentifier: singleton.getSegue(key: "Segue.addWordNoteBook.top") ,sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordNoteBook.top") ,sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: singleton.getSegue(key: "Segue.addWordNoteBook.top"),sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordNoteBook.top"),sender: nil)
         }
     }
     
@@ -72,7 +72,7 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == singleton.getSegue(key: "Segue.addWordNoteBook.top")) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.addWordNoteBook.top")) {
             let _: ViewController = (segue.destination as? ViewController)!
         }
     }

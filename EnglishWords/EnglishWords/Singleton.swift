@@ -35,7 +35,7 @@ class Singleton: NSObject {
         return infoList!.value(forKeyPath: key) as! [String]
     }
     
-    func getSegue(key:String) -> String{
+    func getStringValue(key:String) -> String{
         return infoList!.value(forKeyPath: key) as! String
     }
     
