@@ -14,6 +14,8 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>addWordNoteBook.top</key>
+		<string>fromAddWordNoteBooktoView</string>
 		<key>top.configureWordNoteBook</key>
 		<string>fromViewtoConfigureWordNoteBook</string>
 		<key>top.dictionary</key>
@@ -87,7 +89,5 @@
 	<string>fromConfigureWordNoteBooktoView</string>
 	<key>addPartsOfSpeech.top</key>
 	<string>fromAddPartsofSpeechtoView</string>
-	<key>addWordNoteBook.top</key>
-	<string>fromAddWordNoteBooktoView</string>
 </dict>
 </plist>

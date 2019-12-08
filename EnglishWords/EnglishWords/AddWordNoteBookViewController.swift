@@ -15,8 +15,7 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField!
 
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
-    
+    let singleton :Singleton = Singleton.sharedInstance
     let aa = AlertAction()
     
     override func viewDidLoad() {
@@ -60,10 +59,10 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
                                                     "createdDate": Date()])])
                 }
                 
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordNoteBook.top") as! String,sender: nil)
+                performSegue(withIdentifier: singleton.getSegue(key: "Segue.addWordNoteBook.top") ,sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordNoteBook.top") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getSegue(key: "Segue.addWordNoteBook.top"),sender: nil)
         }
     }
     
@@ -73,7 +72,7 @@ class AddWordNoteBookViewController: UIViewController, UITextFieldDelegate {
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == infoList!.value(forKeyPath: "addWordNoteBook.top") as? String) {
+        if (segue.identifier == singleton.getSegue(key: "Segue.addWordNoteBook.top")) {
             let _: ViewController = (segue.destination as? ViewController)!
         }
     }
