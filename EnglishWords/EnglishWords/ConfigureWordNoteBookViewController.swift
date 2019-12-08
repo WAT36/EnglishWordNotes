@@ -19,8 +19,6 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
 
     var wordlist: [WordNote] = []
     
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
-
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
     let sidebarlist = ["単語追加","確認テスト","エクスポート","オプション","名称変更"]
@@ -59,7 +57,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     
     //ボタンタップ時の動作
     @IBAction func ButtonTouchDown(_ sender: Any) {
-        performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWordNoteBook.top") as! String,sender: nil)
+        performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.top"),sender: nil)
     }
     
     //各セルの要素を設定する
@@ -106,10 +104,10 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
                 exportDispAlert(sender: table)
             }else if sidebarlist[indexPath.row] == "確認テスト"{
                 // ConfigureTestOfWordNoteBookViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWordNoteBook.configureTestOfWordNoteBook") as! String, sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.configureTestOfWordNoteBook") , sender: nil)
             }else if sidebarlist[indexPath.row] == "オプション"{
                 // OptionConfigureWordNoteViewController へ遷移するために Segue を呼び出す
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWordNoteBook.optionConfigureWordNote") as! String, sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.optionConfigureWordNote") , sender: nil)
             }else if sidebarlist[indexPath.row] == "名称変更"{
                 // 単語帳名称を変えるためのウィンドウを出させる
                 renameWordNoteAlert(sender: table)
@@ -119,29 +117,29 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             singleton.saveWordNote(wn: wordlist[indexPath.row])
             singleton.saveWord(w: wordlist[indexPath.row].word!)
             // ConfigureWordViewController へ遷移するために Segue を呼び出す
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureWordNoteBook.configureWord") as! String, sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.configureWord") , sender: nil)
             
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if(segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.top") as? String){
+        if(segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.top")){
             //現選択単語帳の情報を削除
             singleton.allReset()
             let _: ViewController = (segue.destination as? ViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.addWord") as? String) {
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.addWord")) {
             let _: AddWordViewController = (segue.destination as? AddWordViewController)!
-        }else if (segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.dictionary") as? String){
+        }else if (segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.dictionary") ){
             let _: DictionaryViewController = (segue.destination as? DictionaryViewController)!
             singleton.saveAddWordFromDictionary(awfd: true)
-        }else if (segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.configureWord") as? String){
+        }else if (segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.configureWord") ){
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
-        }else if (segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.addWordFromWeb") as? String){
+        }else if (segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.addWordFromWeb") ){
             let _: AddWordFromWebViewController = (segue.destination as? AddWordFromWebViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.configureTestOfWordNoteBook") as? String){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.configureTestOfWordNoteBook") ){
             let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "configureWordNoteBook.optionConfigureWordNote") as? String){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.configureWordNoteBook.optionConfigureWordNote") ){
             let _: OptionConfigureWordNoteViewController = (segue.destination as? OptionConfigureWordNoteViewController)!
         }
     }
@@ -193,21 +191,21 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
         let addWordFromDictionaryAction: UIAlertAction = UIAlertAction(title: "既存の英単語から追加する", style: UIAlertActionStyle.default, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: self.infoList!.value(forKeyPath: "configureWordNoteBook.dictionary") as! String, sender: nil)
+            self.performSegue(withIdentifier: self.singleton.getStringValue(key: "Segue.configureWordNoteBook.dictionary"), sender: nil)
         })
         
         //アラート②：新規の英単語を追加する
         let addNewWordAction: UIAlertAction = UIAlertAction(title: "新規に英単語を追加する(手動)", style: UIAlertActionStyle.default, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: self.infoList!.value(forKeyPath: "configureWordNoteBook.addWord") as! String, sender: nil)
+            self.performSegue(withIdentifier: self.singleton.getStringValue(key: "Segue.configureWordNoteBook.addWord"), sender: nil)
         })
         
         //アラート③：新規の英単語を(Webから)追加する
         let addNewWordFromWebAction: UIAlertAction = UIAlertAction(title: "新規に英単語を追加する(Web)", style: UIAlertActionStyle.default, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: self.infoList!.value(forKeyPath: "configureWordNoteBook.addWordFromWeb") as! String, sender: nil)
+            self.performSegue(withIdentifier: self.singleton.getStringValue(key: "Segue.configureWordNoteBook.addWordFromWeb"), sender: nil)
         })
         
         //アラート③：キャンセル

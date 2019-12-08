@@ -21,6 +21,20 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>configureWordNoteBook.top</key>
+		<string>fromConfigureWordNoteBooktoView</string>
+		<key>configureWordNoteBook.dictionary</key>
+		<string>fromConfigureWordNoteBooktoDictionary</string>
+		<key>configureWordNoteBook.configureWord</key>
+		<string>fromConfigureWordNoteBooktoConfigureWord</string>
+		<key>configureWordNoteBook.addWord</key>
+		<string>fromConfigureWordNoteBooktoAddWord</string>
+		<key>configureWordNoteBook.addWordFromWeb</key>
+		<string>fromConfigureWordNoteBooktoAddWordFromWeb</string>
+		<key>configureWordNoteBook.configureTestOfWordNoteBook</key>
+		<string>fromConfigureWordNoteBooktoConfigureTestOfWordNoteBook</string>
+		<key>configureWordNoteBook.optionConfigureWordNote</key>
+		<string>fromConfigureWordNoteBooktoOptionConfigureWordNote</string>
 		<key>addWordNoteBook.top</key>
 		<string>fromAddWordNoteBooktoView</string>
 		<key>top.configureWordNoteBook</key>
@@ -80,20 +94,6 @@
 	<string>fromDictionarytoView</string>
 	<key>addWord.configureWordNoteBook</key>
 	<string>fromAddWordtoConfigureWordNoteBook</string>
-	<key>configureWordNoteBook.optionConfigureWordNote</key>
-	<string>fromConfigureWordNoteBooktoOptionConfigureWordNote</string>
-	<key>configureWordNoteBook.configureTestOfWordNoteBook</key>
-	<string>fromConfigureWordNoteBooktoConfigureTestOfWordNoteBook</string>
-	<key>configureWordNoteBook.addWordFromWeb</key>
-	<string>fromConfigureWordNoteBooktoAddWordFromWeb</string>
-	<key>configureWordNoteBook.addWord</key>
-	<string>fromConfigureWordNoteBooktoAddWord</string>
-	<key>configureWordNoteBook.configureWord</key>
-	<string>fromConfigureWordNoteBooktoConfigureWord</string>
-	<key>configureWordNoteBook.dictionary</key>
-	<string>fromConfigureWordNoteBooktoDictionary</string>
-	<key>configureWordNoteBook.top</key>
-	<string>fromConfigureWordNoteBooktoView</string>
 	<key>addPartsOfSpeech.top</key>
 	<string>fromAddPartsofSpeechtoView</string>
 </dict>
