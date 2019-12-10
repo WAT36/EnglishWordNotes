@@ -96,19 +96,19 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         if table.tag == 1 {
-            if sidebarlist[indexPath.row] == "単語追加" {
+            if indexPath.row == 0 {
                 // AddWordViewController へ遷移するために Segue を呼び出す
                 addWordDispAlert(sender: table)
-            }else if sidebarlist[indexPath.row] == "エクスポート" {
-                // AddWordViewController へ遷移するために Segue を呼び出す
-                exportDispAlert(sender: table)
-            }else if sidebarlist[indexPath.row] == "確認テスト"{
+            }else if indexPath.row == 1 {
                 // ConfigureTestOfWordNoteBookViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.configureTestOfWordNoteBook") , sender: nil)
-            }else if sidebarlist[indexPath.row] == "オプション"{
+            }else if indexPath.row == 2 {
+                // TODO エクスポート
+                exportDispAlert(sender: table)
+            }else if indexPath.row == 3 {
                 // OptionConfigureWordNoteViewController へ遷移するために Segue を呼び出す
                 performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureWordNoteBook.optionConfigureWordNote") , sender: nil)
-            }else if sidebarlist[indexPath.row] == "名称変更"{
+            }else if indexPath.row == 4 {
                 // 単語帳名称を変えるためのウィンドウを出させる
                 renameWordNoteAlert(sender: table)
             }
