@@ -308,12 +308,12 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             }
             
             guard !textFields.isEmpty else {
-                self.aa.showErrorAlert(vc: self, m: "単語帳名が入力されていません")
+                self.aa.showErrorAlert(vc: self, m: self.singleton.getStringValue(key: "Message.addWordNoteBook.noInput"))
                 return
             }
             
             if (textFields.first?.text?.isEmpty)! {
-                self.aa.showErrorAlert(vc: self, m: "単語帳名が入力されていません")
+                self.aa.showErrorAlert(vc: self, m: self.singleton.getStringValue(key: "Message.addWordNoteBook.noInput"))
                 return
             }
             
