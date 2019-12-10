@@ -16,8 +16,7 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
     @IBOutlet var textField: UITextField!
     @IBOutlet var table:UITableView!
 
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
-    
+    let singleton :Singleton = Singleton.sharedInstance
     let aa = AlertAction()
     
     var partsofSpeechList: [PartsofSpeech] = []
@@ -99,16 +98,16 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
                                                      "createdDate": Date()])])
                 }
                 
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "addPartsOfSpeech.top") as! String,sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addPartsOfSpeech.top"),sender: nil)
             }
         }else if(sender.tag == 1){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "addPartsOfSpeech.top") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addPartsOfSpeech.top"),sender: nil)
         }
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == infoList!.value(forKeyPath: "addPartsOfSpeech.top") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.addPartsOfSpeech.top")) {
             let _: ViewController = (segue.destination as? ViewController)!
         }
     }
