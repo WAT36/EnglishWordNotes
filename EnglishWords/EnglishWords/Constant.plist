@@ -4,6 +4,10 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>addPartsOfSpeech.already</key>
+		<string>既に同じ品詞名が登録されています</string>
+		<key>addPartsOfSpeech.noInput</key>
+		<string>品詞名が入力されていません</string>
 		<key>addWordNoteBook.already</key>
 		<string>既に同じ名前の単語帳が登録されています</string>
 		<key>addWordNoteBook.noInput</key>

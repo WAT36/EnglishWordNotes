@@ -78,9 +78,9 @@ class AddPartsofSpeechViewController: UIViewController, UITextFieldDelegate, UIT
     @IBAction func buttonTapped(sender : UIButton) {        
         if (sender.tag == 0){
             if textField.text!.isEmpty {
-                aa.showErrorAlert(vc: self, m: "品詞名が入力されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addPartsOfSpeech.noInput"))
             }else if(self.checkRegisteredPartOfSpeech(partsofspeechname: (textField.text?.trimmingCharacters(in: .whitespaces))!)){
-                aa.showErrorAlert(vc: self, m: "既に同じ品詞名が登録されています")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addPartsOfSpeech.already"))
             }else{
                 
                 //Realm
