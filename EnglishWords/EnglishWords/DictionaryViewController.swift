@@ -148,7 +148,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 let results = realm.objects(WordNote.self).filter("wordnotebook == %@ && word.wordName == %@",singleton.getWordNoteBook(),selectedWord.wordName)
                 if results.count > 0 {
                     //既に同じ英単語が辞書に登録されているためエラー出させる
-                    aa.showErrorAlert(vc: self, m: "既に同じ英単語が辞書にあります")
+                    aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureWordNoteBook.already"))
                 }else{
                     let cardresults = realm.objects(WordNote.self).filter("wordnotebook == %@",singleton.getWordNoteBook())
                     var maxId: Int = -1
