@@ -33,6 +33,14 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>dictionary.top</key>
+		<string>fromDictionarytoView</string>
+		<key>dictionary.configureWordNoteBook</key>
+		<string>fromDictionarytoConfigureWordNoteBook</string>
+		<key>dictionary.configureWord</key>
+		<string>fromDictionarytoConfigureWord</string>
+		<key>dictionary.searchWord</key>
+		<string>fromDictionarytoSearchWord</string>
 		<key>addWord.configureWordNoteBook</key>
 		<string>fromAddWordtoConfigureWordNoteBook</string>
 		<key>addPartsOfSpeech.top</key>
@@ -100,13 +108,5 @@
 	<string>fromConfigureWordtoDictionary</string>
 	<key>configureWord.configureWordNoteBook</key>
 	<string>fromConfigureWordtoConfigureWordNoteBook</string>
-	<key>dictionary.searchWord</key>
-	<string>fromDictionarytoSearchWord</string>
-	<key>dictionary.configureWord</key>
-	<string>fromDictionarytoConfigureWord</string>
-	<key>dictionary.configureWordNoteBook</key>
-	<string>fromDictionarytoConfigureWordNoteBook</string>
-	<key>dictionary.top</key>
-	<string>fromDictionarytoView</string>
 </dict>
 </plist>
