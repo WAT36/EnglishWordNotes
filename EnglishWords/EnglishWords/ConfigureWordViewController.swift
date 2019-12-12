@@ -79,7 +79,7 @@ class ConfigureWordViewController: UIViewController, UITableViewDelegate, UITabl
             
             let mean = cell.viewWithTag(2) as! UILabel
             mean.numberOfLines = 0
-            mean.text = "➕訳文を追加する"
+            mean.text = singleton.getStringValue(key: "Menu.addMean")
             cell.backgroundColor = UIColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 0.5)
         }
         
