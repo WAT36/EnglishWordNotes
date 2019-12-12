@@ -37,6 +37,10 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>configureMean.configureWord</key>
+		<string>fromConfigureMeantoConfigureWord</string>
+		<key>configureMean.AddSource</key>
+		<string>fromConfigureMeantoAddSource</string>
 		<key>configureWord.configureWordNoteBook</key>
 		<string>fromConfigureWordtoConfigureWordNoteBook</string>
 		<key>configureWord.Dictionary</key>
@@ -108,9 +112,5 @@
 	<string>fromAddSourcetoConfigureMean</string>
 	<key>addWordFromWeb.configureWordNoteBook</key>
 	<string>fromAddWordFromWebtoConfigureWordNoteBook</string>
-	<key>configureMean.AddSource</key>
-	<string>fromConfigureMeantoAddSource</string>
-	<key>configureMean.configureWord</key>
-	<string>fromConfigureMeantoConfigureWord</string>
 </dict>
 </plist>
