@@ -24,7 +24,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let notSelectedPartOfSpeech: String = "---品詞を選択してください---"
+    let notSelectedPartOfSpeech: String = Singleton.sharedInstance.getStringValue(key: "Menu.selectPartsOfSpeech")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +118,7 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
         } else {
             let addsourcecell = cell.viewWithTag(1) as! UILabel
             addsourcecell.numberOfLines = 0
-            addsourcecell.text = "➕出典を追加する"
+            addsourcecell.text = singleton.getStringValue(key: "Menu.addSource")
             cell.backgroundColor = UIColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 0.5)
         }
         

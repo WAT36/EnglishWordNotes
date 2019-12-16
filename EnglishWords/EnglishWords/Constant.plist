@@ -17,6 +17,10 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>addSource</key>
+		<string>➕出典を追加する</string>
+		<key>selectPartsOfSpeech</key>
+		<string>---品詞を選択してください---</string>
 		<key>addMean</key>
 		<string>➕訳文を追加する</string>
 		<key>configureWordNoteBook</key>
