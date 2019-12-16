@@ -4,6 +4,12 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>configureMean.noInput</key>
+		<string>訳文が入力されていません</string>
+		<key>configureMean.noSelectedPartsOfSpeech</key>
+		<string>品詞が選択されていません</string>
+		<key>configureMean.noWord</key>
+		<string>単語データがありません</string>
 		<key>configureWordNoteBook.already</key>
 		<string>この英単語は既に登録されています</string>
 		<key>addPartsOfSpeech.already</key>

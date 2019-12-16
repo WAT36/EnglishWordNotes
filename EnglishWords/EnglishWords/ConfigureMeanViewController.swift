@@ -164,11 +164,11 @@ class ConfigureMeanViewController:UIViewController,UIPickerViewDelegate,UIPicker
             performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureMean.configureWord") ,sender: nil)
         }else if(sender.tag == 1){
             if(singleton.getWord().wordName == " "){
-                aa.showErrorAlert(vc: self, m: "単語データがありません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureMean.noWord"))
             }else if (selectedpartofspeech?.partsOfSpeechName.isEmpty)! || selectedpartofspeech?.partsOfSpeechName == notSelectedPartOfSpeech {
-                aa.showErrorAlert(vc: self, m: "品詞が選択されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureMean.noSelectedPartsOfSpeech"))
             }else if (textView.text?.isEmpty)! {
-                aa.showErrorAlert(vc: self, m: "訳文が入力されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureMean.noInput"))
             }else{
                 let realm: Realm = try! Realm()
                 if singleton.getIsAddingNewWordData() {
