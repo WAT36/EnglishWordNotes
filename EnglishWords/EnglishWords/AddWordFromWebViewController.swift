@@ -113,11 +113,11 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
             if poslist.isEmpty || meanlist.isEmpty {
-                aa.showErrorAlert(vc: self, m: "登録する訳文がありません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noRegisteredMean"))
             }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
-                aa.showErrorAlert(vc: self, m: "単語が入力されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noInputWord"))
             }else if (self.checkRegisteredWordinWordNote(wordname: inputword)){
-                aa.showErrorAlert(vc: self, m: "既に同じ英単語が単語帳に登録されています")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.already"))
             }else if(self.checkRegisteredWordinDictionary(wordname: inputword)){
                 self.addWordalreadyinDictionary()
                 performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
@@ -127,7 +127,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
         }else if(sender.tag == 2){
             if wordtextField.text!.isEmpty {
-                aa.showErrorAlert(vc: self, m: "単語が入力されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noInputWord"))
             }else{
                 inputword = wordtextField.text!
                 inputwordname.text = wordtextField.text!
@@ -174,7 +174,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 }
             }
         }else{
-            aa.showErrorAlert(vc: self, m: "入力された単語は辞書に無いか、複数登録されています")
+            aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noRegisteredinDictionary"))
         }
     }
     
@@ -342,7 +342,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 self.meanlist.removeAll()
                 self.exEnlist.removeAll()
                 self.exJalist.removeAll()
-                self.aa.showErrorAlert(vc: self, m: "ネットワークエラー")
+                self.aa.showErrorAlert(vc: self, m: self.singleton.getStringValue(key: "Message.addWordFromWeb.networkError"))
             }
             
             if let html = response.result.value {
@@ -450,7 +450,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
             
             if( poslist.isEmpty || meanlist.isEmpty ){
-                aa.showErrorAlert(vc: self, m: "入力された単語では訳文が検出されませんでした")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.notFoundMean"))
             }
         }
     }

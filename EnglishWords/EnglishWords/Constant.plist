@@ -4,6 +4,18 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>addWordFromWeb.notFoundMean</key>
+		<string>入力された単語では訳文が検出されませんでした</string>
+		<key>addWordFromWeb.networkError</key>
+		<string>ネットワークエラー</string>
+		<key>addWordFromWeb.noRegisteredinDictionary</key>
+		<string>入力された単語は辞書に無いか、複数登録されています</string>
+		<key>addWordFromWeb.already</key>
+		<string>既に同じ英単語が単語帳に登録されています</string>
+		<key>addWordFromWeb.noInputWord</key>
+		<string>単語が入力されていません</string>
+		<key>addWordFromWeb.noRegisteredMean</key>
+		<string>登録する訳文がありません</string>
 		<key>configureMean.noInput</key>
 		<string>訳文が入力されていません</string>
 		<key>configureMean.noSelectedPartsOfSpeech</key>
