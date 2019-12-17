@@ -35,7 +35,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        wordtextField.placeholder = "単語を入力してください"
+        wordtextField.placeholder = singleton.getStringValue(key: "Menu.inputWord")
         
         //スイッチは最初OFF
         uiswitch.isOn = false

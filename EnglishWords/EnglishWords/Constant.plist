@@ -23,6 +23,8 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>inputWord</key>
+		<string>単語を入力してください</string>
 		<key>addSource</key>
 		<string>➕出典を追加する</string>
 		<key>selectPartsOfSpeech</key>
