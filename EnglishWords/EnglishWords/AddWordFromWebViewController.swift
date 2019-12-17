@@ -24,7 +24,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     var inputword: String = ""
     var poslist: [String] = []
@@ -111,7 +110,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     @IBAction func buttonTapped(sender : UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordFromWeb.configureWordNoteBook") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
             if poslist.isEmpty || meanlist.isEmpty {
                 aa.showErrorAlert(vc: self, m: "登録する訳文がありません")
@@ -121,10 +120,10 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 aa.showErrorAlert(vc: self, m: "既に同じ英単語が単語帳に登録されています")
             }else if(self.checkRegisteredWordinDictionary(wordname: inputword)){
                 self.addWordalreadyinDictionary()
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordFromWeb.configureWordNoteBook") as! String,sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
             }else{
                 self.addScrapedWord()
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "addWordFromWeb.configureWordNoteBook") as! String,sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
             }
         }else if(sender.tag == 2){
             if wordtextField.text!.isEmpty {
@@ -139,9 +138,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "addWordFromWeb.configureWordNoteBook") as? String) {
-            let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-        } else if (segue.identifier == infoList!.value(forKeyPath: "addWordFromWeb.configureWordNoteBook") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook")) {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
