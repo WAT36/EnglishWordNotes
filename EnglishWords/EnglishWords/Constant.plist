@@ -4,6 +4,16 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>addSource.input.already.inWordData</key>
+		<string>その出典は既に選択した単語データに登録されています</string>
+		<key>addSource.input.already.inSource</key>
+		<string>その出典は既に既存の出典データに登録されています</string>
+		<key>addSource.input.noInput</key>
+		<string>登録する出典が入力されていません</string>
+		<key>addSource.select.already</key>
+		<string>選択した出典は既に選択した単語データに登録されています</string>
+		<key>addSource.select.noSelected</key>
+		<string>出典が選択されていません</string>
 		<key>addWordFromWeb.notFoundMean</key>
 		<string>入力された単語では訳文が検出されませんでした</string>
 		<key>addWordFromWeb.networkError</key>

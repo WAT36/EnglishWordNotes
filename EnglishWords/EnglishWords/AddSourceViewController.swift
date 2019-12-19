@@ -82,9 +82,9 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
             //選択した出典から追加する　ボタン
             
             if (selectedsource?.sourceName.isEmpty)! || selectedsource?.sourceName == notSelectedSource {
-                aa.showErrorAlert(vc: self, m: "出典が選択されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addSource.select.noSelected"))
             }else if(singleton.getWordData().source.contains(selectedsource!)){
-                aa.showErrorAlert(vc: self, m: "選択した出典は既に選択した単語データに登録されています")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addSource.select.already"))
             }else{
                 //Realm、出典を新規登録
                 let realm = try! Realm()
@@ -97,7 +97,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
         }else if(sender.tag == 2){
             //入力した出典を追加する　ボタン
             if (sourcetext.text?.isEmpty)! {
-                aa.showErrorAlert(vc: self, m: "登録する出典が入力されていません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addSource.input.noInput"))
             }else{
                 let newsource = Source(value: ["sourceName" : sourcetext.text!,
                                                "createdDate": Date()])
@@ -105,9 +105,9 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
                 let realm = try! Realm()
                 let results = realm.objects(Source.self).filter("sourceName == %@",sourcetext.text!)
                 if(results.count > 0){
-                    aa.showErrorAlert(vc: self, m: "その出典は既に既存の出典データに登録されています")
+                    aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addSource.input.already.inSource"))
                 }else if(singleton.getWordData().source.contains(newsource)){
-                    aa.showErrorAlert(vc: self, m: "その出典は既に選択した単語データに登録されています")
+                    aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "addSource.input.already.inWordData"))
                 }else{
 
                     //Realm、出典を新規登録
