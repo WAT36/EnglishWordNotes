@@ -16,7 +16,6 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var sourcetext: UITextField!
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     var sourcelist: [Source] = []
     var selectedsource: Source?
@@ -78,7 +77,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     @IBAction func buttonTapped(sender : AnyObject) {
         if(sender.tag == 0){
             //戻るボタン
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "addSource.configureMean") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addSource.configureMean"),sender: nil)
         }else if(sender.tag == 1){
             //選択した出典から追加する　ボタン
             
@@ -92,7 +91,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
                 try! realm.write {
                     singleton.getWordData().source.append(selectedsource!)
                 }
-                performSegue(withIdentifier: infoList!.value(forKeyPath: "addSource.configureMean") as! String,sender: nil)
+                performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addSource.configureMean"),sender: nil)
             }
             
         }else if(sender.tag == 2){
@@ -118,7 +117,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
                         realm.add(newsource)
                     }
                     
-                    performSegue(withIdentifier: infoList!.value(forKeyPath: "addSource.configureMean") as! String, sender: nil)
+                    performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addSource.configureMean"), sender: nil)
                 }
             }
         }
@@ -126,7 +125,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == infoList!.value(forKeyPath: "addSource.configureMean") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.addSource.configureMean")) {
             let _: ConfigureMeanViewController = (segue.destination as? ConfigureMeanViewController)!
         }
     }

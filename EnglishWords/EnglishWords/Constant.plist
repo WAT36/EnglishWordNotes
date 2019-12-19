@@ -61,6 +61,8 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>addSource.configureMean</key>
+		<string>fromAddSourcetoConfigureMean</string>
 		<key>addWordFromWeb.configureWordNoteBook</key>
 		<string>fromAddWordFromWebtoConfigureWordNoteBook</string>
 		<key>configureMean.configureWord</key>
@@ -134,7 +136,5 @@
 	<string>fromSearchWordtoSearchResult</string>
 	<key>searchWord.dictionary</key>
 	<string>fromSearchWordtoDictionary</string>
-	<key>addSource.configureMean</key>
-	<string>fromAddSourcetoConfigureMean</string>
 </dict>
 </plist>
