@@ -20,7 +20,7 @@ class AddSourceViewController:UIViewController,UIPickerViewDelegate,UIPickerView
     var sourcelist: [Source] = []
     var selectedsource: Source?
     
-    let notSelectedSource: String = "--出典を選択してください--"
+    let notSelectedSource: String = Singleton.sharedInstance.getStringValue(key: "Menu.selectSource")
     
     override func viewDidLoad() {
         super.viewDidLoad()

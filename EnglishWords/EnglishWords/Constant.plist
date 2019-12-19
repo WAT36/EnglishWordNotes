@@ -35,6 +35,8 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>selectSource</key>
+		<string>--出典を選択してください--</string>
 		<key>inputWord</key>
 		<string>単語を入力してください</string>
 		<key>addSource</key>
