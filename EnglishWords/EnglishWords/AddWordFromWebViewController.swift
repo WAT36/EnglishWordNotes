@@ -112,25 +112,34 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         if(sender.tag == 0){
             performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
+            //OKボタン
             if poslist.isEmpty || meanlist.isEmpty {
+                //登録する訳文がありません
                 aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noRegisteredMean"))
             }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
+                //単語が未入力
                 aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noInputWord"))
             }else if (self.checkRegisteredWordinWordNote(wordname: inputword)){
+                //既に単語帳に登録されている
                 aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.already"))
             }else if(self.checkRegisteredWordinDictionary(wordname: inputword)){
+                //スクレイピングした単語が既に辞書にあるため辞書にあるデータから登録する
                 self.addWordalreadyinDictionary()
                 performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
             }else{
+                //スクレイピングした単語を単語帳と辞書に登録する
                 self.addScrapedWord()
                 performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
             }
         }else if(sender.tag == 2){
+            //Web取得開始ボタン
             if wordtextField.text!.isEmpty {
+                //単語が入力されていない
                 aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noInputWord"))
             }else{
                 inputword = wordtextField.text!
                 inputwordname.text = wordtextField.text!
+                //スクレイピング開始
                 self.scrapeWebsite(wordName: wordtextField.text!)
             }
         }
@@ -178,7 +187,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         }
     }
     
-    //スクレイピングした単語を登録する
+    //スクレイピングした単語を単語帳と辞書に登録する
     func addScrapedWord(){
         
         //Realm
