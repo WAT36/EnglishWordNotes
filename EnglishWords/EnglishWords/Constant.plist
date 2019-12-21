@@ -4,6 +4,10 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>searchWord.input.numeric</key>
+		<string>レベルには半角数字を入力してください</string>
+		<key>searchWord.input.noInput</key>
+		<string>検索条件として単語名または訳文を入力してください</string>
 		<key>addSource.input.already.inWordData</key>
 		<string>その出典は既に選択した単語データに登録されています</string>
 		<key>addSource.input.already.inSource</key>

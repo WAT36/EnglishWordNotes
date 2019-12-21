@@ -39,9 +39,9 @@ class SearchWordViewController: UIViewController, UITextFieldDelegate{
             performSegue(withIdentifier: singleton.getStringValue(key: "Segue.searchWord.dictionary"),sender: nil)
         }else if(sender.tag == 1){
             if((wordNameTextField.text?.isEmpty)! && (meanTextField.text?.isEmpty)!){
-                aa.showErrorAlert(vc: self, m: "検索条件として単語名または訳文を入力してください")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.searchWord.input.noInput") )
             }else if(!canSearchWord(levelTextField.text!)){
-                aa.showErrorAlert(vc: self, m: "レベルには半角数字を入力してください")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.searchWord.input.numeric") )
             }else{
                 //単語の検索条件作成
                 makeQuery(textfield: wordNameTextField,attribute: "word.wordName")
