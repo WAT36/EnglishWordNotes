@@ -139,6 +139,14 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }else{
                 inputword = wordtextField.text!
                 inputwordname.text = wordtextField.text!
+                
+                //入力された単語が既に辞書に登録された単語かチェック　→ 既に辞書にあったら　※既に辞書に登録されている...  という文を表示させる
+                if(self.checkRegisteredWordinDictionary(wordname: wordtextField.text!)){
+                    addWordAlert.textColor = UIColor.black
+                }else{
+                    addWordAlert.textColor = UIColor.white
+                }
+                
                 //スクレイピング開始
                 self.scrapeWebsite(wordName: wordtextField.text!)
             }
@@ -331,12 +339,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         //入力されたテキストをtrim、また文中にスペース(=熟語)があったらそれを"+"にする
         var inputWord = wordName.trimmingCharacters(in: .whitespaces)
         inputWord = inputWord.replacingOccurrences(of: " ", with: "+")
-        
-        if(self.checkRegisteredWordinDictionary(wordname: wordName)){
-            addWordAlert.textColor = UIColor.black
-        }else{
-            addWordAlert.textColor = UIColor.white
-        }
         
         //GETリクエスト 指定URLのコードを取得
         let fqdn = "https://ejje.weblio.jp/content/" + inputWord
