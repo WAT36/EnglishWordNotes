@@ -21,7 +21,6 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
 
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順","回答数順"]
     var selectedorderlist: String?
@@ -84,7 +83,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.configureWordNoteBook") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.configureWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
 
             //入力エラーチェック(数値に変換可能かチェック)
@@ -96,9 +95,9 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
                     //検索結果無し、エラーアラート出して戻させる
                     aa.showErrorAlert(vc: self, m: "検索結果がありません")
                 }else if(testForm.selectedSegmentIndex == 0){
-                    performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.fourOptionTestOfWordNote") as! String, sender: nil)
+                    performSegue(withIdentifier: singleton.getStringValue(key:  "Segue.configureTestOfWordNoteBook.fourOptionTestOfWordNote"), sender: nil)
                 }else if(testForm.selectedSegmentIndex == 1){
-                    performSegue(withIdentifier: infoList!.value(forKeyPath: "configureTestOfWordNoteBook.testOfWordNoteBook") as! String, sender: nil)
+                    performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.testOfWordNoteBook") , sender: nil)
                 }
             }else{
                 aa.showErrorAlert(vc: self, m: "レベル・個数には半角数字を入力してください")
@@ -108,12 +107,12 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "configureTestOfWordNoteBook.configureWordNoteBook") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.configureWordNoteBook") ) {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "configureTestOfWordNoteBook.testOfWordNoteBook") as? String){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.testOfWordNoteBook") ){
             let twnbVC: TestOfWordNoteBookViewController = (segue.destination as? TestOfWordNoteBookViewController)!
             twnbVC.wordNoteList = wordNoteList
-        }else if(segue.identifier == infoList!.value(forKeyPath: "configureTestOfWordNoteBook.fourOptionTestOfWordNote") as? String){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.fourOptionTestOfWordNote") ){
             let realm: Realm = try! Realm()
             if(realm.objects(Word.self).count < 2){
                 //四択テストを行えるだけの単語の数が足りてない（少なくとも正解単語１つ、不正解単語１つの２つが必要）

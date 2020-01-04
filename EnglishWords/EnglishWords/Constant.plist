@@ -79,6 +79,12 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>configureTestOfWordNoteBook.fourOptionTestOfWordNote</key>
+		<string>fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote</string>
+		<key>configureTestOfWordNoteBook.testOfWordNoteBook</key>
+		<string>fromConfigureTestOfWordNoteBooktoTestOfWordNoteBook</string>
+		<key>configureTestOfWordNoteBook.configureWordNoteBook</key>
+		<string>fromConfigureTestOfWordNoteBooktoConfigureWordNoteBook</string>
 		<key>searchResult.configureWord</key>
 		<string>fromSearchResulttoConfigureWord</string>
 		<key>searchResult.searchWord</key>
@@ -148,11 +154,5 @@
 	<string>fromTestOfWordNoteBooktoConfigureWordNoteBook</string>
 	<key>testOfWordNoteBook.configureTestOfWordNoteBook</key>
 	<string>fromTestOfWordNoteBooktoConfigureTestOfWordNoteBook</string>
-	<key>configureTestOfWordNoteBook.fourOptionTestOfWordNote</key>
-	<string>fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote</string>
-	<key>configureTestOfWordNoteBook.testOfWordNoteBook</key>
-	<string>fromConfigureTestOfWordNoteBooktoTestOfWordNoteBook</string>
-	<key>configureTestOfWordNoteBook.configureWordNoteBook</key>
-	<string>fromConfigureTestOfWordNoteBooktoConfigureWordNoteBook</string>
 </dict>
 </plist>
