@@ -38,8 +38,9 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         worddatalist = Array(results)
         print(worddatalist.count)
         if(worddatalist.count == 0){
+            //FIXME  表示されない
             //検索結果無し、エラーアラート出して戻させる
-            aa.showErrorAlert(vc: self, m: "検索結果がありません")
+            aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.searchResult.noResult"))
         }else{
             for i in 0..<worddatalist.count {
                 //取得したWordDataからWordリストを作る

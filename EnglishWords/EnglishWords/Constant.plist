@@ -4,6 +4,8 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>searchResult.noResult</key>
+		<string>検索結果がありません</string>
 		<key>searchWord.input.numeric</key>
 		<string>レベルには半角数字を入力してください</string>
 		<key>searchWord.input.noInput</key>
