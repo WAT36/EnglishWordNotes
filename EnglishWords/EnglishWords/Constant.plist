@@ -77,6 +77,10 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>searchResult.configureWord</key>
+		<string>fromSearchResulttoConfigureWord</string>
+		<key>searchResult.searchWord</key>
+		<string>fromSearchResulttoSearchWord</string>
 		<key>searchWord.dictionary</key>
 		<string>fromSearchWordtoDictionary</string>
 		<key>searchWord.searchResult</key>
@@ -148,9 +152,5 @@
 	<string>fromConfigureTestOfWordNoteBooktoTestOfWordNoteBook</string>
 	<key>configureTestOfWordNoteBook.configureWordNoteBook</key>
 	<string>fromConfigureTestOfWordNoteBooktoConfigureWordNoteBook</string>
-	<key>searchResult.configureWord</key>
-	<string>fromSearchResulttoConfigureWord</string>
-	<key>searchResult.searchWord</key>
-	<string>fromSearchResulttoSearchWord</string>
 </dict>
 </plist>

@@ -23,7 +23,6 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
 
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +81,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "searchResult.searchWord") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.searchResult.searchWord"),sender: nil)
         }
     }
     
@@ -91,15 +90,15 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         //選択したセルの単語を記録
         singleton.saveWord(w: wordlist[indexPath.row])
         // ConfigureWordViewController へ遷移するために Segue を呼び出す
-        performSegue(withIdentifier: infoList!.value(forKeyPath: "searchResult.configureWord") as! String, sender: nil)
+        performSegue(withIdentifier: singleton.getStringValue(key: "Segue.searchResult.configureWord"), sender: nil)
     }
 
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "searchResult.searchWord") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.searchResult.searchWord")) {
             let _: SearchWordViewController = (segue.destination as? SearchWordViewController)!
-        }else if (segue.identifier == infoList!.value(forKeyPath: "searchResult.configureWord") as? String) {
+        }else if (segue.identifier == singleton.getStringValue(key: "Segue.searchResult.configureWord")) {
             let _: ConfigureWordViewController = (segue.destination as? ConfigureWordViewController)!
         }
     }
