@@ -22,7 +22,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
 
-    let orderlist: [String] = ["条件なし","登録順","名前順","レベル順","正解率順","回答数順"]
+    let orderlist = Singleton.sharedInstance.getMenu(key: "Menu.configureTestOfWordNoteBook")
     var selectedorderlist: String?
     
     //検索結果の単語リスト

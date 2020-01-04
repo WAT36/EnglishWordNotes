@@ -51,6 +51,15 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>configureTestOfWordNoteBook</key>
+		<array>
+			<string>条件なし</string>
+			<string>登録順</string>
+			<string>名前順</string>
+			<string>レベル順</string>
+			<string>正解率順</string>
+			<string>回答数順</string>
+		</array>
 		<key>selectSource</key>
 		<string>--出典を選択してください--</string>
 		<key>inputWord</key>
