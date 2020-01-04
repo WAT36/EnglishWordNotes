@@ -4,6 +4,12 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>configureTestOfWordNoteBook.noWordinWordNoteBook</key>
+		<string>この単語帳から出題できる単語がありません</string>
+		<key>configureTestOfWordNoteBook.lackofWord</key>
+		<string>単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります</string>
+		<key>configureTestOfWordNoteBook.input.numeric</key>
+		<string>レベル・個数には半角数字を入力してください</string>
 		<key>searchResult.noResult</key>
 		<string>検索結果がありません</string>
 		<key>searchWord.input.numeric</key>

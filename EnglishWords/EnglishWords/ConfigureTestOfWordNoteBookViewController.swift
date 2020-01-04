@@ -92,15 +92,15 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
                 makeTest()
             
                 if(wordNoteList.count == 0){
-                    //検索結果無し、エラーアラート出して戻させる
-                    aa.showErrorAlert(vc: self, m: "検索結果がありません")
+                    //出題する単語が無し、エラーアラート出して戻させる
+                    aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureTestOfWordNoteBook.noWordinWordNoteBook") )
                 }else if(testForm.selectedSegmentIndex == 0){
                     performSegue(withIdentifier: singleton.getStringValue(key:  "Segue.configureTestOfWordNoteBook.fourOptionTestOfWordNote"), sender: nil)
                 }else if(testForm.selectedSegmentIndex == 1){
                     performSegue(withIdentifier: singleton.getStringValue(key: "Segue.configureTestOfWordNoteBook.testOfWordNoteBook") , sender: nil)
                 }
             }else{
-                aa.showErrorAlert(vc: self, m: "レベル・個数には半角数字を入力してください")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureTestOfWordNoteBook.input.numeric"))
             }
         }
     }
@@ -117,7 +117,7 @@ class ConfigureTestOfWordNoteBookViewController: UIViewController,UIPickerViewDe
             if(realm.objects(Word.self).count < 2){
                 //四択テストを行えるだけの単語の数が足りてない（少なくとも正解単語１つ、不正解単語１つの２つが必要）
                 //のでエラーアラート出して戻させる
-                aa.showErrorAlert(vc: self, m: "単語の数が足りません。四択テスト実行には少なくとも２つ以上の単語が辞書にある必要があります")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureTestOfWordNoteBook.lackofWord"))
             }else{
                 let fotwnbVC: FourOptionTestOfWordNoteViewController = (segue.destination as? FourOptionTestOfWordNoteViewController)!
                 fotwnbVC.wordNoteList = wordNoteList
