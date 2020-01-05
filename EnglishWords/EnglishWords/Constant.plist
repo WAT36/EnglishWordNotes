@@ -59,6 +59,24 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>optionConfigureWordNote.sortDefaultAttribute</key>
+		<string>word.wordName</string>
+		<key>optionConfigureWordNote.sortAttribute</key>
+		<array>
+			<string>word.wordName</string>
+			<string>wordidx</string>
+			<string>word.level</string>
+			<string>word.accuracyRate</string>
+			<string>word.numOfAnswer</string>
+		</array>
+		<key>optionConfigureWordNote.sortName</key>
+		<array>
+			<string>名前順</string>
+			<string>登録順</string>
+			<string>レベル順</string>
+			<string>正解率順</string>
+			<string>回答数順</string>
+		</array>
 		<key>configureTestOfWordNoteBook</key>
 		<array>
 			<string>条件なし</string>

@@ -17,9 +17,9 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
 
     let singleton :Singleton = Singleton.sharedInstance
 
-    let sortByList: [String] = ["名前順","登録順","レベル順","正解率順","回答数順"]
-    let sortAttributeByList: [String] = ["word.wordName","wordidx","word.level","word.accuracyRate","word.numOfAnswer"]
-    var selectedSortBy: String = "word.wordName" //デフォルトの並び順
+    let sortByList = Singleton.sharedInstance.getMenu(key: "Menu.optionConfigureWordNote.sortName")
+    let sortAttributeByList = Singleton.sharedInstance.getMenu(key: "Menu.optionConfigureWordNote.sortAttribute")
+    var selectedSortBy = Singleton.sharedInstance.getStringValue(key: "Menu.optionConfigureWordNote.sortDefaultAttribute") //デフォルトの並び順
 
     override func viewDidLoad() {
         super.viewDidLoad()
