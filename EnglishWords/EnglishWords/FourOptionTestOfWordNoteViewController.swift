@@ -22,7 +22,6 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     var wordIdx: Int = 0
     var nowWordDataList: [WordData] = []
@@ -85,7 +84,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "fourOptionTestOfWordNote.configureTestOfWordNoteBook") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.fourOptionTestOfWordNote.configureTestOfWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
             //次の単語へ
             toNextWord()
@@ -95,9 +94,9 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         singleton.saveNowTestingWord(ntw: Word())
-        if (segue.identifier == infoList!.value(forKeyPath: "fourOptionTestOfWordNote.configureTestOfWordNoteBook") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.fourOptionTestOfWordNote.configureTestOfWordNoteBook") ) {
             let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-        }else if(segue.identifier == infoList!.value(forKeyPath: "fourOptionTestOfWordNote.configureWordNoteBook") as? String){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.fourOptionTestOfWordNote.configureWordNoteBook") ){
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
@@ -176,7 +175,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
-            aa.testEndDispAlert(vc: self, identifier: infoList!.value(forKeyPath: "fourOptionTestOfWordNote.configureWordNoteBook") as! String)
+            aa.testEndDispAlert(vc: self, identifier: singleton.getStringValue(key: "Segue.fourOptionTestOfWordNote.configureWordNoteBook") )
         }else{
             wordIdx += 1
             singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)
