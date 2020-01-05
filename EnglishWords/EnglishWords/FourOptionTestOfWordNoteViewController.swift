@@ -136,14 +136,14 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
             let cell = table.cellForRow(at: IndexPath(item: correctIndex, section: 0))
             let label = (cell?.viewWithTag(2) as! UILabel)
             label.textColor = UIColor.red
-            clearLabel.text = "正解!!↑次へ"
+            clearLabel.text = singleton.getStringValue(key: "Menu.fourOptionTestOfWordNote.correct")
             clearLabel.textColor = UIColor.red
         }else{
             //不正解
             let cell = table.cellForRow(at: IndexPath(item: correctIndex, section: 0))
             let label = (cell?.viewWithTag(2) as! UILabel)
             label.textColor = UIColor.red
-            clearLabel.text = "不正解!!↑次へ"
+            clearLabel.text = singleton.getStringValue(key: "Menu.fourOptionTestOfWordNote.incorrect")
             clearLabel.textColor = UIColor.black
         }
         //一回タップしたので他のセルをタップ不可にする（再度回答するのを防ぐ）
@@ -159,7 +159,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
 
         try! realm.write {
             results?.numOfAnswer = (singleton.getNowTestingWord().numOfAnswer) + 1
-            if(clearLabel.text == "正解!!↑次へ"){
+            if(clearLabel.text == singleton.getStringValue(key: "Menu.fourOptionTestOfWordNote.correct")){
                 //訳文を全部正答したなら正答数も+1
                 results?.numOfCorrect = (singleton.getNowTestingWord().numOfCorrect) + 1
             }

@@ -59,6 +59,10 @@
 	</dict>
 	<key>Menu</key>
 	<dict>
+		<key>fourOptionTestOfWordNote.incorrect</key>
+		<string>不正解!!↑次へ</string>
+		<key>fourOptionTestOfWordNote.correct</key>
+		<string>正解!!↑次へ</string>
 		<key>optionConfigureWordNote.sortDefaultAttribute</key>
 		<string>word.wordName</string>
 		<key>optionConfigureWordNote.sortAttribute</key>
