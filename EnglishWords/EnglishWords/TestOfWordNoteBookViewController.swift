@@ -42,8 +42,8 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         clearLabel.textColor = UIColor.white
         
         if(wordNoteList.count == 0){
-            //検索結果無し、エラーアラート出して戻させる
-            aa.showErrorAlert(vc: self, m: "検索結果がありません")
+            //検索結果無し、エラーアラート出して戻させる(直前のテスト設定でも同じハンドリングをしているので、基本ここで掛かることはないが念のため)
+            aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureTestOfWordNoteBook.noWordinWordNoteBook") )
         }else{
             wordIdx = 0
             singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)
@@ -78,7 +78,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
         }else if(sender.tag == 2){
             if((answerMeanTextField.text?.isEmpty)!){
                 //エラーアラート出させて戻る
-                aa.showErrorAlert(vc: self, m: "入力がありません")
+                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.TestOfWordNoteBook.noInput"))
             }else{
                 //入力したテキストを元にテーブル更新
                 table.reloadData()

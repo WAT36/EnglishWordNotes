@@ -4,6 +4,8 @@
 <dict>
 	<key>Message</key>
 	<dict>
+		<key>TestOfWordNoteBook.noInput</key>
+		<string>入力がありません</string>
 		<key>configureTestOfWordNoteBook.noWordinWordNoteBook</key>
 		<string>この単語帳から出題できる単語がありません</string>
 		<key>configureTestOfWordNoteBook.lackofWord</key>
