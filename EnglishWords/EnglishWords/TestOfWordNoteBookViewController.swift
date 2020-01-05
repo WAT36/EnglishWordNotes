@@ -23,7 +23,6 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
     let aa = AlertAction()
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     var wordIdx: Int = 0
     var nowWordDataList: [WordData] = []
@@ -72,7 +71,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     
     @IBAction func buttonTapped(sender: UIButton) {
         if(sender.tag == 0){
-            performSegue(withIdentifier: infoList!.value(forKeyPath: "testOfWordNoteBook.configureTestOfWordNoteBook") as! String,sender: nil)
+            performSegue(withIdentifier: singleton.getStringValue(key: "Segue.testOfWordNoteBook.configureTestOfWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
             //次の単語へ
             toNextWord()
@@ -90,9 +89,9 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         singleton.saveNowTestingWord(ntw: Word()) //現出題単語リセット
-        if (segue.identifier == "returntoConfigureTestOfWordNoteBookViewController") {
+        if (segue.identifier ==  singleton.getStringValue(key: "Segue.testOfWordNoteBook.configureTestOfWordNoteBook")) {
             let _: ConfigureTestOfWordNoteBookViewController = (segue.destination as? ConfigureTestOfWordNoteBookViewController)!
-        }else if(segue.identifier == "returntoConfigureWordNoteBookViewController"){
+        }else if(segue.identifier == singleton.getStringValue(key: "Segue.testOfWordNoteBook.configureWordNoteBook")){
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }
@@ -164,7 +163,7 @@ class TestOfWordNoteBookViewController: UIViewController, UITableViewDelegate, U
 
         if(wordIdx >= wordNoteList.count - 1){
             //テスト終了
-            aa.testEndDispAlert(vc: self, identifier: infoList!.value(forKeyPath: "testOfWordNoteBook.configureWordNoteBook") as! String)
+            aa.testEndDispAlert(vc: self, identifier: singleton.getStringValue(key: "Segue.testOfWordNoteBook.configureWordNoteBook"))
         }else{
             wordIdx += 1
             singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)

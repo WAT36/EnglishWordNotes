@@ -94,6 +94,10 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>testOfWordNoteBook.configureWordNoteBook</key>
+		<string>fromTestOfWordNoteBooktoConfigureWordNoteBook</string>
+		<key>testOfWordNoteBook.configureTestOfWordNoteBook</key>
+		<string>fromTestOfWordNoteBooktoConfigureTestOfWordNoteBook</string>
 		<key>configureTestOfWordNoteBook.fourOptionTestOfWordNote</key>
 		<string>fromConfigureTestOfWordNoteBooktoFourOptionTestOfWordNote</string>
 		<key>configureTestOfWordNoteBook.testOfWordNoteBook</key>
@@ -165,9 +169,5 @@
 	<string>fromFourOptionTestOfWordNotetoConfigureWordNoteBook</string>
 	<key>optionConfigureWordNote.configureWordNoteBook</key>
 	<string>fromOptionConfigureWordNotetoConfigureWordNoteBook</string>
-	<key>testOfWordNoteBook.configureWordNoteBook</key>
-	<string>fromTestOfWordNoteBooktoConfigureWordNoteBook</string>
-	<key>testOfWordNoteBook.configureTestOfWordNoteBook</key>
-	<string>fromTestOfWordNoteBooktoConfigureTestOfWordNoteBook</string>
 </dict>
 </plist>
