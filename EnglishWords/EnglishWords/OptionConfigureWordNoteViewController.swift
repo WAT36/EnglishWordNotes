@@ -16,7 +16,6 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
     @IBOutlet var wordNameSegmentedControl: UISegmentedControl!
 
     let singleton :Singleton = Singleton.sharedInstance
-    let infoList = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Constant", ofType: "plist")!)
 
     let sortByList: [String] = ["名前順","登録順","レベル順","正解率順","回答数順"]
     let sortAttributeByList: [String] = ["word.wordName","wordidx","word.level","word.accuracyRate","word.numOfAnswer"]
@@ -77,12 +76,12 @@ class OptionConfigureWordNoteViewController: UIViewController,UIPickerViewDelega
             singleton.saveWordNoteSortBy(wnsb: selectedSortBy)
             singleton.saveWordNoteSortAscend(wnsa: (wordNameSegmentedControl.selectedSegmentIndex == 0))
         }
-        performSegue(withIdentifier: infoList!.value(forKeyPath: "optionConfigureWordNote.configureWordNoteBook") as! String,sender: nil)
+        performSegue(withIdentifier: singleton.getStringValue(key: "Segue.optionConfigureWordNote.configureWordNoteBook"),sender: nil)
     }
     
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if (segue.identifier == infoList!.value(forKeyPath: "optionConfigureWordNote.configureWordNoteBook") as? String) {
+        if (segue.identifier == singleton.getStringValue(key: "Segue.optionConfigureWordNote.configureWordNoteBook") ) {
             let _: ConfigureWordNoteBookViewController = (segue.destination as? ConfigureWordNoteBookViewController)!
         }
     }

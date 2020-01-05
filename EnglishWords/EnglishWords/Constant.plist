@@ -96,6 +96,8 @@
 	</dict>
 	<key>Segue</key>
 	<dict>
+		<key>optionConfigureWordNote.configureWordNoteBook</key>
+		<string>fromOptionConfigureWordNotetoConfigureWordNoteBook</string>
 		<key>testOfWordNoteBook.configureWordNoteBook</key>
 		<string>fromTestOfWordNoteBooktoConfigureWordNoteBook</string>
 		<key>testOfWordNoteBook.configureTestOfWordNoteBook</key>
@@ -169,7 +171,5 @@
 	<string>fromFourOptionTestOfWordNotetoConfigureTestOfWordNoteBook</string>
 	<key>fourOptionTestOfWordNote.configureWordNoteBook</key>
 	<string>fromFourOptionTestOfWordNotetoConfigureWordNoteBook</string>
-	<key>optionConfigureWordNote.configureWordNoteBook</key>
-	<string>fromOptionConfigureWordNotetoConfigureWordNoteBook</string>
 </dict>
 </plist>
