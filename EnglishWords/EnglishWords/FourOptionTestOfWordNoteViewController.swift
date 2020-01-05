@@ -47,7 +47,7 @@ class FourOptionTestOfWordNoteViewController: UIViewController, UITableViewDeleg
         
         if(wordNoteList.count == 0){
             //検索結果無し、エラーアラート出して戻させる
-            aa.showErrorAlert(vc: self, m: "検索結果がありません")
+            aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.configureTestOfWordNoteBook.noWordinWordNoteBook"))
         }else{
             wordIdx = 0
             singleton.saveNowTestingWord(ntw: wordNoteList[wordIdx].word!)
