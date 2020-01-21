@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */; };
 		240099032376801700170247 /* Constant.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240099022376801700170247 /* Constant.plist */; };
+		2401C28A23ADC69F001DEE75 /* WordScraping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2401C28923ADC69F001DEE75 /* WordScraping.swift */; };
+		2401C28C23ADD298001DEE75 /* ScrapedWordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2401C28B23ADD298001DEE75 /* ScrapedWordData.swift */; };
+		242D684B23C603F000D4DB68 /* ScrapedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242D684A23C603F000D4DB68 /* ScrapedWord.swift */; };
 		243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */; };
 		243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */; };
 		243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */; };
@@ -83,6 +86,9 @@
 /* Begin PBXFileReference section */
 		1B5169F914E65C70345504BD /* Pods-EnglishWordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		240099022376801700170247 /* Constant.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Constant.plist; sourceTree = "<group>"; };
+		2401C28923ADC69F001DEE75 /* WordScraping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordScraping.swift; sourceTree = "<group>"; };
+		2401C28B23ADD298001DEE75 /* ScrapedWordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapedWordData.swift; sourceTree = "<group>"; };
+		242D684A23C603F000D4DB68 /* ScrapedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapedWord.swift; sourceTree = "<group>"; };
 		243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordFromWebViewController.swift; sourceTree = "<group>"; };
 		243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWordNoteBookViewController.swift; sourceTree = "<group>"; };
 		243D265821FDF34D004719A3 /* AddPartsofSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPartsofSpeechViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +226,9 @@
 				2493D9662357581700651150 /* NowSelectedData.swift */,
 				2493D96823575CB400651150 /* Singleton.swift */,
 				240099022376801700170247 /* Constant.plist */,
+				2401C28923ADC69F001DEE75 /* WordScraping.swift */,
+				2401C28B23ADD298001DEE75 /* ScrapedWordData.swift */,
+				242D684A23C603F000D4DB68 /* ScrapedWord.swift */,
 			);
 			path = EnglishWords;
 			sourceTree = "<group>";
@@ -513,9 +522,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2401C28C23ADD298001DEE75 /* ScrapedWordData.swift in Sources */,
 				24EA74AA22CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift in Sources */,
 				243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */,
 				243D265B21FF2D5B004719A3 /* PartsofSpeech.swift in Sources */,
+				2401C28A23ADC69F001DEE75 /* WordScraping.swift in Sources */,
 				243D265D21FF375E004719A3 /* AddWordViewController.swift in Sources */,
 				24A4572821EF6445002048A0 /* WordNoteBook.swift in Sources */,
 				2493D96923575CB400651150 /* Singleton.swift in Sources */,
@@ -532,6 +543,7 @@
 				249D791E22903E28003496CD /* TestOfWordNoteBookViewController.swift in Sources */,
 				249D791C228E22C2003496CD /* ConfigureTestOfWordNoteBookViewController.swift in Sources */,
 				243D265F22007455004719A3 /* DictionaryViewController.swift in Sources */,
+				242D684B23C603F000D4DB68 /* ScrapedWord.swift in Sources */,
 				2493D965235225D200651150 /* AlertAction.swift in Sources */,
 				243D265921FDF34D004719A3 /* AddPartsofSpeechViewController.swift in Sources */,
 				24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */,

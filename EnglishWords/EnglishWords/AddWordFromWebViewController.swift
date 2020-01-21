@@ -26,10 +26,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     let singleton :Singleton = Singleton.sharedInstance
 
     var inputword: String = ""
-    var poslist: [String] = []
-    var meanlist: [String] = []
-    var exEnlist: [String] = []
-    var exJalist: [String] = []
+    var scrapedWord: ScrapedWord = ScrapedWord()
     var addSourceSwitch: Bool = false
     
     override func viewDidLoad() {
@@ -62,7 +59,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     
     //テーブルのセルの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return meanlist.count
+        return scrapedWord.getWordData().count
     }
     
     //テーブルのセルの要素を設定
@@ -73,11 +70,11 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         // Tag番号  で UILabel インスタンスの生成
         let poslabel = cell.viewWithTag(1) as! UILabel
         poslabel.numberOfLines = 0
-        poslabel.text = poslist[indexPath.row]
+        poslabel.text = scrapedWord.getWordData()[indexPath.row].getPartOfSpeech()
         let meanlabel = cell.viewWithTag(2) as! UILabel
         meanlabel.numberOfLines = 0
-        meanlabel.text = meanlist[indexPath.row]
-        if(exEnlist[indexPath.row].isEmpty){
+        meanlabel.text = scrapedWord.getWordData()[indexPath.row].getMean()
+        if(scrapedWord.getWordData()[indexPath.row].getExEn().isEmpty){
             cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)
         }else{
             cell.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -94,10 +91,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //選択したセルの訳文を削除
-            poslist.remove(at: indexPath.row)
-            meanlist.remove(at: indexPath.row)
-            exEnlist.remove(at: indexPath.row)
-            exJalist.remove(at: indexPath.row)
+            scrapedWord.removeWordData(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -113,7 +107,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             performSegue(withIdentifier: singleton.getStringValue(key: "Segue.addWordFromWeb.configureWordNoteBook"),sender: nil)
         }else if(sender.tag == 1){
             //OKボタン
-            if poslist.isEmpty || meanlist.isEmpty {
+            if scrapedWord.getWordData().isEmpty {
                 //登録する訳文がありません
                 aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.noRegisteredMean"))
             }else if (wordtextField.text?.isEmpty)! || inputword.isEmpty {
@@ -148,7 +142,26 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 }
                 
                 //スクレイピング開始
-                self.scrapeWebsite(wordName: wordtextField.text!)
+                let ws:WordScraping = WordScraping()
+
+                //結果データをリセット
+                scrapedWord = ScrapedWord()
+                //スクレイピングし、結果データを格納
+                scrapedWord = ws.scrapeWebsite(wordName: wordtextField.text!)
+                //画面にレベルと発音記号を載せる
+                level.text = scrapedWord.getLevel()
+                pronounce.text = scrapedWord.getPronounce()
+                //画面のテーブルビュー更新
+                self.table.reloadData()
+                
+                
+                if(scrapedWord.getErrorFlag()){
+                    //ネットワークエラー、
+                    aa.showErrorAlert(vc: self, m: self.singleton.getStringValue(key: "Message.addWordFromWeb.networkError"))
+                }else if(scrapedWord.getWordData().isEmpty){
+                    //取得結果なし
+                    aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.notFoundMean"))
+                }
             }
         }
     }
@@ -195,7 +208,7 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
         }
     }
     
-    //スクレイピングした単語を単語帳と辞書に登録する
+    //OKボタン押下後にスクレイピングした単語を単語帳と辞書に登録する
     func addScrapedWord(){
         
         //Realm
@@ -233,7 +246,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                                         "wordidx": (maxId + 1),
                                         "registereddate": Date()])])
         }
-        var pos = self.getPartOfSpeechData(posname: poslist[0])
         
         var source = Source(value: ["sourceName" : "hoge",
                                     "createdDate" : Date()])
@@ -261,19 +273,19 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             }
         }
         
-        for i in 0..<meanlist.count{
-            //品詞データを取得
-            if i>0 && poslist[i-1] != poslist[i] {
-                pos = self.getPartOfSpeechData(posname: poslist[i])
-            }
+        for i in 0..<scrapedWord.getWordData().count{
+            
+            //一つ分の訳文
+            let scrapedWordData:ScrapedWordData = scrapedWord.getWordData()[i]
+            
             try! realm.write {
                 //新規単語データを登録
                 let newworddata = WordData(value: ["word": newword,
-                                                   "partofspeech": pos,
+                                                   "partofspeech": scrapedWordData.getPartOfSpeech(),
                                                    "meanidx": i+1,
-                                                   "mean": meanlist[i],
-                                                    "example_q": exEnlist[i],
-                                                    "example_a": exJalist[i]])
+                                                   "mean": scrapedWordData.getMean(),
+                                                    "example_q": scrapedWordData.getExEn(),
+                                                    "example_a": scrapedWordData.getExJa()])
                 
                 realm.add(newworddata)
 
@@ -332,137 +344,6 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
                 realm.add(newpos)
             }
             return newpos
-        }
-    }
-    
-    func scrapeWebsite(wordName: String) {
-        //入力されたテキストをtrim、また文中にスペース(=熟語)があったらそれを"+"にする
-        var inputWord = wordName.trimmingCharacters(in: .whitespaces)
-        inputWord = inputWord.replacingOccurrences(of: " ", with: "+")
-        
-        //GETリクエスト 指定URLのコードを取得
-        let fqdn = "https://ejje.weblio.jp/content/" + inputWord
-        Alamofire.request(fqdn).responseString { response in
-            print("\(response.result.isSuccess)")
-            
-            if !response.result.isSuccess {
-                self.wordtextField.text = ""
-                self.inputword = ""
-                self.inputwordname.text = ""
-                self.poslist.removeAll()
-                self.meanlist.removeAll()
-                self.exEnlist.removeAll()
-                self.exJalist.removeAll()
-                self.aa.showErrorAlert(vc: self, m: self.singleton.getStringValue(key: "Message.addWordFromWeb.networkError"))
-            }
-            
-            if let html = response.result.value {
-                //入力した単語でスクレイピング開始・テーブル更新
-                self.parseHTML(html: html)
-                self.table.reloadData()
-            }
-        }
-    }
-    
-    func parseHTML(html: String) {
-        if let doc = try? HTML(html: html, encoding: .utf8) {
-            var csstemp = doc.css("span[class='learning-level-content']")
-            if(csstemp.count != 0){
-                level.text = csstemp.first!.text
-            }else{
-                level.text = ""
-            }
-            
-            csstemp = doc.css("span[class='phoneticEjjeDesc']")
-            if(csstemp.count != 0){
-                pronounce.text = csstemp.first!.text
-            }else{
-                pronounce.text = ""
-            }
-            
-            let means = doc.xpath("//div[@class='mainBlock hlt_KENEJ']/div[@class='kijiWrp']/div[@class='kiji']/div[@class='Kejje']//div[@class='level0' or @class='KejjeYrHd']")
-            
-            //品詞・意味リストを全削除
-            poslist.removeAll()
-            meanlist.removeAll()
-            exEnlist.removeAll()
-            exJalist.removeAll()
-            
-            var mean: String = ""
-            var nh: String = ""
-            var ah: String = ""
-            var b: String = ""
-            var exEn: String = ""
-            var exJa: String = ""
-            
-            var meannum = -1;
-            var knenjsubflag = 0 // 品詞が来た時のフラグ。この次のlevel0は必ず意味として受け取る
-            for m in means{
-            
-                //品詞のタグがある場合は品詞を入れて次に進む
-                if(m.css("div[class='KnenjSub']").count > 0){
-                    let submean = m.css("span[class='KejjeSm']").first?.text!
-                    mean = (m.css("div[class='KnenjSub']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                    if( submean != nil ){
-                        mean = mean.replacingOccurrences(of: submean!, with: "")
-                        mean = mean + "(" + (submean?.trimmingCharacters(in: .whitespaces))! + ")"
-                    }
-                    knenjsubflag = 2
-                    continue
-                }else{
-                    knenjsubflag -= 1
-                }
-                
-                //大節のタグがある場合は大節を入れる
-                if(m.css("p[class='lvlNH']").count > 0 && !(m.css("p[class='lvlNH']").first?.text?.isEmpty)!){
-                    nh = (m.css("p[class='lvlNH']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                }
-                
-                //小節のタグがある場合は小節を入れる
-                if(m.css("p[class='lvlAH']").count > 0){
-                    ah = (m.css("p[class='lvlAH']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                }
-                
-                //意味のタグがある場合は小節を入れる
-                if(m.css("p[class='lvlB']").count > 0){
-                    b = (m.css("p[class='lvlB']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                    meannum = meannum + 1
-                    poslist.append("")
-                    meanlist.append("")
-                    exEnlist.append("")
-                    exJalist.append("")
-                }else if(knenjsubflag > 0){
-                    b = (m.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                    meannum = meannum + 1
-                    poslist.append("")
-                    meanlist.append("")
-                    exEnlist.append("")
-                    exJalist.append("")
-                }else if((m.css("span[class='KejjeYrEn']").count > 0) && (m.css("span[class='KejjeYrJp']").count > 0)){
-                    //例文(英日)のタグがある場合は例文を入れる
-                    exEn = (m.css("span[class='KejjeYrEn']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                    exJa = (m.css("span[class='KejjeYrJp']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
-                }
-
-                //品詞：大節：小節：意味：英例文：日例文
-                print(mean + ":" + nh + ":" + ah + ":" + b + ":" + exEn + ":" + exJa + ":" + meannum.description)
-                if(!b.isEmpty){
-                    poslist[meannum] = mean
-                    meanlist[meannum] = b
-                    b = ""
-                }
-                
-                if(!exEn.isEmpty){
-                    exEnlist[meannum] = exEn
-                    exJalist[meannum] = exJa
-                    exEn = ""
-                    exJa = ""
-                }
-            }
-            
-            if( poslist.isEmpty || meanlist.isEmpty ){
-                aa.showErrorAlert(vc: self, m: singleton.getStringValue(key: "Message.addWordFromWeb.notFoundMean"))
-            }
         }
     }
 }
