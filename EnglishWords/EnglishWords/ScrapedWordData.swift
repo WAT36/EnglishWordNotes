@@ -16,7 +16,7 @@ class ScrapedWordData {
     var ex_Ja:String
     
     init() {
-        self.partofspeech = ""
+        self.partofspeech = " "
         self.mean = ""
         self.ex_En = ""
         self.ex_Ja = ""
