@@ -278,10 +278,13 @@ class AddWordFromWebViewController: UIViewController, UITextFieldDelegate, UITab
             //一つ分の訳文
             let scrapedWordData:ScrapedWordData = scrapedWord.getWordData()[i]
             
+            //品詞データを取得
+            let pos = self.getPartOfSpeechData(posname: scrapedWordData.getPartOfSpeech())
+            
             try! realm.write {
                 //新規単語データを登録
                 let newworddata = WordData(value: ["word": newword,
-                                                   "partofspeech": scrapedWordData.getPartOfSpeech(),
+                                                   "partofspeech": pos,
                                                    "meanidx": i+1,
                                                    "mean": scrapedWordData.getMean(),
                                                     "example_q": scrapedWordData.getExEn(),
