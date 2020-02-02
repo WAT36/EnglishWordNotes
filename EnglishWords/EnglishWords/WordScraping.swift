@@ -37,9 +37,11 @@ class WordScraping {
             }else if let html = response.result.value {
                 //入力した単語でスクレイピング開始・テーブル更新
                 resultOfWord = self.parseHTML(html: html)
+                //取得完了したらセマフォでシグナル
                 semaphore.signal()
             }
         }
+        //スクレイピング結果取得完了するまで待つ
         semaphore.wait()
         
         return resultOfWord
@@ -56,16 +58,12 @@ class WordScraping {
             var csstemp = doc.css("span[class='learning-level-content']")
             if(csstemp.count != 0){
                 sw.saveLevel(l:csstemp.first!.text!)
-//                print(csstemp.first!.text!)
             }
-            print(sw.getLevel())
             //単語の発音記号取得
             csstemp = doc.css("span[class='phoneticEjjeDesc']")
             if(csstemp.count != 0){
                 sw.savePronounce(p:csstemp.first!.text!)
-//                print(csstemp.first!.text!)
             }
-            print(sw.getPronounce())
             //"level0"または"KejjeYrHd"のタグのみ抽出
             let means = doc.xpath("//div[@class='mainBlock hlt_KENEJ']/div[@class='kijiWrp']/div[@class='kiji']/div[@class='Kejje']//div[@class='level0' or @class='KejjeYrHd']")
             
@@ -128,10 +126,7 @@ class WordScraping {
                 else{
                     //品詞を取った直後なら、とりあえず意味として取る
                     if(state=="partofspeech"){
-                        //
-                        print(m.content!)
                         let b:String = m.content!
-//                            (m.css("div[class='level0']").first!.text?.trimmingCharacters(in: .whitespaces).uppercased())!
                         wd.saveMean(m: b)
                         state="mean"
                     }
@@ -140,13 +135,8 @@ class WordScraping {
             sw.addWordData(worddata: wd)
         }
         
-//        for i in sw.getWordData(){
-//            print(i.getMean())
-//        }
         print("WordScraping.parseHTML: end")
 
-//        resultOfWord = sw
-//        print(resultOfWord.getWordData())
         return sw
     }
 }
