@@ -3,3 +3,10 @@ HandsOn/Podfile/*
 HandsOn/Podfile*
 EnglishWords/EnglishWords.xcodeproj/xcuserdata/*
 EnglishWords/EnglishWords.xcodeproj/project.xcworkspace/*
+EnglishWords/Carthage/*
+!EnglishWords/Carthage/Build/
+EnglishWords/Carthage/Build/*
+!EnglishWords/Carthage/Build/iOS/
+EnglishWords/Carthage/Build/iOS/*
+!EnglishWords/Carthage/Build/iOS/Realm.framework
+!EnglishWords/Carthage/Build/iOS/RealmSwift.framework
