@@ -353,7 +353,7 @@ class ConfigureWordNoteBookViewController: UIViewController, UITableViewDelegate
             //WordNoteBookをUpdate
             realm.create(WordNoteBook.self,
                          value: wnb!,
-                         update: true)
+                         update: .all)
         }
         
         let wnresults = realm.objects(WordNote.self).filter("wordnotebook.wordNoteBookId == %@",singleton.getWordNoteBook().wordNoteBookId).sorted(byKeyPath: singleton.getWordNoteSortBy(), ascending: true)
