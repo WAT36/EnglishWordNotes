@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */; };
 		240099032376801700170247 /* Constant.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240099022376801700170247 /* Constant.plist */; };
 		243B0D172225788A0097B0FA /* AddWordFromWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243B0D162225788A0097B0FA /* AddWordFromWebViewController.swift */; };
 		243D265721F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D265621F8B5C5004719A3 /* ConfigureWordNoteBookViewController.swift */; };
@@ -44,8 +43,6 @@
 		24F2B4F1214E7C2B009AA57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F2B4EF214E7C2B009AA57C /* LaunchScreen.storyboard */; };
 		24F2B4FC214E7C2B009AA57C /* EnglishWordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4FB214E7C2B009AA57C /* EnglishWordsTests.swift */; };
 		24F2B507214E7C2B009AA57C /* EnglishWordsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B506214E7C2B009AA57C /* EnglishWordsUITests.swift */; };
-		823E7B5CFBCBEC8305CD326F /* Pods_EnglishWordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */; };
-		E196CCCDBC078645AE9EF6F9 /* Pods_EnglishWords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,13 +120,10 @@
 		24F2B506214E7C2B009AA57C /* EnglishWordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishWordsUITests.swift; sourceTree = "<group>"; };
 		24F2B508214E7C2B009AA57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD3AC23FBE00A05BD6C4DDB /* Pods-EnglishWordsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.release.xcconfig"; sourceTree = "<group>"; };
-		729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7587EA93209069544F58032B /* Pods-EnglishWords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.debug.xcconfig"; sourceTree = "<group>"; };
 		764B0292039C250B97AA6FF8 /* Pods-EnglishWordsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsTests/Pods-EnglishWordsTests.release.xcconfig"; sourceTree = "<group>"; };
 		E059E0E2B09DEFB9EB97729B /* Pods-EnglishWords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWords.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWords/Pods-EnglishWords.release.xcconfig"; sourceTree = "<group>"; };
-		EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWordsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30B5B4A3CC493035348B1D9 /* Pods-EnglishWordsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishWordsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishWordsUITests/Pods-EnglishWordsUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishWords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DDD525250D2457003AE472 /* Realm.framework in Frameworks */,
-				E196CCCDBC078645AE9EF6F9 /* Pods_EnglishWords.framework in Frameworks */,
 				24DDD529250D245F003AE472 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,7 +140,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823E7B5CFBCBEC8305CD326F /* Pods_EnglishWordsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +147,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08D417ED41AD976D27B0133B /* Pods_EnglishWordsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,9 +236,6 @@
 			children = (
 				24DDD528250D245F003AE472 /* RealmSwift.framework */,
 				24DDD524250D2456003AE472 /* Realm.framework */,
-				FF6955C7F5B575D62D266CFD /* Pods_EnglishWords.framework */,
-				EA974FA07160AC5AA03ED8B8 /* Pods_EnglishWordsTests.framework */,
-				729C0DA009376C4EB7A27A7B /* Pods_EnglishWordsUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,7 +264,6 @@
 				24F2B4DF214E7C29009AA57C /* Sources */,
 				24F2B4E0214E7C29009AA57C /* Frameworks */,
 				24F2B4E1214E7C29009AA57C /* Resources */,
-				24A4574221F1F72B002048A0 /* ShellScript */,
 				D2531AAF7A7251D4768C5018 /* [CP] Embed Pods Frameworks */,
 				24DDD523250D21F2003AE472 /* ShellScript */,
 				24DDD527250D2457003AE472 /* Embed Frameworks */,
@@ -400,23 +387,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24A4574221F1F72B002048A0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"\n";
-		};
 		24DDD523250D21F2003AE472 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
