@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,10 +31,8 @@
 		24A4573D21F0BE94002048A0 /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4573C21F0BE94002048A0 /* WordData.swift */; };
 		24A4574121F0C148002048A0 /* WordNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574021F0C148002048A0 /* WordNote.swift */; };
 		24A4574421F2D45A002048A0 /* AddWordNoteBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4574321F2D45A002048A0 /* AddWordNoteBookViewController.swift */; };
-		24DDD525250D2457003AE472 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD524250D2456003AE472 /* Realm.framework */; };
-		24DDD526250D2457003AE472 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD524250D2456003AE472 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		24DDD529250D245F003AE472 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD528250D245F003AE472 /* RealmSwift.framework */; };
-		24DDD52A250D245F003AE472 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD528250D245F003AE472 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24E95B9D2513094C00406D09 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD524250D2456003AE472 /* Realm.framework */; };
+		24E95BA02513095500406D09 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DDD528250D245F003AE472 /* RealmSwift.framework */; };
 		24EA74AA22CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EA74A922CA330F00BFF56D /* OptionConfigureWordNoteViewController.swift */; };
 		24F2B4E7214E7C29009AA57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E6214E7C29009AA57C /* AppDelegate.swift */; };
 		24F2B4E9214E7C29009AA57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2B4E8214E7C29009AA57C /* ViewController.swift */; };
@@ -63,14 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		24DDD527250D2457003AE472 /* Embed Frameworks */ = {
+		24E95B9F2513094C00406D09 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				24DDD52A250D245F003AE472 /* RealmSwift.framework in Embed Frameworks */,
-				24DDD526250D2457003AE472 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,8 +127,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DDD525250D2457003AE472 /* Realm.framework in Frameworks */,
-				24DDD529250D245F003AE472 /* RealmSwift.framework in Frameworks */,
+				24E95BA02513095500406D09 /* RealmSwift.framework in Frameworks */,
+				24E95B9D2513094C00406D09 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +262,7 @@
 				24F2B4E1214E7C29009AA57C /* Resources */,
 				D2531AAF7A7251D4768C5018 /* [CP] Embed Pods Frameworks */,
 				24DDD523250D21F2003AE472 /* ShellScript */,
-				24DDD527250D2457003AE472 /* Embed Frameworks */,
+				24E95B9F2513094C00406D09 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,12 +389,12 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"$(SRCROOT)/input.xcfilelist",
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
 			outputFileListPaths = (
+				"$(SRCROOT)/output.xcfilelist",
 			);
 			outputPaths = (
 			);
